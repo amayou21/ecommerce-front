@@ -48,7 +48,7 @@ const ProductCard = () => {
             {/*  */}
             <div>
                 <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite color='error'/>} />
-                  <Link to='/product-details'>
+                  <Link to='/product/:id'>
                     <img
                     className="w-full" // p-2
                     src={img3}
