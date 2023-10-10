@@ -46,7 +46,6 @@ const ProductGallery = () => {
             description
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla illum tempore repudiandae eligendi excepturi voluptas nemo doloremque, expedita nesciunt. Praesentium sequi autem maxime delectus expedita officiis in molestias earum non.
-
             </p>
             <span className='text-yellow-500 my-2'>5.3</span>
             <p>brand : samsung</p>
@@ -73,6 +72,7 @@ const ProductGallery = () => {
                 </Button>
               </Stack>
             </div>
+
 
           </div>
 

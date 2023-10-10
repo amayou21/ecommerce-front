@@ -12,9 +12,9 @@ import AllCategoryPage from './pages/categories/AllCategoryPage';
 import AllBrandsPage from './pages/Brands/AllBrandsPage';
 import ShopProductPage from './pages/Products/ShopProductPage';
 import ProductDetailsPage from './pages/Products/ProductDetailsPage'
-// import Info from './component/utility/AmaguarCv';
-// import MotivationLettre from './component/utility/motivationLettre';
-// import Emails from './component/utility/Emails';
+import Info from './component/utility/AmaguarCv';
+import MotivationLettre from './component/utility/motivationLettre';
+import Emails from './component/utility/Emails';
 const App = () => {
 
   const [mode, setMode] = useState(localStorage.getItem("currentTheme") === null
@@ -58,13 +58,13 @@ const App = () => {
             <Route path='/product/:id' element={<ProductDetailsPage />} />
             {/* <Route path='/cv' element={<Info />} />
             <Route path='/mot' element={<MotivationLettre />} />
-            <Route path='/email' element={<Emails />} /> */}
-            
+            <Route path='/email' element={<Emails />} />
+             */}
           </Routes>
           
         </div >
       </BrowserRouter>
-     <Footer />
+     <Footer /> 
     </ThemeProvider>
   );
 }

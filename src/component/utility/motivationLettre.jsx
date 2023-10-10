@@ -9,7 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 
-const MotivationLettre = ({ entre = 'CGI', date = "05/10/2023", email = 'youssef.mern.dev@gmail.com', phone = "+212 657792431" }) => {
+const MotivationLettre = ({ entre = '', date = "05/10/2023", email = 'youssef.mern.dev@gmail.com', phone = "+212 657792431" }) => {
     
     
 

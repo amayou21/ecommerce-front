@@ -11,7 +11,7 @@ function PaginatePage() {
         console.log(value);
     }
     return (
-        <div className='flex justify-center '>
+        <div className='flex justify-center mt-5'>
             <Pagination color="primary" count={12} onChange={handeler} size={`${num}`} />
         </div>
     )
