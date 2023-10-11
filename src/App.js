@@ -16,6 +16,7 @@ import Info from './component/utility/AmaguarCv';
 import MotivationLettre from './component/utility/motivationLettre';
 import Emails from './component/utility/Emails';
 import CartPage from './pages/cart/CartPage';
+import ChoosePaymentMethod from './pages/payment/ChoosePaymentMethod';
 const App = () => {
 
   const [mode, setMode] = useState(localStorage.getItem("currentTheme") === null
@@ -58,6 +59,7 @@ const App = () => {
             <Route path='/product-tshop' element={<ShopProductPage />} />
             <Route path='/product/:id' element={<ProductDetailsPage />} />
             <Route path='/cart' element={<CartPage />} />
+            <Route path='/order/paymethod' element={<ChoosePaymentMethod />} />
 
             {/* <Route path='/cv' element={<Info />} />
             <Route path='/mot' element={<MotivationLettre />} />

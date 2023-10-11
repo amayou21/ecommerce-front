@@ -38,7 +38,6 @@ const ProductGallery = () => {
               showThumbnails={false}
             />
           </div>
-
         </Grid>
 
         <Grid sm={12} xs={12} lg={9} md={9}>

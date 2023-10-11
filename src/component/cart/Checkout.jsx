@@ -8,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
 
 
 const Checkout = () => {
@@ -32,20 +33,22 @@ const Checkout = () => {
 
             <div className='flex  items-center '>
                 <Paper
-                className='flex justify-center my-3'
+                    className='flex justify-center my-3'
                     component="form"
                     sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
                 >
                     <Typography variant="p" color="inherit" className='py-5'>1202$
-                    
+
                     </Typography>
                 </Paper>
             </div>
-            <div className='flex  items-center ' sx={{ p: '2px 4px' }}>
-               
-                    <Button variant="contained" sx={{ width: 400}}>Contained</Button>
+            <Link to='/order/paymethod'>
+                <div className='flex  items-center ' sx={{ p: '2px 4px' }}>
 
-            </div>
+                    <Button variant="contained" sx={{ width: 400 }}>shoping</Button>
+
+                </div>
+            </Link>
         </div>
     );
 }
