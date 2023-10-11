@@ -4,7 +4,7 @@ import ChooseMethode from '../../component/payment/ChooseMethode'
 const ChoosePaymentMethod = () => {
     return (
         <Container maxWidth="lg">
-            <ChooseMethod />
+            <ChooseMethode />
         </Container>
     );
 }
