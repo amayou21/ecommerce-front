@@ -127,14 +127,17 @@ const NavBar = ({ setMode }) => {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem >
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <ShoppingCart />
-                    </Badge>
-                </IconButton>
-                <p>Cart</p>
-            </MenuItem>
+            <Link href={'/cart'} underline="none" color="inhiret">
+                <MenuItem >
+
+                    <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                        <Badge badgeContent={4} color="error">
+                            <ShoppingCart />
+                        </Badge>
+                    </IconButton>
+                    <p>Cart</p>
+                </MenuItem>
+            </Link>
 
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
@@ -184,11 +187,14 @@ const NavBar = ({ setMode }) => {
 
                     {/* 3 */}
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }} >
-                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="error">
-                                <ShoppingCart />
-                            </Badge>
-                        </IconButton>
+                        <Link href={'/cart'} underline="none" color="inhiret">
+                            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+
+                                <Badge badgeContent={4} color="error">
+                                    <ShoppingCart />
+                                </Badge>
+                            </IconButton>
+                        </Link>
 
                         <IconButton
                             size="large"
