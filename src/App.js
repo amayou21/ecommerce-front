@@ -17,6 +17,7 @@ import MotivationLettre from './component/utility/motivationLettre';
 import Emails from './component/utility/Emails';
 import CartPage from './pages/cart/CartPage';
 import ChoosePaymentMethod from './pages/payment/ChoosePaymentMethod';
+import AdminDashPage from './pages/Admin/AdminDashPage';
 const App = () => {
 
   const [mode, setMode] = useState(localStorage.getItem("currentTheme") === null
@@ -42,10 +43,10 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <NavBar setMode={setMode} />
+      {/* <NavBar setMode={setMode} /> */}
       <BrowserRouter>
-        <div className=' mt-[56px] md:mt-[64px] xl:mt-[64px]'>   
-        {/* <div> */}
+        {/* <div className=' mt-[56px] md:mt-[64px] xl:mt-[64px]'>    */}
+        <div>
        
         
 
@@ -60,7 +61,8 @@ const App = () => {
             <Route path='/product/:id' element={<ProductDetailsPage />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/order/paymethod' element={<ChoosePaymentMethod />} />
-
+            <Route path='/admin/dashbord' element={<AdminDashPage />} />
+            
             {/* <Route path='/cv' element={<Info />} />
             <Route path='/mot' element={<MotivationLettre />} />
             <Route path='/email' element={<Emails />} />

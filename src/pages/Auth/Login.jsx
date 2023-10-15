@@ -45,15 +45,17 @@ const LoginPage = () => {
                             Remember me
                         </label>
                     </div>
+                    <Link to="/admin/dashbord">
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            className="mb-4 bg-crimson text-white border-crimson border-2 rounded-full py-2 px-4"
+                            fullWidth
+                        >
+                            Sign in
+                        </Button>
+                    </Link>
 
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        className="mb-4 bg-crimson text-white border-crimson border-2 rounded-full py-2 px-4"
-                        fullWidth
-                    >
-                        Sign in
-                    </Button>
                 </Grid>
 
 
