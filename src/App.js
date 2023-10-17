@@ -45,6 +45,7 @@ const App = () => {
       <CssBaseline />
       {/* <NavBar setMode={setMode} /> */}
       <BrowserRouter>
+      <AdminDashPage />
         {/* <div className=' mt-[56px] md:mt-[64px] xl:mt-[64px]'>    */}
         <div>
        
@@ -61,7 +62,7 @@ const App = () => {
             <Route path='/product/:id' element={<ProductDetailsPage />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/order/paymethod' element={<ChoosePaymentMethod />} />
-            <Route path='/admin/dashbord' element={<AdminDashPage />} />
+            {/* <Route path='/admin/dashbord' element={<AdminDashPage />} /> */}
             
             {/* <Route path='/cv' element={<Info />} />
             <Route path='/mot' element={<MotivationLettre />} />
