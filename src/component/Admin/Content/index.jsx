@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AdminDashPage = () => {
-
+const Index = () => {
     return (
         <div>
+            
         </div>
     );
 }
 
-export default AdminDashPage;
+export default Index;

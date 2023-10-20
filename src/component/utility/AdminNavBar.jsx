@@ -14,13 +14,21 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
 import PrfilePhoto from '../../images/PrfilePhoto.jpeg'
+// import { Link } from '@mui/material';
+import { Link, NavLink } from 'react-router-dom';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+  { name: "Profile", link: "profile" },
+  { name: "Account", link: "account" },
+  { name: "Dashboard", link: "dashboard" },
+  { name: "Logout", link: "" },
+]
 
 
-const AdminNavBar = ({marg}) => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+const AdminNavBar = ({ marg }) => {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -40,14 +48,16 @@ const AdminNavBar = ({marg}) => {
 
   return (
     <AppBar position="fixed"  >
-      <Container maxWidth="xl" sx={{marginLeft:`${marg}px`,width:`calc(100% - ${marg}px)`}}>
-        <Toolbar disableGutters> <AdbIcon sx={{ flexGrow: 0, display: { xs: 'flex', md: 'flex' }, mr: 1 }} /> 
+      <Container maxWidth="xl" sx={{ marginLeft: `${marg}px`, width: `calc(100% - ${marg}px)` }}>
+
+        <Toolbar disableGutters>
+          <AdbIcon sx={{ flexGrow: 0, display: { xs: 'flex', md: 'flex' }, mr: 1 }} />
 
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/admin"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'flex' },
@@ -62,10 +72,11 @@ const AdminNavBar = ({marg}) => {
             LOGO
           </Typography>
 
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src={PrfilePhoto}/>
+                <Avatar alt="Remy Sharp" src={PrfilePhoto} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -84,9 +95,12 @@ const AdminNavBar = ({marg}) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {settings.map((setting, index) => (
+                <MenuItem key={index} onClick={handleCloseUserMenu}>
+                  <NavLink to={`${setting.link}`}>
+                    {console.log(`${setting.link}`)}
+                    <Typography textAlign="center">{setting.name}</Typography>
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>

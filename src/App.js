@@ -12,12 +12,9 @@ import AllCategoryPage from './pages/categories/AllCategoryPage';
 import AllBrandsPage from './pages/Brands/AllBrandsPage';
 import ShopProductPage from './pages/Products/ShopProductPage';
 import ProductDetailsPage from './pages/Products/ProductDetailsPage'
-import Info from './component/utility/AmaguarCv';
-import MotivationLettre from './component/utility/motivationLettre';
-import Emails from './component/utility/Emails';
 import CartPage from './pages/cart/CartPage';
 import ChoosePaymentMethod from './pages/payment/ChoosePaymentMethod';
-import AdminDashPage from './pages/Admin/AdminDashPage';
+import AdminNavBar from './component/utility/AdminNavBar';
 const App = () => {
 
   const [mode, setMode] = useState(localStorage.getItem("currentTheme") === null
@@ -43,13 +40,12 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      {/* <NavBar setMode={setMode} /> */}
       <BrowserRouter>
-      <AdminDashPage />
-        {/* <div className=' mt-[56px] md:mt-[64px] xl:mt-[64px]'>    */}
-        <div>
-       
-        
+        <NavBar setMode={setMode}/>
+        <div className=' mt-[56px] md:mt-[64px] xl:mt-[64px]'>
+          {/* <div> */}
+
+
 
           <Routes>
             <Route index element={<Home setMode={setMode} />} />
@@ -62,17 +58,13 @@ const App = () => {
             <Route path='/product/:id' element={<ProductDetailsPage />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/order/paymethod' element={<ChoosePaymentMethod />} />
-            {/* <Route path='/admin/dashbord' element={<AdminDashPage />} /> */}
-            
-            {/* <Route path='/cv' element={<Info />} />
-            <Route path='/mot' element={<MotivationLettre />} />
-            <Route path='/email' element={<Emails />} />
-             */}
+
+
           </Routes>
-          
+
         </div >
       </BrowserRouter>
-     <Footer /> 
+      <Footer />
     </ThemeProvider>
   );
 }
