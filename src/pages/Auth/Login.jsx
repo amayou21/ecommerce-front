@@ -2,7 +2,6 @@
 import React from "react";
 import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
-// import img1 from '../../images/img1.png'
 import { useTheme } from "@emotion/react";
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import { AccountCircle } from "@mui/icons-material";
@@ -76,8 +75,8 @@ const LoginPage = () => {
                     </Link>
 
                 </Grid>
+            <Link to="/admin">admin page</Link>
             </Paper>
-
         </Grid>
     );
 };

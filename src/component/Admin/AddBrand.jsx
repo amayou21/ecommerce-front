@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Index = () => {
+const AddBrand = () => {
     return (
         <div>
-            
+            add brand
         </div>
     );
 }
 
-export default Index;
+export default AddBrand;

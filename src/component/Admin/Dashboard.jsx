@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Index = () => {
+const Dashboard = () => {
     return (
         <div>
-            
+            dashboard
         </div>
     );
 }
 
-export default Index;
+export default Dashboard;

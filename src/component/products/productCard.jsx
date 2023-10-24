@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Box, IconButton, Rating, useTheme } from '@mui/material';
+import { Box, Paper, Rating, useTheme } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 import img3 from '../../images/img3.png'
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -42,19 +42,19 @@ const ProductCard = () => {
     };
 
     return (
-      
-        <Box className={`${theme.palette.prodyctCardbg}  rounded-md `}>
+
+        <Paper className="rounded-md">
 
             {/*  */}
             <div>
-                <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite color='error'/>} />
-                  <Link to='/product/:id'>
+                <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite color='error' />} />
+                <Link to='/product/:id'>
                     <img
-                    className="w-full" // p-2
-                    src={img3}
-                    alt="desc"
+                        className="w-full" // p-2
+                        src={img3}
+                        alt="desc"
                     />
-                   </Link>
+                </Link>
             </div>
 
             <Typography variant="body2" color="text.secondary" className='p-2'>
@@ -83,9 +83,9 @@ const ProductCard = () => {
                     )}
 
                 </div>
-                <Typography variant="h6" color="initial">250 $</Typography>
+                <Typography variant="h6" color="inherit">250 $</Typography>
             </CardContent>
-        </Box>
+        </Paper>
 
     );
 }
