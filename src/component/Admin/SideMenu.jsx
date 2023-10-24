@@ -23,7 +23,7 @@ const SideMenu = () => {
             <Drawer
                 sx={{
                     width: drawerWidth,
-                    flexShrink: 0,
+                    flexShrink: 1,
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
                         boxSizing: 'border-box',

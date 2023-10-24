@@ -8,7 +8,6 @@ import { Link, useNavigate } from 'react-router-dom';
 const OrderCard = () => {
     const navigate = useNavigate()
     return (
-        // <Paper>
 
         <Paper className='shadow-md relative Item grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 justify-items-center justify-content-center mb-2'>
 
@@ -69,5 +68,4 @@ const OrderCard = () => {
 
     );
 }
-
 export default OrderCard;

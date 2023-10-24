@@ -5,9 +5,9 @@ import { Outlet } from 'react-router-dom';
 const AdminDashPage = () => {
 
     return (
-        <div className='flex'>
+        <div className='flex '>
             <SideMenu />
-            <div className='p-3'>
+            <div className='p-3 w-full'>
                 <Outlet />
             </div>
         </div>

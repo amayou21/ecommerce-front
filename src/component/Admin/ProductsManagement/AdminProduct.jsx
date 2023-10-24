@@ -1,29 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Box, useTheme, IconButton, Paper } from '@mui/material';
+import { useTheme, IconButton, Paper } from '@mui/material';
 import { Link } from 'react-router-dom'
 import img3 from '../../../images/img3.png'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-// const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-// const labels = {
-//     0.5: 'Useless',
-//     1: 'Useless+',
-//     1.5: 'Poor',
-//     2: 'Poor+',
-//     2.5: 'Ok',
-//     3: 'Ok+',
-//     3.5: 'Good',
-//     4: 'Good+',
-//     4.5: 'Excellent',
-//     5: 'Excellent+',
-// };
-
-// const getLabelText = (value) => {
-//     return labels[value];
-// };
 
 const AdminProduct = () => {
     const theme = useTheme();

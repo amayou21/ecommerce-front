@@ -242,10 +242,10 @@ const Info = () => {
 
 
             </div>
-
+{/* 
           </CardContent>
 
-          <CardContent >
+          <CardContent > */}
 
             <ComputerIcon sx={{ fontSize: 40, color: "#009688" }} />Compétences
             <div class=" outline outline-offset-2 outline-[#009688] rounded outline-2">

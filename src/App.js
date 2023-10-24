@@ -17,15 +17,17 @@ import ProductDetailsPage from './pages/Products/ProductDetailsPage'
 import CartPage from './pages/cart/CartPage';
 import ChoosePaymentMethod from './pages/payment/ChoosePaymentMethod';
 import AdminDashPage from './pages/Admin/AdminDashPage';
-import OrderManagement from './component/Admin/OrderManagement';
-import ProductsManagement from './component/Admin/ProductsManagement';
-import AddBrand from './component/Admin/AddBrand';
-import AddCategory from './component/Admin/AddCategory';
-import AddSubCategory from './component/Admin/AddSubCategory';
+import AddBrand from './component/Admin/AddBrand/Index';
+import AddCategory from './component/Admin/AddCategory/Index';
+import AddSubCategory from './component/Admin/AddSubCategory/Index';
 import AddProduct from './component/Admin/AddProduct';
 import AllAdminProducts from './pages/Admin/AllAdminProducts';
 import AllAdminOrders from './pages/Admin/AllAdminOrders';
 import OrderDetaillsPage from './pages/Admin/OrderDetaillsPage';
+import AddBrandPage from './pages/Admin/AddBrandPage';
+import AddCategoryPage from './pages/Admin/AddCategoryPage';
+import Dashboard from './component/Admin/Dashboard';
+import AddSubCategoryPage from './pages/Admin/AddSubCategoryPage';
 
 
 
@@ -75,13 +77,15 @@ const App = () => {
             <Route path='/order/paymethod' element={<ChoosePaymentMethod />} />
 
             <Route path='/admin' element={<AdminDashPage />} >
+            <Route index element={<Dashboard />} />
+
               <Route path="order-detaills/:id" element={<OrderDetaillsPage />} />
 
               <Route path="order-management" element={<AllAdminOrders />} />
               <Route path="products-management" element={<AllAdminProducts />} />
-              <Route path="add-brand" element={<AddBrand />} />
-              <Route path="add-category" element={<AddCategory />} />
-              <Route path="add-sub-category" element={<AddSubCategory />} />
+              <Route path="add-brand" element={<AddBrandPage />} />
+              <Route path="add-category" element={<AddCategoryPage />} />
+              <Route path="add-sub-category" element={<AddSubCategoryPage />} />
               <Route path="add-product" element={<AddProduct />} />
 
             </Route>

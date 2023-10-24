@@ -19,7 +19,7 @@ const CartContainerPage = () => {
                     </Grid>
 
                     <Grid item xs={12} md={12} lg={2.9} className="break-words">
-                        <Checkout/>
+                        <Checkout />
                     </Grid>
 
 
