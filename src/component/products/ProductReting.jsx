@@ -27,7 +27,7 @@ const ProductReting = () => {
                     </Stack>
                 </div>
 
-                <UnstyledTextareaIntroduction />
+                <UnstyledTextareaIntroduction text="add comment"/>
                 <Button variant="contained" color="primary">
                     add comment
                 </Button>

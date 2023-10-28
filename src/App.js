@@ -20,7 +20,7 @@ import AdminDashPage from './pages/Admin/AdminDashPage';
 import AddBrand from './component/Admin/AddBrand/Index';
 import AddCategory from './component/Admin/AddCategory/Index';
 import AddSubCategory from './component/Admin/AddSubCategory/Index';
-import AddProduct from './component/Admin/AddProduct';
+import AddProduct from './component/Admin/AddProduct/Index';
 import AllAdminProducts from './pages/Admin/AllAdminProducts';
 import AllAdminOrders from './pages/Admin/AllAdminOrders';
 import OrderDetaillsPage from './pages/Admin/OrderDetaillsPage';
@@ -28,6 +28,7 @@ import AddBrandPage from './pages/Admin/AddBrandPage';
 import AddCategoryPage from './pages/Admin/AddCategoryPage';
 import Dashboard from './component/Admin/Dashboard';
 import AddSubCategoryPage from './pages/Admin/AddSubCategoryPage';
+import AddProductPage from './pages/Admin/AddProductPage';
 
 
 
@@ -72,7 +73,7 @@ const App = () => {
             <Route path='/allbrands' element={<AllBrandsPage />} />
             <Route path='/product-tshop' element={<ShopProductPage />} />
             <Route path='/product-tshop' element={<ShopProductPage />} />
-            <Route path='/product/:id' element={<ProductDetailsPage />} />
+            <Route path='/product/:id' element={<ProductDetailsPage />} />()
             <Route path='/cart' element={<CartPage />} />
             <Route path='/order/paymethod' element={<ChoosePaymentMethod />} />
 
@@ -86,7 +87,7 @@ const App = () => {
               <Route path="add-brand" element={<AddBrandPage />} />
               <Route path="add-category" element={<AddCategoryPage />} />
               <Route path="add-sub-category" element={<AddSubCategoryPage />} />
-              <Route path="add-product" element={<AddProduct />} />
+              <Route path="add-product" element={<AddProductPage />} />
 
             </Route>
           </Routes>

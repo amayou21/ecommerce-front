@@ -2,8 +2,8 @@ import * as React from 'react';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
-export default function UnstyledTextareaIntroduction() {
-  return <TextareaAutosize aria-label="empty textarea" placeholder="add comment" />;
+export default function UnstyledTextareaIntroduction({text}) {
+  return <TextareaAutosize aria-label="empty textarea" placeholder={text}  />;
 }
 
 const blue = {
@@ -57,6 +57,3 @@ const TextareaAutosize = styled(BaseTextareaAutosize)(
   }
 `,
 );
-
-
-
