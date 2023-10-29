@@ -1,21 +1,23 @@
 import React from 'react';
+
 import { Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, Toolbar } from '@mui/material';
+
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useNavigate } from 'react-router-dom';
 
+
+
 const drawerWidth = 240;
 const data = [
-    { name: "Order Management", link: "/order-management" },
-    { name: "Products Management", link: "/products-management" },
-    { name: "Add Brand", link: "/add-brand" },
-    { name: "Add Category", link: "/add-category" },
-    { name: "Add Subcategory", link: "/add-sub-category" },
-    { name: "Add Product", link: "/add-product" },
+    { name: "Order Management", link: "/user-orders" },
+    { name: "Favorits", link: "/favorits" },
+    { name: "Address", link: "/personal-address" },
+    { name: "Profile", link: "/profile" },
 ]
 
-const SideMenu = () => {
 
+const UserSideBar = () => {
     const navigate = useNavigate()
 
     return (
@@ -37,7 +39,7 @@ const SideMenu = () => {
                 <List>
                     {data.map((val, index) => (
                         <ListItem key={index} disablePadding>
-                            <ListItemButton onClick={() => { navigate(`/admin${val.link}`) }}>
+                            <ListItemButton onClick={() => { navigate(`/user${val.link}`) }}>
                                 <ListItemIcon>
                                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                                 </ListItemIcon>
@@ -50,4 +52,5 @@ const SideMenu = () => {
         </div>
     );
 }
-export default SideMenu;
+
+export default UserSideBar;

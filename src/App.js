@@ -17,10 +17,6 @@ import ProductDetailsPage from './pages/Products/ProductDetailsPage'
 import CartPage from './pages/cart/CartPage';
 import ChoosePaymentMethod from './pages/payment/ChoosePaymentMethod';
 import AdminDashPage from './pages/Admin/AdminDashPage';
-import AddBrand from './component/Admin/AddBrand/Index';
-import AddCategory from './component/Admin/AddCategory/Index';
-import AddSubCategory from './component/Admin/AddSubCategory/Index';
-import AddProduct from './component/Admin/AddProduct/Index';
 import AllAdminProducts from './pages/Admin/AllAdminProducts';
 import AllAdminOrders from './pages/Admin/AllAdminOrders';
 import OrderDetaillsPage from './pages/Admin/OrderDetaillsPage';
@@ -29,8 +25,14 @@ import AddCategoryPage from './pages/Admin/AddCategoryPage';
 import Dashboard from './component/Admin/Dashboard';
 import AddSubCategoryPage from './pages/Admin/AddSubCategoryPage';
 import AddProductPage from './pages/Admin/AddProductPage';
-
-
+import UserDashPage from './pages/User/UserDashPage';
+import UserDashboard from './component/user/UserDashboard';
+import AllUserAddressPage from './pages/User/AddUserAddressPage';
+import AllUserOrdersPage from './pages/User/AllUserOrdersPage';
+import AllUserFavoritsPage from './pages/User/AllUserFavoritsPage';
+import ProfilePage from './pages/User/ProfilePage';
+import UserAddAddressPage from './pages/User/UserAddAddressPage';
+import UserEditAddress from './pages/User/UserEditAddress';
 
 const App = () => {
 
@@ -78,7 +80,7 @@ const App = () => {
             <Route path='/order/paymethod' element={<ChoosePaymentMethod />} />
 
             <Route path='/admin' element={<AdminDashPage />} >
-            <Route index element={<Dashboard />} />
+              <Route index element={<Dashboard />} />
 
               <Route path="order-detaills/:id" element={<OrderDetaillsPage />} />
 
@@ -89,7 +91,21 @@ const App = () => {
               <Route path="add-sub-category" element={<AddSubCategoryPage />} />
               <Route path="add-product" element={<AddProductPage />} />
 
+
+
             </Route>
+
+            <Route path='/user' element={<UserDashPage />} >
+              <Route index element={<UserDashboard />} />
+
+              <Route path="user-orders" element={<AllUserOrdersPage />} />
+              <Route path="favorits" element={<AllUserFavoritsPage />} />
+              <Route path="personal-address" element={<AllUserAddressPage />} />
+              <Route path="profile" element={<ProfilePage />} />
+              <Route path="add-address" element={<UserAddAddressPage />} />
+              <Route path="edit-address" element={<UserEditAddress />} />
+            </Route>
+
           </Routes>
 
 

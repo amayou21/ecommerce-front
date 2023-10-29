@@ -76,6 +76,8 @@ const LoginPage = () => {
 
                 </Grid>
             <Link to="/admin">admin page</Link>
+            <br />
+            <Link to="/user">user page</Link>
             </Paper>
         </Grid>
     );
