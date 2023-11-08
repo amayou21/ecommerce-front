@@ -1,5 +1,8 @@
 {
-    "recommendations": [
-        "adpyke.codesnap"
-    ]
+  "recommendations": [
+    "adpyke.codesnap",
+    "esbenp.prettier-vscode",
+    "bracketpaircolordlw.bracket-pair-color-dlw",
+    "sveggiani.vscode-field-lights"
+  ]
 }
