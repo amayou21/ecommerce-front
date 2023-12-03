@@ -1,0 +1,3 @@
+1## => Action
+2## dispatch parameter to verify in reducer
+3## rdeucer case configs

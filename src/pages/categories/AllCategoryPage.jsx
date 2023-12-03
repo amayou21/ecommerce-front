@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CategoryContainerPage from "../../component/category/CategoryContainerPage";
 import { Container } from "@mui/material";
 import PaginatePage from "../../component/utility/PaginatePage";
-import AllCategory from "../../Redux/actions/categoryAction";
+import {AllCategory} from "../../Redux/actions/categoryAction";
 import { useDispatch, useSelector } from "react-redux";
 
 function AllCategoryPage() {

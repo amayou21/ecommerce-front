@@ -3,7 +3,7 @@ import Subtitle from "../utility/Subtitle";
 import { CircularProgress, Container } from "@mui/material";
 import CategoryCard from "../category/CategoryCard";
 import { useDispatch, useSelector } from "react-redux";
-import AllCategory from "../../Redux/actions/categoryAction";
+import { AllCategory } from "../../Redux/actions/categoryAction";
 
 const HomeCategory = ({ title, btntitle, pathText }) => {
   const dispatch = useDispatch();
