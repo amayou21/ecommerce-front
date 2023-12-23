@@ -7,7 +7,7 @@ const CategoryCard = ({ image, background, desc }) => {
     <Box className="text-center ">
       <div className="flex justify-center">
         <div
-          className={`h-[50%] w-[50%]  rounded-full overflow-hidden ${background}  mb-3`}
+          className={`h-[50%] w-[60%]  rounded-full overflow-hidden ${background}  mb-3`}
         >
           <img className="w-full" src={image} alt={desc} />
         </div>

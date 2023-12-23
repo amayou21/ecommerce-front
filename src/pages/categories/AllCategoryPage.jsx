@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import CategoryContainerPage from "../../component/category/CategoryContainerPage";
 import { Container } from "@mui/material";
 import PaginatePage from "../../component/utility/PaginatePage";
-import {AllCategory} from "../../Redux/actions/categoryAction";
+import { AllCategory } from "../../Redux/actions/categoryAction";
 import { useDispatch, useSelector } from "react-redux";
 
 function AllCategoryPage() {
-  // categories imit
+  // categories limit
   const limit = 6;
 
   const dispatch = useDispatch();
@@ -16,12 +16,11 @@ function AllCategoryPage() {
   }, []);
 
   // get categories
-  const data = useSelector((state) => state.allCategory.category);
-
+  const res = useSelector((state) => state.allCategory.category);
+  // categories
+  const categories = res.data ? res.data.documents : [];
   // send page count to pagination
-  const pageCount = data.paginationResult
-    ? data.paginationResult.numberOfPages
-    : 0;
+  const pageCount = res.data ? res.data.paginationResult.numberOfPages : 0;
 
   // second load with spesific page
   const getPage = (page) => {
@@ -31,7 +30,7 @@ function AllCategoryPage() {
   // result
   return (
     <Container>
-      <CategoryContainerPage data={data.documents} />
+      <CategoryContainerPage data={categories} />
       {pageCount > 1 ? (
         <PaginatePage pageCount={pageCount} getPage={getPage} />
       ) : null}

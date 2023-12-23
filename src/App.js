@@ -71,7 +71,6 @@ const App = () => {
             <Route path="/order/paymethod" element={<ChoosePaymentMethod />} />
             <Route path="/admin" element={<AdminDashPage />}>
               <Route index element={<Dashboard />} />
-
               <Route
                 path="order-detaills/:id"
                 element={<OrderDetaillsPage />}

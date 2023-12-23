@@ -5,7 +5,7 @@ import { CREATE_CATEGORY, GET_ALL_CATEGORY, GET_ERROR } from "../type";
 // @route   Get /api/v1/categories
 // @access  Public
 export const AllCategory =
-  (limit = 5, page) =>
+  (limit = 5, page = 1) =>
   async (dispatch) => {
     try {
       const data = await UseGetDate(

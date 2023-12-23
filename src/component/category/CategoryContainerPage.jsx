@@ -3,15 +3,14 @@ import { Container, CircularProgress } from "@mui/material";
 import CategoryCard from "./CategoryCard";
 import img3 from "../../images/img3.png";
 import { useSelector } from "react-redux";
+import Progress from "../utility/progress";
 
 function CategoryContainerPage({ data }) {
   const loading = useSelector((state) => state.allCategory.loading);
   return (
     <Container>
       {loading ? (
-        <div className="flex justify-center">
-          <CircularProgress color="success" />
-        </div>
+         Progress()
       ) : (
         <div className="drop-shadow-2xl grid grid-cols-2 gap-4 xl:grid-cols-6 md:grid-cols-3 place-items-center p-4">
           {data
