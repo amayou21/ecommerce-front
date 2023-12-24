@@ -1,25 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Subtitle from "../utility/Subtitle";
 import { Container } from "@mui/material";
 import CategoryCard from "../category/CategoryCard";
-import { useDispatch, useSelector } from "react-redux";
-import { AllCategory } from "../../Redux/actions/categoryAction";
 import Progress from "../utility/progress";
+import HomeCategoryHook from "../../hook/category/home-category-hook";
 
 const HomeCategory = ({ title, btntitle, pathText }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(AllCategory(8,1));
-  }, []);
-  const res = useSelector((state) => state.allCategory.category);
-  const loading = useSelector((state) => state.allCategory.loading);
+  // listening
+  const [loading, res] = HomeCategoryHook();
 
   return (
     <Container>
       <Subtitle title={title} btntitle={btntitle} pathText={pathText} />
       {loading ? (
-       Progress()
+        Progress()
       ) : (
         <div className="drop-shadow-2xl grid grid-cols-2 gap-4 xl:grid-cols-8 md:grid-cols-3 place-items-center p-2">
           {res.data.documents ? (

@@ -1,31 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CategoryContainerPage from "../../component/category/CategoryContainerPage";
 import { Container } from "@mui/material";
 import PaginatePage from "../../component/utility/PaginatePage";
-import { AllCategory } from "../../Redux/actions/categoryAction";
-import { useDispatch, useSelector } from "react-redux";
+import AddCategoryPageHook from "../../hook/category/add-category-page-hook";
 
 function AllCategoryPage() {
-  // categories limit
-  const limit = 6;
-
-  const dispatch = useDispatch();
-  // first load
-  useEffect(() => {
-    dispatch(AllCategory(limit));
-  }, []);
-
-  // get categories
-  const res = useSelector((state) => state.allCategory.category);
-  // categories
-  const categories = res.data ? res.data.documents : [];
-  // send page count to pagination
-  const pageCount = res.data ? res.data.paginationResult.numberOfPages : 0;
-
-  // second load with spesific page
-  const getPage = (page) => {
-    dispatch(AllCategory(limit, page));
-  };
+  // listenign
+  const [categories, pageCount, getPage] = AddCategoryPageHook();
 
   // result
   return (
