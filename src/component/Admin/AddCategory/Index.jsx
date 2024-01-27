@@ -13,6 +13,7 @@ import AddCategoryHook from "../../../hook/category/add-category-hook";
 const Index = () => {
   
   const [
+    theme,
     onImageChange,
     image,
     name,
@@ -62,6 +63,7 @@ const Index = () => {
           onChange={(e) => {
             setName(e.target.value);
           }}
+          // type="text"
           required
           multiline
           fullWidth
