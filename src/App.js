@@ -35,12 +35,13 @@ import UserAddAddressPage from "./pages/User/UserAddAddressPage";
 import UserEditAddress from "./pages/User/UserEditAddress";
 
 const App = () => {
+
   const [mode, setMode] = useState(
     localStorage.getItem("currentTheme") === null
       ? "light"
       : localStorage.getItem("currentTheme") === "light"
-      ? "light"
-      : "dark"
+        ? "light"
+        : "dark"
   );
 
   const darkTheme = createTheme({
@@ -69,7 +70,8 @@ const App = () => {
             ()
             <Route path="/cart" element={<CartPage />} />
             <Route path="/order/paymethod" element={<ChoosePaymentMethod />} />
-            <Route path="/admin" element={<AdminDashPage />}>
+
+            <Route path="/admin" element={<AdminDashPage setMode={setMode} />}>
               <Route index element={<Dashboard />} />
               <Route
                 path="order-detaills/:id"
@@ -86,6 +88,7 @@ const App = () => {
               <Route path="add-sub-category" element={<AddSubCategoryPage />} />
               <Route path="add-product" element={<AddProductPage />} />
             </Route>
+
             <Route path="/user" element={<UserDashPage />}>
               <Route index element={<UserDashboard />} />
 
@@ -96,6 +99,7 @@ const App = () => {
               <Route path="add-address" element={<UserAddAddressPage />} />
               <Route path="edit-address" element={<UserEditAddress />} />
             </Route>
+
           </Routes>
         </div>
       </BrowserRouter>

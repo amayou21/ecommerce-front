@@ -1,60 +1,143 @@
-import React, { useState } from 'react';
-import { useTheme } from '@emotion/react';
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import React from "react";
+import { ToastContainer } from "react-toastify";
+import {
+  Box,
+  Button,
+  MenuItem,
+  IconButton,
+  List,
+  TextField,
+  Typography,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import AddIcon from "@mui/icons-material/Add";
+import CancelIcon from "@mui/icons-material/Cancel";
+
+import AddCategory from "../../Admin/AddCategory/Index";
+import AddSubCategryHook from "../../../hook/subCategory/add-sub-categry-hook";
 
 const Index = () => {
-    const theme = useTheme()
-    const [Category, setCategory] = useState('');
+  const [
+    fullScreen,
+    open,
+    handleClose,
+    setName,
+    name,
+    setCat,
+    cat,
+    categories,
+    selectedValue,
+    handleChange,
+    handleClickOpen,
+    handleSubmit,
+  ] = AddSubCategryHook();
 
-    const handleChange = (event) => {
-        setCategory(event.target.value);
-    };
-    return (
-        <div className='flex justify-center items-center'>
-            <div className='m-8'>
-
-                <Box
-                    sx={{
-                        width: 500,
-                        maxWidth: '100%',
-                    }}
-                    className="my-3 flex "
-
-                >
-                    <TextField label="Sub Category Name" sx={{ width: '50ch' }} />
-
-                </Box>
-                <Box className="my-3">
-                    <FormControl fullWidth sx={{ width: '50ch' }}>
-                        <InputLabel variant="outlined" id="dsub-category">Category</InputLabel>
-                        <Select
-                            labelId="ddsub-category-label"
-                            id="dsub-category"
-                            value={Category}
-                            label="Category"
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={10}>Category 1</MenuItem>
-                            <MenuItem value={20}>Category 2</MenuItem>
-                            <MenuItem value={30}>Category 3</MenuItem>
-                        </Select>
-                    </FormControl>
-
-                </Box>
-                <Box>
-
-                <Button
-                    className={`${theme.palette.btnBgColor}`}
-                    variant={`${theme.palette.btnVariant}`}
-                    color={theme.palette.mode === 'dark' ? 'secondary' : "primary"}
-                >
-                    add subcategory
-                </Button>
-                </Box>
+  return (
+    <>
+      <React.Fragment>
+        <Dialog
+          fullScreen={fullScreen}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <div className="px-20 py-5 relative">
+            <AddCategory />
+            <div className="absolute top-0 right-0">
+              <IconButton onClick={handleClose}>
+                <CancelIcon color="error" />
+              </IconButton>
             </div>
+          </div>
+        </Dialog>
+      </React.Fragment>
 
+      <div className="flex justify-center items-center">
+        <div className="mb-20" component="form">
+          <Box
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "30ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <div className="grid grid-cols-1 xl:grid-cols-2 md:grid-cols-2">
+              <TextField
+                value={name}
+                required
+                id="name"
+                label="Name"
+                placeholder="Name"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+
+              <TextField
+                onChange={(e) => {
+                  setCat(e.target.value);
+                }}
+                value={cat}
+                required
+                id="Category"
+                select
+                label="Category"
+                placeholder="Select Category"
+                defaultValue="0"
+              >
+                <MenuItem value="0">
+                  <p className="py-3"></p>
+                </MenuItem>
+                {categories
+                  ? categories.length > 0
+                    ? categories.reverse().map((val, index) => {
+                        return (
+                          <MenuItem
+                            key={val._id}
+                            value={val._id}
+                            className={`${
+                              index === 0 ? "text-emerald-400" : null
+                            }`}
+                          >
+                            {val.name}
+                          </MenuItem>
+                        );
+                      })
+                    : null
+                  : null}
+                <List value={selectedValue} onChange={handleChange}>
+                  <MenuItem onClick={handleClickOpen}>
+                    <div className="flex justify-between w-[100%]">
+                      <Typography variant="p" color="primary">
+                        Create Category
+                      </Typography>
+                      <AddIcon color="primary" />
+                    </div>
+                  </MenuItem>
+                </List>
+              </TextField>
+            </div>
+          </Box>
+
+          <Box className="px-2 mt-2 flex justify-start">
+            <Button variant="contained" onClick={handleSubmit}>
+              add
+            </Button>
+          </Box>
+          <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+            onClick={handleClose}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
         </div>
-    );
-}
+        <ToastContainer />
+      </div>
+    </>
+  );
+};
 
 export default Index;

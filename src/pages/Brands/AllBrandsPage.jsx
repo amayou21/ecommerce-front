@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container } from "@mui/material";
 import BrandContainer from "../../component/brands/BrandContainer";
 import PaginatePage from "../../component/utility/PaginatePage";
-import { useDispatch, useSelector } from "react-redux";
-import { AllBrand } from "../../Redux/actions/brandAction";
 import AddCategoryPageHook from "../../hook/category/add-category-page-hook";
 
 function AllBrandsPage() {

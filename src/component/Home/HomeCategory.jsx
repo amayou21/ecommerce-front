@@ -16,7 +16,7 @@ const HomeCategory = ({ title, btntitle, pathText }) => {
         Progress()
       ) : (
         <div className="drop-shadow-2xl grid grid-cols-2 gap-4 xl:grid-cols-8 md:grid-cols-3 place-items-center p-2">
-          {res.data.documents ? (
+          {res.data.documents.length > 0 ? (
             res.data.documents.map((val, index) => {
               return (
                 <CategoryCard

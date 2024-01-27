@@ -1,260 +1,370 @@
-import React, { useId, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Box, FormControl, IconButton, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import { useTheme } from '@emotion/react';
-import Multiselect from 'multiselect-react-dropdown';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import CircleIcon from '@mui/icons-material/Circle';
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import AddCategory from "../../Admin/AddCategory/Index";
+import AddBrand from "../../Admin/AddBrand/Index";
 
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
+import {
+  Box,
+  IconButton,
+  List,
+  MenuItem,
+  Typography,
+} from "@mui/material";
+
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+
+import { useTheme } from "@emotion/react";
+import { useDispatch, useSelector } from "react-redux";
+
+import AddIcon from "@mui/icons-material/Add";
+import Dialog from "@mui/material/Dialog";
+import CancelIcon from "@mui/icons-material/Cancel";
+import CircleIcon from "@mui/icons-material/Circle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { AllCategory } from "../../../Redux/actions/categoryAction";
+import { AllBrand } from "../../../Redux/actions/brandAction";
+import { SubCategory } from "../../../Redux/actions/subCategoryAction";
+
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
 });
+
+
 const Index = () => {
-    const [Category, setCategory] = useState('');
-    const [Brand, setBrand] = useState('');
+  const [selectedValue, setSelectedValue] = useState("");
 
-    const handleChange = (event) => {
-        setCategory(event.target.value);
-    };
-    const handleBrand = (event) => {
-        setBrand(event.target.value);
-    };
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
-    const [data, setData] = useState()
-    function handleSubmit(e) {
-        // Prevent the browser from reloading the page
-        e.preventDefault();
-        setData(e.target.value)
+  const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
+  const [openBra, setOpenBra] = React.useState(false);
+  const [cat, setCat] = useState("");
+  const [bra, setBra] = useState("");
 
-        // Read the form data
-        const form = e.target;
-    }
-    const postTextAreaId = useId();
-    const theme = useTheme()
+  const theme = useTheme();
 
-    return (
-        <div className='flex justify-center items-center '>
-            <div className='m-8'>
-                <form method="post" onSubmit={handleSubmit}>
-                    <Box>
-                        <Typography variant="h5" color="inherit">Upload You're Product Image</Typography>
-                        <IconButton
-                            component="label"
-                            variant="contained"
-                            sx={{
-                                '&:hover': {
-                                    backgroundColor: 'transparent', // Set the background color to transparent on hover
-                                },
-                            }}
-                        >
-                            <CloudUploadIcon sx={{ fontSize: "150px" }} />
-                            <VisuallyHiddenInput type="file" />
-                        </IconButton>
-                    </Box>
-                    <Box
-                        sx={{
-                            width: 500,
-                            maxWidth: '100%',
-                        }}
-                        className="my-3 flex "
+  const res = useSelector((val) => val.allCategory.category);
+  const categories = res.data ? res.data.documents : [];
 
-                    >
-                        <TextField label="Product Name" sx={{ width: '50ch' }} />
+  const brand = useSelector((val) => val.allBrand.brand);
+  const brands = brand.data ? brand.data.documents : [];
 
-                    </Box>
-                    {/* <UnstyledTextareaIntroduction /> */}
-                    <Box sx={{ width: '50ch' }}>
-                        <textarea
-                            // slate-700
-                            className='w-full p-2 rounded bg-inherit focus:outline-none focus:border-2 focus:border-blue-300 border  hover:border-current '
-                            name="descreption"
-                            placeholder='descreption'
-                        />
-                    </Box>
-                    <Box sx={{ width: '50ch' }} className="my-2">
-                        <TextField
-                            className='w-full'
-                            id="outlined-number"
-                            label="Price Befor Descount"
-                            type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </Box>
-                    <Box sx={{ width: '50ch' }} className="my-2">
-                        <TextField
-                            className='w-full'
-                            id="outlined-number"
-                            label="Product Price"
-                            type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </Box>
-                    <Box sx={{ width: '50ch' }} className="my-3">
-                        <FormControl fullWidth sx={{ width: '50ch' }}>
-                            <InputLabel variant="outlined" id="dsub-category">Category</InputLabel>
-                            <Select
-                                labelId="ddsub-category-label"
-                                id="dsub-category"
-                                value={Category}
-                                label="Category"
-                                onChange={handleChange}
-                            >
-                                <MenuItem value={10}>Category 1</MenuItem>
-                                <MenuItem value={20}>Category 2</MenuItem>
-                                <MenuItem value={30}>Category 3</MenuItem>
-                            </Select>
-                        </FormControl>
+  const subCategory = useSelector((val) => val.allSubCategory.subCategory);
+  const subCategories = subCategory.data ? subCategory.data.documents : [];
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-                    </Box>
-                    <Box sx={{ width: '50ch' }}>
-                        <Multiselect
+  // category
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-                            disablePreSelectedValues
-                            displayValue="key"
-                            onKeyPressFn={function noRefCheck() { }}
-                            onRemove={function noRefCheck() { }}
-                            onSearch={function noRefCheck() { }}
-                            onSelect={function noRefCheck() { }}
-                            options={[
-                                {
-                                    cat: 'Group 1',
-                                    key: 'Option 1'
-                                },
-                                {
-                                    cat: 'Group 1',
-                                    key: 'Option 2'
-                                },
-                                {
-                                    cat: 'Group 1',
-                                    key: 'Option 3'
-                                },
-                                {
-                                    cat: 'Group 2',
-                                    key: 'Option 4'
-                                },
-                                {
-                                    cat: 'Group 2',
-                                    key: 'Option 5'
-                                },
-                                {
-                                    cat: 'Group 2',
-                                    key: 'Option 6'
-                                },
-                                {
-                                    cat: 'Group 2',
-                                    key: 'Option 7'
-                                }
-                            ]}
-                        // selectedValues={[
-                        //     {
-                        //         cat: 'Group 1',
-                        //         key: 'Option 1'
-                        //     },
-                        //     {
-                        //         cat: 'Group 1',
-                        //         key: 'Option 2'
-                        //     }
-                        // ]}
-                        />
-                    </Box>
-                    <Box sx={{ width: '50ch' }} className="my-3">
-                        <FormControl fullWidth sx={{ width: '50ch' }}>
-                            <InputLabel variant="outlined" id="dsub-category">Brand</InputLabel>
-                            <Select
-                                labelId="ddsub-category-label"
-                                id="dsub-category"
-                                value={Brand}
-                                label="Category"
-                                onChange={handleBrand}
-                            >
-                                <MenuItem value={10}>Brand 1</MenuItem>
-                                <MenuItem value={20}>Brand 2</MenuItem>
-                                <MenuItem value={30}>Brand 3</MenuItem>
-                            </Select>
-                        </FormControl>
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-                    </Box>
-                    <Box className='flex items-center my-2'>
-                        <Typography variant="div" color="inherit " >Disponible Colors : </Typography>
-                        <IconButton >
-                            <CircleIcon sx={{ color: 'red' }} />
-                        </IconButton>
-                        <IconButton >
-                            <CircleIcon sx={{ color: 'yellow' }} />
-                        </IconButton>
-                        <IconButton >
-                            <CircleIcon sx={{ color:'black' }} />
-                        </IconButton>
-                        <IconButton>
-                            <AddCircleIcon />
-                        </IconButton>
+  // brand
+  const handleClickOpenBra = () => {
+    setOpenBra(true);
+  };
 
-                    </Box>
-                    <Box>
+  const handleCloseBra = () => {
+    setOpenBra(false);
+  };
 
-                        <Button
-                            className={`${theme.palette.btnBgColor}`}
-                            variant={`${theme.palette.btnVariant}`}
-                            color={theme.palette.mode === 'dark' ? 'secondary' : "primary"}
-                        >
-                            add product
-                        </Button>
-                    </Box>
-                </form>
-                {/* 
+  // sub category
+  // const handleClickOpenSubCat= () => {
+  //   setOpenSubCat(true);
+  // };
 
-                </Box>
+  // const handleCloseSubCat = () => {
+  //   setOpenSubCat(false);
+  // };
 
+  useEffect(() => {
+    dispatch(AllCategory(200));
+  }, [open]);
 
+  useEffect(() => {
+    dispatch(AllBrand(200));
+  }, [openBra]);
 
+  useEffect(() => {
+    dispatch(SubCategory(200));
+  }, []);
 
-                
-                <Box sx={{ width: '50ch' }}>
-                    <textarea
-                        className='w-full bg-inherit border-1 border-current p-2'
-                        id={postTextAreaId}
-                        name="description"
-                        placeholder='descreption'
-                    />
-                <TextField
-                    sx={{ width: '50ch' }}
-                    id="outlined-number"
-                    label="Quantity"
-                    type="number"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-
-                </Box>
-                <Button
-                    className={`${theme.palette.btnBgColor}`}
-                    variant={`${theme.palette.btnVariant}`}
-                    color={theme.palette.mode === 'dark' ? 'secondary' : "primary"}
-                >
-                    add product
-
-                </Button> */}
+  return (
+    <>
+      <React.Fragment>
+        <Dialog
+          fullScreen={fullScreen}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <div className="px-20 py-5 relative">
+            <AddCategory />
+            <div className="absolute top-0 right-0">
+              <IconButton onClick={handleClose}>
+                <CancelIcon color="error" />
+              </IconButton>
             </div>
+          </div>
+        </Dialog>
+      </React.Fragment>
 
-        </div>
+      <React.Fragment>
+        <Dialog
+          fullScreen={fullScreen}
+          open={openBra}
+          onClose={handleCloseBra}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <div className="px-20 py-5 relative">
+            <AddBrand />
+            <div className="absolute top-0 right-0">
+              <IconButton onClick={handleCloseBra}>
+                <CancelIcon color="error" />
+              </IconButton>
+            </div>
+          </div>
+        </Dialog>
+      </React.Fragment>
 
-    );
-}
+      {/* <React.Fragment>
+        <Dialog
+          fullScreen={fullScreen}
+          open={openSubCat}
+          onClose={handleCloseSubCat}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <div className="px-20 py-5 relative">
+            <AddSubCategory />
+            <div className="absolute top-0 right-0">
+              <IconButton onClick={handleCloseSUbCat}>
+                <CancelIcon color="error" />
+              </IconButton>
+            </div>
+          </div>
+        </Dialog>
+      </React.Fragment>
+ */}
+
+      <div className="mb-20" component="form">
+        <Box
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "30ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div>
+            <Typography variant="body1" color="inherit">
+              Upload House Images
+            </Typography>
+
+            {/* upload image input */}
+            <IconButton
+              component="label"
+              variant="contained"
+              sx={{
+                "&:hover": {
+                  backgroundColor: "transparent", // Set the background color to transparent on hover
+                },
+              }}
+            >
+              <CloudUploadIcon sx={{ fontSize: "80px" }} />
+              <VisuallyHiddenInput type="file" />
+            </IconButton>
+          </div>
+          <div className="grid grid-cols-1 xl:grid-cols-2 md:grid-cols-2">
+            {/* title */}
+            <TextField required id="title" label="Title" placeholder="Title" />
+
+            {/* category */}
+            <TextField
+              onChange={(e) => {
+                setCat(e.target.value);
+              }}
+              value={cat}
+              required
+              id="Category"
+              select
+              label="Category"
+              placeholder="Select Category"
+              defaultValue="select"
+            >
+              <MenuItem value="select">
+                <p className="py-3"></p>
+              </MenuItem>
+              {categories
+                ? categories.length > 0
+                  ? categories.reverse().map((val, index) => {
+                      return (
+                        <MenuItem
+                          key={val._id}
+                          value={val._id}
+                          className={`${
+                            index === 0 ? "text-emerald-400" : null
+                          }`}
+                        >
+                          {val.name}
+                        </MenuItem>
+                      );
+                    })
+                  : null
+                : null}
+              <List value={selectedValue} onChange={handleChange}>
+                <MenuItem onClick={handleClickOpen}>
+                  <div className="flex justify-between w-[100%]">
+                    <Typography variant="p" color="primary">
+                      Create Category
+                    </Typography>
+                    <AddIcon color="primary" />
+                  </div>
+                </MenuItem>
+              </List>
+            </TextField>
+
+            {/* Price Befor Descount */}
+            <TextField
+              type="number"
+              required
+              id="price-befor-descount"
+              label="Price Befor Descount"
+              placeholder="Price Befor Descount"
+            />
+
+            {/* Price After Descount */}
+            <TextField
+              type="number"
+              required
+              id="price-after-descount"
+              label="Price After Descount"
+              placeholder="Price After Descount"
+            />
+
+            {/* sub category */}
+
+            <Stack>
+              <Autocomplete
+                fullWidth
+                multiple
+                id="tags-outlined"
+                options={subCategories ? subCategories.reverse() : []}
+                getOptionLabel={(option) => option.name}
+                // defaultValue={[top100Films[13]]}
+                filterSelectedOptions
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Sub Category"
+                    placeholder="Favorites"
+                  />
+                )}
+              >
+                {/* </List> */}
+              </Autocomplete>
+            </Stack>
+
+            {/* Brand */}
+            <TextField
+              onChange={(e) => {
+                setBra(e.target.value);
+              }}
+              value={bra}
+              required
+              id="brand"
+              select
+              label="Brand"
+              placeholder="Select Brand"
+              defaultValue="select"
+            >
+              <MenuItem value="select">
+                <p className="py-3"></p>
+              </MenuItem>
+              {brands
+                ? brands.length > 0
+                  ? brands.reverse().map((val, index) => {
+                      return (
+                        <MenuItem
+                          key={val._id}
+                          value={val._id}
+                          className={`${
+                            index === 0 ? "text-emerald-400" : null
+                          }`}
+                        >
+                          {val.name}
+                        </MenuItem>
+                      );
+                    })
+                  : null
+                : null}
+              <List value={selectedValue} onChange={handleChange}>
+                <MenuItem onClick={handleClickOpenBra}>
+                  <div className="flex justify-between w-[100%]">
+                    <Typography variant="p" color="primary">
+                      Create Brand
+                    </Typography>
+                    <AddIcon color="primary" />
+                  </div>
+                </MenuItem>
+              </List>
+            </TextField>
+          </div>
+        </Box>
+
+        <Box className="px-2 mt-2">
+          <TextField
+            fullWidth
+            required
+            multiline
+            id="description"
+            label="Description"
+            placeholder="Description"
+            variant="outlined"
+          />
+        </Box>
+
+        <Box className="px-2 mt-2">
+          <Typography variant="div" color="inherit ">
+            Colors :
+          </Typography>
+          <IconButton>
+            <CircleIcon sx={{ color: "red" }} />
+          </IconButton>
+          <IconButton>
+            <CircleIcon sx={{ color: "yellow" }} />
+          </IconButton>
+          <IconButton>
+            <CircleIcon sx={{ color: "black" }} />
+          </IconButton>
+          <IconButton>
+            <AddCircleIcon />
+          </IconButton>
+        </Box>
+
+        <Box className="px-2 mt-2 flex justify-end">
+          <Button variant="contained">add</Button>
+        </Box>
+      </div>
+    </>
+  );
+};
 
 export default Index;

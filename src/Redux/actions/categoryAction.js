@@ -6,22 +6,22 @@ import { CREATE_CATEGORY, GET_ALL_CATEGORY, GET_ERROR } from "../type";
 // @access  Public
 export const AllCategory =
   (limit = 5, page = 1) =>
-  async (dispatch) => {
-    try {
-      const data = await UseGetDate(
-        `/api/v1/categories?limit=${limit}&page=${page}`
-      );
-      dispatch({
-        type: GET_ALL_CATEGORY,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: GET_ERROR,
-        payload: `error : ${error}`,
-      });
-    }
-  };
+    async (dispatch) => {
+      try {
+        const data = await UseGetDate(
+          `/api/v1/categories?limit=${limit}&page=${page}`
+        );
+        dispatch({
+          type: GET_ALL_CATEGORY,
+          payload: data,
+        });
+      } catch (error) {
+        dispatch({
+          type: GET_ERROR,
+          payload: `error : ${error}`,
+        });
+      }
+    };
 
 // @desc  Post Data with files
 // @route  Post /api/v1/categories

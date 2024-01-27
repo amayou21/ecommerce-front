@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
-// import BrandCard from "./BrandCard";
-import { Box, CircularProgress, Container, Typography } from "@mui/material";
+import { CircularProgress, Container } from "@mui/material";
 import Subtitle from "../utility/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import { AllBrand } from "../../Redux/actions/brandAction";
-import img1 from "../../images/img1.png";
 import BrandCard from "./BrandCard";
 const BrandFuturs = ({ title, btntitle, pathText }) => {
   const dispach = useDispatch();
 
   useEffect(() => {
-    dispach(AllBrand(6,1));
+    dispach(AllBrand(6, 1));
   }, []);
 
   const res = useSelector((val) => val.allBrand.brand);

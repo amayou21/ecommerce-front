@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import img1 from "../../images/img1.png";
 
 const BrandCard = ({ img, name }) => {
   return (

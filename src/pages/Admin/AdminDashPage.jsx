@@ -1,17 +1,14 @@
-import React from 'react';
-import SideMenu from '../../component/Admin/SideMenu';
-import { Outlet } from 'react-router-dom';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import SideMenu from "../../component/Admin/Menu/SideMenu";
 
-const AdminDashPage = () => {
-
-    return (
-        <div className='flex '>
-            <SideMenu />
-            <div className='p-3 w-full'>
-                <Outlet />
-            </div>
-        </div>
-    );
-}
+const AdminDashPage = ({ setMode }) => {
+  return (
+    <div className="flex p-3">
+      <SideMenu setMode={setMode} />
+      <Outlet />
+    </div>
+  );
+};
 
 export default AdminDashPage;
