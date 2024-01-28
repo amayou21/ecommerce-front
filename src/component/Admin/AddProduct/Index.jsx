@@ -6,13 +6,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import AddCategory from "../../Admin/AddCategory/Index";
 import AddBrand from "../../Admin/AddBrand/Index";
 
-import {
-  Box,
-  IconButton,
-  List,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { Box, IconButton, List, MenuItem, Typography } from "@mui/material";
 
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -30,6 +24,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { AllCategory } from "../../../Redux/actions/categoryAction";
 import { AllBrand } from "../../../Redux/actions/brandAction";
 import { SubCategory } from "../../../Redux/actions/subCategoryAction";
+import MultiImageInput from "react-multiple-image-input";
+import { CompactPicker } from "react-color";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -43,7 +39,6 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-
 const Index = () => {
   const [selectedValue, setSelectedValue] = useState("");
 
@@ -54,11 +49,38 @@ const Index = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [openBra, setOpenBra] = React.useState(false);
-  const [cat, setCat] = useState("");
-  const [bra, setBra] = useState("");
+
+  // values images products
+  const [images, setImages] = useState([]);
+
+  // values state
+  const [prodName, setProdName] = useState("");
+  const [prodDesc, setProdDesc] = useState("");
+  const [priceBefor, setPriceBefor] = useState("");
+  const [priceAfter, setPriceAfter] = useState("");
+  const [qty, setQty] = useState("");
+  const [catID, setCatID] = useState("");
+  const [braID, setBraID] = useState("");
+  const [subCatID, setSubCatID] = useState([]);
+  const [selectedSubID, setSselectedSubID] = useState([]);
+  const [colors, setColors] = useState([]);
+
+  // state to show hight color picker
+  const [showColor, setShowColor] = useState(false);
+
+  // on select color
+  const handleChangeComplete = (color) => {
+    setShowColor(false);
+    setColors([...colors, color.hex]);
+  };
+
+  // remove color
+  const removeColor = (c) => {
+    const newColors = colors.filter((val) => val !== c);
+    setColors(newColors);
+  };
 
   const theme = useTheme();
-
   const res = useSelector((val) => val.allCategory.category);
   const categories = res.data ? res.data.documents : [];
 
@@ -179,7 +201,7 @@ const Index = () => {
             </Typography>
 
             {/* upload image input */}
-            <IconButton
+            {/* <IconButton
               component="label"
               variant="contained"
               sx={{
@@ -190,18 +212,74 @@ const Index = () => {
             >
               <CloudUploadIcon sx={{ fontSize: "80px" }} />
               <VisuallyHiddenInput type="file" />
-            </IconButton>
+            </IconButton> */}
+
+            <MultiImageInput
+              theme={theme.palette.mode}
+              images={images}
+              setImages={setImages}
+              // cropConfig={{ crop, ruleOfThirds: true }}
+              max={4}
+            />
           </div>
           <div className="grid grid-cols-1 xl:grid-cols-2 md:grid-cols-2">
             {/* title */}
-            <TextField required id="title" label="Title" placeholder="Title" />
+            <TextField
+              required
+              id="title"
+              label="Title"
+              placeholder="Title"
+              value={prodName}
+              onChange={(e) => {
+                setProdName(e.target.value);
+              }}
+            />
+
+            {/* Quantity */}
+            <TextField
+              onChange={(e) => {
+                setQty(e.target.value);
+              }}
+              value={qty}
+              type="number"
+              required
+              id="quantity"
+              label="Quantity"
+              placeholder="Quantity"
+            />
+
+            {/* Price Befor Descount */}
+            <TextField
+              onChange={(e) => {
+                setPriceBefor(e.target.value);
+              }}
+              value={priceBefor}
+              type="number"
+              required
+              id="price-befor-descount"
+              label="Price Befor Descount"
+              placeholder="Price Befor Descount"
+            />
+
+            {/* Price After Descount */}
+            <TextField
+              onChange={(e) => {
+                setPriceAfter(e.target.value);
+              }}
+              value={priceAfter}
+              type="number"
+              required
+              id="price-after-descount"
+              label="Price After Descount"
+              placeholder="Price After Descount"
+            />
 
             {/* category */}
             <TextField
               onChange={(e) => {
-                setCat(e.target.value);
+                setCatID(e.target.value);
               }}
-              value={cat}
+              value={catID}
               required
               id="Category"
               select
@@ -241,34 +319,21 @@ const Index = () => {
               </List>
             </TextField>
 
-            {/* Price Befor Descount */}
-            <TextField
-              type="number"
-              required
-              id="price-befor-descount"
-              label="Price Befor Descount"
-              placeholder="Price Befor Descount"
-            />
-
-            {/* Price After Descount */}
-            <TextField
-              type="number"
-              required
-              id="price-after-descount"
-              label="Price After Descount"
-              placeholder="Price After Descount"
-            />
-
-            {/* sub category */}
-
-            <Stack>
+            {/* <Stack>
               <Autocomplete
+                onChange={(e, value) => {
+                  console.log(value);
+                }}
                 fullWidth
                 multiple
                 id="tags-outlined"
                 options={subCategories ? subCategories.reverse() : []}
                 getOptionLabel={(option) => option.name}
-                // defaultValue={[top100Films[13]]}
+                value={
+                  subCategories
+                    ? subCategories.map((option) => option._id)
+                    : null
+                } // defaultValue={[top100Films[13]]}
                 filterSelectedOptions
                 renderInput={(params) => (
                   <TextField
@@ -279,15 +344,15 @@ const Index = () => {
                 )}
               >
                 {/* </List> */}
-              </Autocomplete>
-            </Stack>
+            {/* </Autocomplete>
+            </Stack> */}
 
             {/* Brand */}
             <TextField
               onChange={(e) => {
-                setBra(e.target.value);
+                setBraID(e.target.value);
               }}
-              value={bra}
+              value={braID}
               required
               id="brand"
               select
@@ -329,8 +394,33 @@ const Index = () => {
           </div>
         </Box>
 
+        {/* sub category */}
+
+        <Box className="px-2 mt-2">
+          <Autocomplete
+            fullWidth
+            multiple
+            id="tags-outlined"
+            options={subCategories ? subCategories.reverse() : []}
+            getOptionLabel={(option) => option.name}
+            filterSelectedOptions
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Sub Category"
+                placeholder="sub Category"
+              />
+            )}
+          />
+        </Box>
+
+        {/* description */}
         <Box className="px-2 mt-2">
           <TextField
+            onChange={(e) => {
+              setProdDesc(e.target.value);
+            }}
+            value={prodDesc}
             fullWidth
             required
             multiline
@@ -342,23 +432,42 @@ const Index = () => {
         </Box>
 
         <Box className="px-2 mt-2">
-          <Typography variant="div" color="inherit ">
+          <Typography variant="div" color="inherit">
             Colors :
           </Typography>
-          <IconButton>
-            <CircleIcon sx={{ color: "red" }} />
-          </IconButton>
-          <IconButton>
+          {colors
+            ? colors.length > 0
+              ? colors.map((c, index) => {
+                  return (
+                    <IconButton
+                      onClick={() => {
+                        removeColor(c);
+                      }}
+                    >
+                      <CircleIcon key={index} sx={{ color: c }} />
+                    </IconButton>
+                  );
+                })
+              : null
+            : null}
+
+          {/* <IconButton>
             <CircleIcon sx={{ color: "yellow" }} />
           </IconButton>
           <IconButton>
             <CircleIcon sx={{ color: "black" }} />
-          </IconButton>
-          <IconButton>
+          </IconButton> */}
+          <IconButton
+            onClick={() => {
+              setShowColor(!showColor);
+            }}
+          >
             <AddCircleIcon />
           </IconButton>
         </Box>
-
+        {showColor ? (
+          <CompactPicker onChangeComplete={handleChangeComplete} />
+        ) : null}
         <Box className="px-2 mt-2 flex justify-end">
           <Button variant="contained">add</Button>
         </Box>

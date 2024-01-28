@@ -9,9 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddCategoryHook from "../../../hook/category/add-category-hook";
 
-
 const Index = () => {
-  
   const [
     theme,
     onImageChange,
