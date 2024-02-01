@@ -4,6 +4,7 @@ import { baserUrl } from "../Api/baseUrl";
 // @desc    get data
 export const UseGetDate = async (url, params) => {
   const res = await baserUrl.get(url, params);
+
   return res;
 };
 

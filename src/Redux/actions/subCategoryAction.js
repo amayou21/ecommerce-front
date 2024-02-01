@@ -17,11 +17,7 @@ export const SubCategory = (limit = 5, page = 1) => async (dispatch) => {
             payload: `Error : ${error}`
         })
     }
-
-
-
 }
-
 
 // create sub category
 export const createSubCategry = (data) => async (dispatch) => {
@@ -39,3 +35,4 @@ export const createSubCategry = (data) => async (dispatch) => {
     }
 
 }
+

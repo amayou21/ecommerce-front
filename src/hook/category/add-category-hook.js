@@ -62,15 +62,14 @@ const AddCategoryHook = () => {
   useEffect(() => {
     if (!loading) {
       setOpen(false);
-      setImage("");
-      setName("");
       if (res) {
         if (res && check) {
           if (res.status) {
 
             if (res.status === 201) {
               setLoading(false);
-
+              setImage("");
+              setName("");
               UseNotification("created successfuly!", "success");
             } else {
               setLoading(false);
