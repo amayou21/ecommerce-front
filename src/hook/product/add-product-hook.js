@@ -134,11 +134,11 @@ const AddProductHook = () => {
 
     useEffect(() => {
         dispatch(AllCategory(200));
-    }, [openCat || catID]);
+    }, [openCat]);
 
     useEffect(() => {
         dispatch(AllBrand(200));
-    }, [openBra || braID]);
+    }, [openBra]);
 
     //  create product
     const handleSubmit = async (e) => {
@@ -223,6 +223,7 @@ const AddProductHook = () => {
                         setPriceBefor("");
                         setQty("");
                         setCatID("");
+                        setSpecSubCategories([])
                     } else {
                         setLoading(false);
                         UseNotification(product.data.errors[0].msg, "error");
