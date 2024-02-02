@@ -32,8 +32,6 @@ const AddProductHook = () => {
     const product = useSelector((val) => val.allProduct.product);
     // const products = product.data ? product.data.documents : [];
 
-    console.log(product);
-
     const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     const [selectedValue, setSelectedValue] = useState("");
@@ -69,6 +67,7 @@ const AddProductHook = () => {
     const handleChangeComplete = (color) => {
         setColors([...colors, color.hex]);
         setShowColor(false);
+
     };
 
     // remove color
@@ -82,14 +81,14 @@ const AddProductHook = () => {
     };
 
     const onCatChange = async (val) => {
-        if (val != "select") {
+        if (val !== "select") {
             await dispatch(subCategoryOnCategory(val));
         }
         setCatID(val);
     };
 
     useEffect(() => {
-        if (catID != "select") {
+        if (catID !== "select") {
             if (subCategory.data) {
                 setSpecSubCategories(subCategory.data.documents);
             }
@@ -119,80 +118,91 @@ const AddProductHook = () => {
     };
 
     // conver base 64 image to file
-    function dataURLtoFile(dataurl, filename) {
-        if (dataurl.split(",")[1]) {
-            var arr = dataurl.split(","),
-                mime = arr[0].match(/:(.*?);/)[1],
-                bstr = atob(arr[1]),
-                n = bstr.length,
-                u8arr = new Uint8Array(n);
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
-            }
-            return new File([u8arr], filename, { type: mime });
+    const dataURLtoFile = (dataurl, filename) => {
+        // if (dataurl && dataurl.split(",")[1]) {
+        var arr = dataurl.split(","),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
         }
+        return new File([u8arr], filename, { type: mime });
+        // }
     }
 
     useEffect(() => {
         dispatch(AllCategory(200));
-    }, [openCat]);
+    }, [openCat || catID]);
 
     useEffect(() => {
         dispatch(AllBrand(200));
-    }, [openBra]);
+    }, [openBra || braID]);
 
     //  create product
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         if (!navigator.onLine) {
             UseNotification("you're Offline", "error");
             return;
+        }
+        if (!images || Object.keys(images).length === 0) {
+            UseNotification("pleas upload the product image", "warning")
+            return;
         } else {
             // convert base 64 to file
-            const imageCover = images
+            var imageCover = images
                 ? dataURLtoFile(images[0], Math.random() + ".png")
                 : null;
             // Using Object.keys()
-            if (images) {
-                var prodImages = await Promise.all(
-                    Array.from(Array(Object.keys(images).length).keys()).map(
-                        (item, index) => {
-                            return dataURLtoFile(images[index], Math.random() + ".png");
-                        }
-                    )
-                );
-            }
+            var prodImages = await Promise.all(
+                Array.from(Array(Object.keys(images).length).keys()).map(
+                    (item, index) => {
+                        return dataURLtoFile(images[index], Math.random() + ".png");
+                    }
+                )
+            );
 
-            if (prodImages && prodName && prodDesc && catID && priceBefor && qty) {
-                setLoading(true);
-                const formData = new FormData();
-                formData.append("title", prodName);
-                formData.append("description", prodDesc);
-                formData.append("category", catID);
-
-                formData.append("imageCover", imageCover);
-                formData.append("price", priceBefor);
-                formData.append("quantity", qty);
-                formData.append("priceAfterDescount", priceAfter)
-
-                if (prodImages) {
-                    prodImages.map((img) => formData.append("images", img));
-                }
-
-                if (colors) {
-                    colors.map((color) => formData.append("colors", color));
-                }
-                if (subCatID) {
-                    subCatID.map((id) => formData.append("subcategory", id._id));
-                }
-
-                // id._id)
-                await dispatch(createProduct(formData));
-                setLoading(false);
-                setCheck(true);
-            }
         }
+
+        // if (images && prodName && prodDesc && catID && priceBefor && qty) {
+        setLoading(true);
+        const formData = new FormData();
+        formData.append("title", prodName);
+        formData.append("description", prodDesc);
+        formData.append("category", catID);
+
+        formData.append("imageCover", imageCover);
+        formData.append("price", priceBefor);
+        formData.append("quantity", qty);
+
+
+        if (priceAfter) {
+            formData.append("priceAfterDescount", priceAfter)
+        }
+
+        if (prodImages) {
+            prodImages.map((img) => formData.append("images", img));
+        }
+        if (colors) {
+            colors.map((color) => formData.append("colors", color));
+        }
+        if (subCatID) {
+            subCatID.map((id) => formData.append("subcategory", id._id));
+        }
+
+        // id._id)
+        await dispatch(createProduct(formData));
+        setLoading(false);
+        setCheck(true);
+        // }
+        // else {
+        //     UseNotification("pleas complete the product property", "warning")
+        // }
+
     };
 
     useEffect(() => {
@@ -203,17 +213,16 @@ const AddProductHook = () => {
                     if (product.status === 201) {
                         setLoading(false);
                         UseNotification("created successfuly!", "success");
-
                         setProdName("");
                         setImages({});
                         setProdDesc("");
                         setSubCatID();
                         setColors([]);
-                        setBraID("select");
+                        setBraID("");
                         setPriceAfter("");
                         setPriceBefor("");
                         setQty("");
-                        setCatID("select");
+                        setCatID("");
                     } else {
                         setLoading(false);
                         UseNotification(product.data.errors[0].msg, "error");

@@ -1,8 +1,6 @@
 import React from "react";
-
-import Button from "@mui/material/Button";
-import AddCategory from "../../Admin/AddCategory/Index";
-import AddBrand from "../../Admin/AddBrand/Index";
+import { CompactPicker } from "react-color";
+import { ToastContainer } from "react-toastify";
 
 import {
   Backdrop,
@@ -10,6 +8,7 @@ import {
   CircularProgress,
   IconButton,
   List,
+  Button,
   MenuItem,
   Typography,
 } from "@mui/material";
@@ -23,9 +22,9 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import CircleIcon from "@mui/icons-material/Circle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import MultiImageInput from "react-multiple-image-input";
-import { CompactPicker } from "react-color";
-import { ToastContainer } from "react-toastify";
 import AddProductHook from "../../../hook/product/add-product-hook";
+import AddCategory from "../../Admin/AddCategory/Index";
+import AddBrand from "../../Admin/AddBrand/Index";
 
 const Index = () => {
   const [
@@ -115,9 +114,9 @@ const Index = () => {
           noValidate
           autoComplete="off"
         >
-          <div>
+          <div className="m-1 px-2 justify-center  lg:w-[63ch] xl:w-[63ch] md:w-[63ch]  sm:w-[30ch]">
             <Typography variant="body1" color="inherit">
-              Upload House Images
+              Upload Product Images
             </Typography>
 
             {/* upload image input */}
@@ -127,9 +126,10 @@ const Index = () => {
               setImages={setImages}
               allowCrop={false}
               // cropConfig={{ crop, ruleOfThirds: true }}
-              max={5}
+              max={4}
             />
           </div>
+
           <div className="grid grid-cols-1 xl:grid-cols-2 md:grid-cols-2">
             {/* title */}
             <TextField
@@ -165,8 +165,8 @@ const Index = () => {
               type="number"
               required
               id="price-befor-descount"
-              label="Price Befor Descount"
-              placeholder="Price Befor Descount"
+              label="Price"
+              placeholder="Price"
             />
 
             {/* Price After Descount */}
@@ -226,7 +226,6 @@ const Index = () => {
                 setBraID(e.target.value);
               }}
               value={braID}
-              required
               id="brand"
               select
               label="Brand"
@@ -262,7 +261,6 @@ const Index = () => {
         </Box>
 
         {/* sub category */}
-
         <Box className="px-2 mt-2">
           <Autocomplete
             onChange={(e, value) => onSelect(value)}
@@ -319,13 +317,6 @@ const Index = () => {
                 })
               : null
             : null}
-
-          {/* <IconButton>
-            <CircleIcon sx={{ color: "yellow" }} />
-          </IconButton>
-          <IconButton>
-            <CircleIcon sx={{ color: "black" }} />
-          </IconButton> */}
           <IconButton
             onClick={() => {
               setShowColor(!showColor);
@@ -334,14 +325,16 @@ const Index = () => {
             <AddCircleIcon />
           </IconButton>
         </Box>
+
         {showColor ? (
-          <CompactPicker onChangeComplete={handleChangeComplete} />
+          <CompactPicker onChangeComplete={(e) => handleChangeComplete(e)} />
         ) : null}
         <Box className="px-2 mt-2 flex justify-end">
           <Button variant="contained" onClick={handleSubmit}>
             add
           </Button>
         </Box>
+
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
@@ -349,7 +342,7 @@ const Index = () => {
         >
           <CircularProgress color="inherit" />
         </Backdrop>
-        <ToastContainer />
+        <ToastContainer theme={theme.palette.mode} />
       </div>
     </div>
   );
