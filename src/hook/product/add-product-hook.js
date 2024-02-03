@@ -29,7 +29,7 @@ const AddProductHook = () => {
         (val) => val.allSubCategoryOnCategory.subCategoryOnCategory
     );
 
-    const product = useSelector((val) => val.allProduct.product);
+    const product = useSelector((val) => val.allProduct.products);
     // const products = product.data ? product.data.documents : [];
 
     const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -54,7 +54,6 @@ const AddProductHook = () => {
     const [catID, setCatID] = useState("");
     const [braID, setBraID] = useState("");
     const [subCatID, setSubCatID] = useState();
-    const [selectedSubID, setSselectedSubID] = useState([]);
     const [colors, setColors] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -168,7 +167,6 @@ const AddProductHook = () => {
 
         }
 
-        // if (images && prodName && prodDesc && catID && priceBefor && qty) {
         setLoading(true);
         const formData = new FormData();
         formData.append("title", prodName);
@@ -194,14 +192,9 @@ const AddProductHook = () => {
             subCatID.map((id) => formData.append("subcategory", id._id));
         }
 
-        // id._id)
         await dispatch(createProduct(formData));
         setLoading(false);
         setCheck(true);
-        // }
-        // else {
-        //     UseNotification("pleas complete the product property", "warning")
-        // }
 
     };
 

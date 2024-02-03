@@ -27,6 +27,7 @@ import AddCategory from "../../Admin/AddCategory/Index";
 import AddBrand from "../../Admin/AddBrand/Index";
 
 const Index = () => {
+
   const [
     fullScreen,
     openCat,

@@ -1,7 +1,8 @@
 import { CREATE_PRODUCT, GET_ALL_PRODUCT, GET_ERROR } from "../type";
 
 const initial = {
-    product: [],
+    products: [],
+    allProducts: [],
     loading: true,
 };
 
@@ -12,7 +13,7 @@ const ProductRaducer = (state = initial, action) => {
         case GET_ALL_PRODUCT:
             return {
                 ...state,
-                product: action.payload,
+                products: action.payload,
                 loading: false,
             };
         //@desc create new product
@@ -20,13 +21,13 @@ const ProductRaducer = (state = initial, action) => {
             return {
                 ...state,
                 loading: false,
-                product: action.payload,
+                products: action.payload,
             };
         //@desc if there's errors
         case GET_ERROR:
             return {
                 loading: true,
-                product: action.payload,
+                products: action.payload,
             };
 
         default:
