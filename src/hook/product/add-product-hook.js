@@ -141,7 +141,6 @@ const AddProductHook = () => {
 
     //  create product
     const handleSubmit = async (e) => {
-
         e.preventDefault();
 
         if (!navigator.onLine) {
@@ -176,6 +175,10 @@ const AddProductHook = () => {
         formData.append("imageCover", imageCover);
         formData.append("price", priceBefor);
         formData.append("quantity", qty);
+        
+        if (braID && braID != "select") {
+            formData.append("brand", braID);
+        }
 
 
         if (priceAfter) {
@@ -191,6 +194,7 @@ const AddProductHook = () => {
         if (subCatID) {
             subCatID.map((id) => formData.append("subcategory", id._id));
         }
+
 
         await dispatch(createProduct(formData));
         setLoading(false);

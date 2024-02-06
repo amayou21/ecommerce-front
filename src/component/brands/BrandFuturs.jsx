@@ -13,7 +13,6 @@ const BrandFuturs = ({ title, btntitle, pathText }) => {
 
   const res = useSelector((val) => val.allBrand.brand);
   const loading = useSelector((val) => val.allBrand.loading);
-  console.log(res);
   return (
     <Container className="mt-2">
       <Subtitle title={title} btntitle={btntitle} pathText={pathText} />

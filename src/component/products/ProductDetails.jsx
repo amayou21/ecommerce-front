@@ -1,13 +1,14 @@
 import React from "react";
-import ProductGallery from "./ProductGallery";
 import ProductReting from "./ProductReting";
+import { Container } from "@mui/material";
+import ProductGallery from "./ProductGallery";
 
 const ProductDetails = () => {
   return (
-    <div>
+    <Container >
       <ProductGallery />
       <ProductReting />
-    </div>
+    </Container>
   );
 };
 export default ProductDetails;

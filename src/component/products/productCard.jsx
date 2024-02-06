@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from "react";
 
 import CardContent from "@mui/material/CardContent";
@@ -30,9 +33,9 @@ const getLabelText = (value) => {
   return labels[value];
 };
 
-const ProductCard = () => {
+const ProductCard = ({ prod }) => {
   const theme = useTheme();
-  const [value, setValue] = useState(2.5);
+  const [value, setValue] = useState(prod.ratingQuantity);
   const [hover, setHover] = useState(-1);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -49,18 +52,23 @@ const ProductCard = () => {
           icon={<FavoriteBorder />}
           checkedIcon={<Favorite color="error" />}
         />
-        <Link to="/product/:id">
+        <Link to={`/product/${prod._id}`}>
           <img
             className="w-full" // p-2
-            src={img3}
+            src={prod.imageCover}
             alt="desc"
           />
         </Link>
       </div>
-
-      <Typography variant="body2" color="text.secondary" className="p-2">
-        Lizards are a widespread group of squamate reptiles, with over 6,000
-        species, ranging across all continents except Antarctica
+      <Typography variant="p" color="inherit" className="p-2">
+        {prod.title}{" "}
+      </Typography>
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        className="p-2 break-all"
+      >
+        {prod.description}
       </Typography>
 
       <CardContent className="flex justify-around">
@@ -88,7 +96,7 @@ const ProductCard = () => {
           )}
         </div>
         <Typography variant="h6" color="inherit">
-          250 $
+          {`${prod.price} $`}
         </Typography>
       </CardContent>
     </Paper>
