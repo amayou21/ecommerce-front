@@ -22,36 +22,58 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function ShopProductPage() {
-  const [prods] = ShopProductPageHook();
+  const [prods, pageCount, getPage] = ShopProductPageHook();
+
   return (
     <Container>
       <CategoryHeader />
-      <SearchCountResult title={`there's  ${prods.length} results`} />
-      <Box sx={{ flexGrow: 1 }} className="mb-8">
-        <Grid container spacing={1}>
-          <Grid xs={12} md={2} className="break-all">
-            <Item>
-              <SIdeFliter />
-            </Item>
-          </Grid>
-
-          <Grid xs={12} md={10} className="break-all">
-            <Item>
-              <div className="drop-shadow-2xl grid grid-cols-1 gap-2 xl:grid-cols-3 md:grid-cols-2 place-items-center ">
-                {prods
-                  ? prods.length > 0
-                    ? prods.map((item, index) => {
-                        return <ProductCard key={index} prod={item} />;
-                      })
-                    : null
-                  : null}
-              </div>
-            </Item>
-          </Grid>
+      <Grid container spacing={1}>
+        <Grid sm={12} xs={12} lg={2}  md={2} xl={2} className="break-all">
+          <Paper>
+            <SIdeFliter />
+          </Paper>
         </Grid>
-      </Box>
-      <PaginatePage />
+        <Grid sm={12} xs={12} lg={10} md={10} xl={10} className="break-all">
+          <div className="grid grid-cols-1 max-sm:grid-cols-1   md:grid-cols-3 lg:grid-cols-3: xl:grid-cols-3 gap-2">
+            {prods
+              ? prods.length > 0
+                ? prods.map((item, index) => {
+                    return <ProductCard key={index} prod={item} />;
+                  })
+                : null
+              : null}
+          </div>
+        </Grid>
+      </Grid>
+
+      <PaginatePage getPage={getPage} pageCount={pageCount} />
     </Container>
+
+    // <Container>
+    //
+    //   <SearchCountResult title={`there's  ${prods.length} results`} />
+    //   <Box sx={{ flexGrow: 1 }} className="mb-8">
+    // <Grid container spacing={1}>
+    //   <Grid xs={12} md={2} className="break-all">
+    //     <Paper>
+    //           <SIdeFliter />
+    //         </Paper>
+    //       </Grid>
+
+    //       <Grid xs={12} md={10} className="break-all">
+    //         <div className="drop-shadow-2xl grid grid-cols-1 gap-2 xl:grid-cols-3 md:grid-cols-2 place-items-center ">
+    // {prods
+    //   ? prods.length > 0
+    //     ? prods.map((item, index) => {
+    //         return <ProductCard key={index} prod={item} />;
+    //       })
+    //     : null
+    //   : null}
+    //         </div>
+    //       </Grid>
+    //     </Grid>
+    //   </Box>
+    // </Container>
   );
 }
 

@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 const SIdeFliter = () => {
   return (
     <div
-      className="grid grid-cols-2 gap-2 xl:grid-cols-1 md:grid-cols-3"
+      // className="grid grid-cols-3 gap-2 xl:grid-cols-1 lg:grid-cols-1  md:grid-cols-3  max-sm:grid-cols-1  "
       sx={{ display: { xs: "flex", sm: "flex", md: "flex", lg: "block" } }}
     >
       <div>
@@ -34,12 +34,11 @@ const SIdeFliter = () => {
       <div>
         <Typography>Brands</Typography>
         <Box
-          className="lg:flex xl:flex justify-between"
+          className="lg:block xl:block justify-between"
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
+            "& .MuiTextField-root": { m: 0.2, width: "7ch" },
           }}
-          noValidate
           autoComplete="off"
         >
           <TextField

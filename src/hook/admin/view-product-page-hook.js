@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { allProduct } from '../../Redux/actions/productAction';
 
-import { useDispatch, useSelector } from "react-redux";
-import { allProduct } from "../../Redux/actions/productAction";
-
-const ShopProductPageHook = () => {
+const ViewProductPageHook = () => {
     const limit = 9
     const dispatch = useDispatch();
     const products = useSelector((state) => state.allProduct.allProducts);
@@ -29,4 +28,4 @@ const ShopProductPageHook = () => {
 }
 
 
-export default ShopProductPageHook;
+export default ViewProductPageHook;
