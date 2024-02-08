@@ -3,9 +3,8 @@ import AdminProduct from "./AdminProduct";
 import Typography from "@mui/material/Typography";
 
 const Index = ({ products }) => {
-  console.log(products);
   return (
-    <>
+    <div>
       <Typography variant="h5" color="inherit" className="py-3">
         manage all products
       </Typography>
@@ -19,7 +18,7 @@ const Index = ({ products }) => {
           <p>No Products For this Page</p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

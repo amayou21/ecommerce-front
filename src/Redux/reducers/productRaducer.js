@@ -1,6 +1,7 @@
-import { CREATE_PRODUCT, GET_ALL_PRODUCT, GET_ERROR, GET_ONE_PRODUCT, PRODUCT_LIKE } from "../type";
+import { CREATE_PRODUCT, DELETE_PRODUCT, GET_ALL_PRODUCT, GET_ERROR, GET_ONE_PRODUCT, PRODUCT_LIKE } from "../type";
 
 const initial = {
+    deleteProd: [],
     prodLike: [],
     oneProduct: [],
     products: [],
@@ -41,6 +42,12 @@ const ProductRaducer = (state = initial, action) => {
                 loading: false
             }
 
+        // delete product
+        case DELETE_PRODUCT:
+            return {
+                loading: false,
+                deleteProd: action.payload
+            }
         //@desc if there's errors
         case GET_ERROR:
             return {

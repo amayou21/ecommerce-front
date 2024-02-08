@@ -17,3 +17,6 @@ export const GET_ERROR = "GET_ERROR";
 
 export const GET_ONE_PRODUCT = "GET_ONE_PRODUCT"
 export const PRODUCT_LIKE = "PRODUCT_LIKE"
+
+
+export const DELETE_PRODUCT = "DELETE_PRODUCT"
