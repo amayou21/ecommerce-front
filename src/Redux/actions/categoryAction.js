@@ -1,4 +1,4 @@
-import { UseGetDate, postDataWithImage } from "../../hooks/useGetDate";
+import { UseGetDate, postDataWithImage } from "../../hooks/services";
 import { CREATE_CATEGORY, GET_ALL_CATEGORY, GET_ERROR } from "../type";
 
 // @desc    get data

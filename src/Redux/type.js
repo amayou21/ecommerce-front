@@ -20,3 +20,4 @@ export const PRODUCT_LIKE = "PRODUCT_LIKE"
 
 
 export const DELETE_PRODUCT = "DELETE_PRODUCT"
+export const UPDATE_PEODUCT = "UPDATE_PEODUCT"

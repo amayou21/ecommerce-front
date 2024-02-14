@@ -8,9 +8,11 @@ const ViewProductPageHook = () => {
     const products = useSelector((state) => state.allProduct.allProducts);
     let prods = []
     let pageCount = {}
-    if (products.data) {
-        prods = products.data.documents
-        pageCount = products.data.paginationResult.numberOfPages
+    if (products) {
+        if (products.data) {
+            prods = products.data.documents
+            pageCount = products.data.paginationResult.numberOfPages
+        }
     }
     // first load with limit 
     useEffect(() => {

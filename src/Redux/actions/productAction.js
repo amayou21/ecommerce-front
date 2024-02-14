@@ -1,7 +1,7 @@
 //  creat product
 
-import { UseGetDate, deleteData, postDataWithImage } from "../../hooks/useGetDate"
-import { CREATE_PRODUCT, DELETE_PRODUCT, GET_ALL_PRODUCT, GET_ERROR, GET_ONE_PRODUCT, PRODUCT_LIKE } from "../type"
+import { UseGetDate, deleteData, postDataWithImage, updateDataWithImage } from "../../hooks/services"
+import { CREATE_PRODUCT, DELETE_PRODUCT, GET_ALL_PRODUCT, GET_ERROR, GET_ONE_PRODUCT, PRODUCT_LIKE, UPDATE_PEODUCT } from "../type"
 
 export const allProduct = (limit = 5, page = 1) => async (dispatch) => {
     try {
@@ -83,5 +83,21 @@ export const deleteProduct = (id) => async (dispatch) => {
             payload: `Error : ${error}`
         })
 
+    }
+}
+
+export const updateProduct = (id, formData) => async (dispatch) => {
+    try {
+        const product = await updateDataWithImage(`/api/v1/products/${id}`, formData)
+        dispatch({
+            type: UPDATE_PEODUCT,
+            payload: product
+
+        })
+    } catch (error) {
+        dispatch({
+            type: GET_ERROR,
+            payload: `Error : ${error}`
+        })
     }
 }

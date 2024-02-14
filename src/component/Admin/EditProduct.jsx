@@ -23,12 +23,11 @@ import CircleIcon from "@mui/icons-material/Circle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import MultiImageInput from "react-multiple-image-input";
 
-import AddProductHook from "../../../hook/product/add-product-hook";
-import AddCategory from "../../Admin/AddCategory/Index";
-import AddBrand from "../../Admin/AddBrand/Index";
+import AddCategory from "../Admin/AddCategory/Index";
+import AddBrand from "../Admin/AddBrand/Index";
+import EditProductHook from "../../hook/product/edit-product-hook";
 
-const Index = () => {
-
+const EditProduct = () => {
   const [
     fullScreen,
     openCat,
@@ -68,8 +67,7 @@ const Index = () => {
     handleSubmit,
     open,
     handleClose,
-  ] = AddProductHook();
-
+  ] = EditProductHook();
   return (
     <div>
       <React.Fragment>
@@ -111,12 +109,13 @@ const Index = () => {
       <div className="mb-20" component="form">
         <Box
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "30ch" },
+            "& .MuiTextField-root": { m: 1 },
+            xl: { width: "30ch" },
           }}
           noValidate
           autoComplete="off"
         >
-          <div className="m-1 px-2 justify-center  lg:w-[63ch] xl:w-[63ch] md:w-[63ch]  sm:w-[30ch]">
+          <div className="justify-center  lg:w-[63ch] xl:w-[63ch] md:w-[63ch]  sm:w-[30ch]">
             <Typography variant="body1" color="inherit">
               Upload Product Images
             </Typography>
@@ -127,6 +126,7 @@ const Index = () => {
               images={images}
               setImages={setImages}
               allowCrop={false}
+              // cropConfig={{ crop, ruleOfThirds: true }}
               max={4}
             />
           </div>
@@ -332,7 +332,7 @@ const Index = () => {
         ) : null}
         <Box className="px-2 mt-2 flex justify-end">
           <Button variant="contained" onClick={handleSubmit}>
-            add
+            edit
           </Button>
         </Box>
 
@@ -349,4 +349,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default EditProduct;

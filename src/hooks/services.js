@@ -21,3 +21,28 @@ export const postData = async (url, params) => {
   const res = await baserUrl.post(url, params);
   return res;
 };
+
+
+
+// @desc update data with files
+export const updateDataWithImage = async(url, params) => {
+  const config = {
+    headers: { "Content-Type": "multipart/form-data" },
+  };
+  const res = await baserUrl.put(url, params, config);
+  return res;
+}
+
+
+// @desc  update Data without files
+export const updateData = async (url, params) => {
+  const res = await baserUrl.post(url, params);
+  return res;
+};
+
+
+// delete data
+export const deleteData = async (url, params) => {
+  const res = await baserUrl.delete(url, params)
+  return res
+}

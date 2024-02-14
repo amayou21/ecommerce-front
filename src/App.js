@@ -33,6 +33,7 @@ import AllUserFavoritsPage from "./pages/User/AllUserFavoritsPage";
 import ProfilePage from "./pages/User/ProfilePage";
 import UserAddAddressPage from "./pages/User/UserAddAddressPage";
 import UserEditAddress from "./pages/User/UserEditAddress";
+import EditProductPage from "./pages/Admin/EditProductPage";
 
 const App = () => {
 
@@ -87,6 +88,7 @@ const App = () => {
               <Route path="add-category" element={<AddCategoryPage />} />
               <Route path="add-sub-category" element={<AddSubCategoryPage />} />
               <Route path="add-product" element={<AddProductPage />} />
+              <Route path="editproduct/:id" element={<EditProductPage />} />
             </Route>
 
             <Route path="/user" element={<UserDashPage />}>

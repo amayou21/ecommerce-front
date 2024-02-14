@@ -1,4 +1,4 @@
-import { UseGetDate } from '../../hooks/useGetDate';
+import { UseGetDate } from '../../hooks/services';
 import { GET_ALL_SUBCATEGORIES_ON_CTEGORY, GET_ERROR } from '../type';
 
 //  get all sub categories on spesific category

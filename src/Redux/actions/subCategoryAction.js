@@ -1,5 +1,5 @@
 import React from 'react';
-import { UseGetDate, postData } from '../../hooks/useGetDate';
+import { UseGetDate, postData } from '../../hooks/services';
 import { CREATE_SUBCATEGORY, GET_ALL_SUBCATEGORY, GET_ERROR } from '../type';
 
 
