@@ -27,7 +27,6 @@ const AddSubCategryHook = () => {
     const res = useSelector((val) => val.allCategory.category);
     const categories = res.data ? res.data.documents : [];
     const subCategories = useSelector((val) => val.allSubCategory.subCategory);
-
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -88,7 +87,7 @@ const AddSubCategryHook = () => {
     }, [loading]);
 
 
-    return [fullScreen, open, handleClose,setName, name, setCat, cat, categories, selectedValue, handleChange, handleClickOpen, handleSubmit]
+    return [fullScreen, open, handleClose, setName, name, setCat, cat, categories, selectedValue, handleChange, handleClickOpen, handleSubmit]
 }
 
 export default AddSubCategryHook;

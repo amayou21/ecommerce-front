@@ -58,9 +58,15 @@ const AddBrandHook = () => {
   };
 
   const res = useSelector((val) => val.allBrand.brand);
-
+if(res)console.log(res);
   useEffect(() => {
+
     if (!loading) {
+      if (res === 'error :AxiosError: Request failed with status code 401') {
+        setOpen(false)
+        UseNotification("You are not allowed to access this route", "error");
+        return;
+      }
       setOpen(false);
       setImage("");
       setName("");

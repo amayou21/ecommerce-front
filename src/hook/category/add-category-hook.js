@@ -58,9 +58,16 @@ const AddCategoryHook = () => {
   };
 
   const res = useSelector((val) => val.allCategory.category);
-
   useEffect(() => {
     if (!loading) {
+
+      if (res === 'error : AxiosError: Request failed with status code 401') {
+        setOpen(false)
+        UseNotification("You are not allowed to access this route", "error");
+        return;
+      }
+
+
       setOpen(false);
       if (res) {
         if (res && check) {

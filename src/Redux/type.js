@@ -23,3 +23,5 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT"
 export const UPDATE_PEODUCT = "UPDATE_PEODUCT"
 
 export const SIGNUP = "SIGNUP"
+export const LOGIN = "LOGIN"
+export const GET_LOGGED_USER="GET_LOGGED_USER"

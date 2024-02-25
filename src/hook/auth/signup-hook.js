@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import UseNotification from '../useNotification';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUpAction } from '../../Redux/actions/signUpAction';
+import { signUp } from '../../Redux/actions/authAction';
+import { useNavigate } from 'react-router-dom';
 
 const SignupHook = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [name, setName] = useState("");
     const [lName, setLName] = useState("");
@@ -48,7 +50,7 @@ const SignupHook = () => {
         setOpen(false);
     };
 
-    const user = useSelector(state => state.signUp.userSignUp)
+    const user = useSelector(state => state.auth.SignUp)
     if (user) console.log(user);
 
     const handleSubmit = async (e) => {
@@ -59,7 +61,7 @@ const SignupHook = () => {
             return;
         }
         setLoading(true)
-        await dispatch(signUpAction({
+        await dispatch(signUp({
             name, email, password, passwordConfirm: confirmPassword, phone, lName
 
         }))
@@ -74,13 +76,17 @@ const SignupHook = () => {
                 if (user.data) {
                     if (user.data.token) {
                         setLoading(false);
-                        UseNotification("created successfuly!", "success");
+                        UseNotification("Your account created successfuly!", "success");
                         setLName("")
                         setName("")
                         setPassword("")
                         setConfirmPassword("")
                         setEmail("")
                         setPhone("")
+                        localStorage.setItem("token", user.data.token)
+                        setTimeout(() => {
+                            navigate("/login")
+                        }, 2000);
                     } else {
                         setLoading(false);
                         UseNotification(user.data.errors[0].msg, "error");
