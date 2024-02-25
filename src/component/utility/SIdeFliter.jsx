@@ -6,7 +6,9 @@ import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import SidBarSearchHook from "../../hook/search/sidBar-search-hook";
 const SIdeFliter = () => {
+  const [category, brand, brandChecked, categoryChecked] = SidBarSearchHook();
   return (
     <div
       // className="grid grid-cols-3 gap-2 xl:grid-cols-1 lg:grid-cols-1  md:grid-cols-3  max-sm:grid-cols-1  "
@@ -15,19 +17,34 @@ const SIdeFliter = () => {
       <div>
         <Typography>Category</Typography>
         <FormGroup>
-          <FormControlLabel control={<Checkbox />} label="All" />
-          <FormControlLabel control={<Checkbox />} label="Elictronic" />
-          <FormControlLabel control={<Checkbox />} label="Clothing" />
-          <FormControlLabel control={<Checkbox />} label="Clothing" />
+          <FormControlLabel control={<Checkbox value="0" />} label="All" />
+          {category.length > 0
+            ? category.map((cat, index) => (
+                <FormControlLabel
+                  // onChange
+                  control={
+                    <Checkbox onChange={categoryChecked} value={cat._id} />
+                  }
+                  label={cat.name}
+                />
+              ))
+            : null}
         </FormGroup>
       </div>
 
       <div>
         <FormGroup>
           <p>brand</p>
-          <FormControlLabel control={<Checkbox />} label="All" />
-          <FormControlLabel control={<Checkbox />} label="Dior" />
-          <FormControlLabel control={<Checkbox />} label="adidass" />
+          <FormControlLabel control={<Checkbox value="0" />} label="All" />{" "}
+          {brand.length > 0
+            ? brand.map((bra, index) => (
+                <FormControlLabel
+                  // onChange
+                  control={<Checkbox onChange={brandChecked} value={bra._id} />}
+                  label={bra.name}
+                />
+              ))
+            : null}
         </FormGroup>
       </div>
 

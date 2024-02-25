@@ -15,6 +15,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useTheme } from "@emotion/react";
 import { Link } from "@mui/material";
+import NavBarSearchHook from "../../hook/search/navBar-search-hook";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -58,6 +59,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavBar = ({ setMode }) => {
+  const [searchWord, onChangeWord] = NavBarSearchHook();
+
+  let word;
+  if (localStorage.getItem("keyWord")) {
+    word = localStorage.getItem("keyWord");
+  }
+
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -181,6 +189,10 @@ const NavBar = ({ setMode }) => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              value={word}
+              onChange={(e) => {
+                onChangeWord(e.target.value);
+              }}
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />

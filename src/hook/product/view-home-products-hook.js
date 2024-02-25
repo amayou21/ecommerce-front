@@ -9,8 +9,13 @@ const ViewHomeProductsHook = () => {
     useEffect(() => {
         dispatch(allProduct(100));
     }, []);
+    let items
+    try {
+        items = products.data ? products.data.documents.slice(0, 4) : [];
+    } catch (error) {
 
-    const items = products.data ? products.data.documents.slice(0, 4) : [];
+    }
+
 
     return [items]
 }

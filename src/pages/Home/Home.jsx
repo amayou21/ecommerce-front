@@ -23,7 +23,7 @@ const Home = () => {
         pathText="/product-tshop"
       />
       <DescountSlide />
-      <CardProductContainer title="Latest Fashion" btntitle="show more" />
+      <CardProductContainer title="Latest Fashion" btntitle="show more" products={items}/>
       {/* pathText='/produc-tshop' */}
       <BrandFuturs title="Brands" btntitle="more" pathText="/allbrands" />
     </div>

@@ -3,9 +3,27 @@
 import { UseGetDate, deleteData, postDataWithImage, updateDataWithImage } from "../../hooks/services"
 import { CREATE_PRODUCT, DELETE_PRODUCT, GET_ALL_PRODUCT, GET_ERROR, GET_ONE_PRODUCT, PRODUCT_LIKE, UPDATE_PEODUCT } from "../type"
 
+// @desc get all products
 export const allProduct = (limit = 5, page = 1) => async (dispatch) => {
     try {
         const product = await UseGetDate(`/api/v1/products?limit=${limit}&page=${page}`)
+        dispatch({
+            type: GET_ALL_PRODUCT,
+            payload: product
+        })
+    } catch (error) {
+        dispatch({
+            type: GET_ERROR,
+            payload: `Error : ${error}`
+        })
+    }
+
+}
+
+// @desc get all filter products
+export const allFilterProd = (queryStr) => async (dispatch) => {
+    try {
+        const product = await UseGetDate(`/api/v1/products?${queryStr}`)
         dispatch({
             type: GET_ALL_PRODUCT,
             payload: product
@@ -36,7 +54,7 @@ export const getOneProduct = (id) => async (dispatch) => {
 
 }
 
-
+// get products with spesific cat
 export const productLike = (id) => async (dispatch) => {
     try {
         const prodLike = await UseGetDate(`/api/v1/products?category=${id}`)
@@ -52,7 +70,7 @@ export const productLike = (id) => async (dispatch) => {
     }
 }
 
-
+// @desc create product
 export const createProduct = (formData) => async (dispatch) => {
     try {
         const product = await postDataWithImage("/api/v1/products", formData)
@@ -69,7 +87,7 @@ export const createProduct = (formData) => async (dispatch) => {
 
 }
 
-
+// @desc delete product
 export const deleteProduct = (id) => async (dispatch) => {
     try {
         const product = await deleteData(`/api/v1/products/${id}`)
@@ -86,6 +104,7 @@ export const deleteProduct = (id) => async (dispatch) => {
     }
 }
 
+// @desc update product
 export const updateProduct = (id, formData) => async (dispatch) => {
     try {
         const product = await updateDataWithImage(`/api/v1/products/${id}`, formData)

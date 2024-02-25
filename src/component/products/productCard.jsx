@@ -16,6 +16,8 @@ import BathtubIcon from "@mui/icons-material/Bathtub";
 import KingBedIcon from "@mui/icons-material/KingBed";
 import DriveEtaIcon from "@mui/icons-material/DriveEta";
 
+// import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+// import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const labels = {
@@ -105,7 +107,7 @@ const ProductCard = ({ prod }) => {
         </IconButton>
 
         <Typography variant="h6" color="inherit" className="p-2">
-          250 $
+          {`${prod.price}$`}
         </Typography>
       </div>
     </Paper>

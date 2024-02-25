@@ -8,7 +8,7 @@ const CardProductContainer = ({ title, btntitle, pathText, products }) => {
     <Container>
       <div className="mt-6">
         <Subtitle title={title} btntitle={btntitle} pathText={pathText} />
-        <div className="drop-shadow-2xl grid grid-cols-1 gap-2 xl:grid-cols-4 md:grid-cols-2 place-items-center">
+        <div className="drop-shadow-2xl grid grid-cols-1 gap-2 lg:grid-cols-4 xl:grid-cols-4 md:grid-cols-4 place-items-center">
           {products
             ? products.length > 0
               ? products.map((item, index) => {
