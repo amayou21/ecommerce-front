@@ -14,8 +14,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useTheme } from "@emotion/react";
-import { Link } from "@mui/material";
+// import { Link } from "@mui/material";
 import NavBarSearchHook from "../../hook/search/navBar-search-hook";
+import { Navigate, Link } from "react-router-dom";
+import { Avatar } from "@mui/material";
+import UseNotification from "../../hook/useNotification";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,7 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavBar = ({ setMode }) => {
-  const [searchWord, onChangeWord] = NavBarSearchHook();
+  const [searchWord, onChangeWord, currentUser] = NavBarSearchHook();
 
   let word;
   if (localStorage.getItem("keyWord")) {
@@ -108,10 +111,43 @@ const NavBar = ({ setMode }) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link href={"/login"} underline="none" color="inhiret">
-        <MenuItem onClick={handleMenuClose}>Login</MenuItem>
-      </Link>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {currentUser ? (
+        <Link to={"/"} underline="none" color="inhiret">
+          <MenuItem
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("user");
+              window.location.pathname = "/";
+            }}
+          >
+            Logout
+          </MenuItem>
+        </Link>
+      ) : (
+        <>
+          {" "}
+          <Link to={"/login"} underline="none" color="inhiret">
+            <MenuItem onClick={handleMenuClose}>Login</MenuItem>
+          </Link>
+          <Link to={"/register"} underline="none" color="inhiret">
+            <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
+          </Link>
+        </>
+      )}
+
+      {currentUser ? (
+        <Link to="/user/profile">
+          <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        </Link>
+      ) : null}
+
+      {currentUser ? (
+        currentUser.role === "admin" ? (
+          <Link to="/admin">
+            <MenuItem onClick={handleMenuClose}>Dashboard</MenuItem>
+          </Link>
+        ) : null
+      ) : null}
     </Menu>
   );
 
@@ -134,7 +170,7 @@ const NavBar = ({ setMode }) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <Link href={"/cart"} underline="none" color="inhiret">
+      <Link to={"/cart"} underline="none" color="inhiret">
         <MenuItem>
           <IconButton
             size="large"
@@ -172,7 +208,7 @@ const NavBar = ({ setMode }) => {
           className={`${theme.palette.AppBarbackgroundColor}`}
         >
           {/* 1 */}
-          <Link href={"/"} underline="none" color="inhiret">
+          <Link to={"/"} underline="none" color="inhiret">
             <Typography
               variant="h6"
               noWrap={false}
@@ -199,8 +235,11 @@ const NavBar = ({ setMode }) => {
           </Search>
 
           {/* 3 */}
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link href={"/cart"} underline="none" color="inhiret">
+          <Box
+            sx={{ display: { xs: "none", md: "flex" } }}
+            className="items-center"
+          >
+            <Link to={"/cart"} underline="none" color="inhiret">
               <IconButton
                 size="large"
                 aria-label="show 4 new mails"
@@ -221,7 +260,15 @@ const NavBar = ({ setMode }) => {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              {currentUser ? (
+                currentUser.profileImage ? (
+                  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                ) : (
+                  <Avatar>{currentUser.name.charAt(0).toUpperCase()}</Avatar>
+                )
+              ) : (
+                <AccountCircle />
+              )}
             </IconButton>
           </Box>
 

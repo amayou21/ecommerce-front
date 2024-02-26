@@ -1,5 +1,5 @@
-import { UseGetDate, postData } from "../../hooks/services"
-import { SIGNUP, LOGIN, GET_ERROR,GET_LOGGED_USER } from "../type"
+import { UseGetDataToken, postData } from "../../hooks/services"
+import { SIGNUP, LOGIN, GET_ERROR, GET_LOGGED_USER } from "../type"
 
 export const signUp = (data) => async (dispatch) => {
     try {
@@ -37,10 +37,10 @@ export const login = (data) => async (dispatch) => {
 
 export const loggedUser = () => async (dispatch) => {
     try {
-        const loggetUser = await UseGetDate("/api/v1/users/getMe")
+        const loggingUser = await UseGetDataToken("/api/v1/users/getMe")
         dispatch({
             type: GET_LOGGED_USER,
-            payload: loggedUser
+            payload: loggingUser
         })
     } catch (error) {
         dispatch({

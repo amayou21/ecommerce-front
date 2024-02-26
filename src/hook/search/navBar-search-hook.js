@@ -3,6 +3,7 @@ import ShopProductPageHook from '../product/shop-product-page-hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loggedUser } from '../../Redux/actions/authAction';
+import userEvent from '@testing-library/user-event';
 
 const NavBarSearchHook = () => {
 
@@ -28,22 +29,31 @@ const NavBarSearchHook = () => {
         }, 1000);
     }, [searchWord]);
 
-    const currentUser = useSelector(state => state.auth.loggedUser)
-    if (currentUser) console.log(currentUser);
+    const user = useSelector(state => state.auth.loggedUser)
+    if (user.data) {
+        localStorage.setItem("user", JSON.stringify(user.data));
+    }
 
-    // // @desc get logged user
+
+  let currentUser;
+
+  if (localStorage.getItem("user")) {
+    currentUser = JSON.parse(localStorage.getItem("user"));
+    // console.log(currentUser);
+  }
+
+    // @desc get logged user
+    const loggingdUser = async () => {
+        await dispatch(loggedUser())
+    }
     useEffect(() => {
+        loggingdUser()
 
-        // const loggedUser = () => {
-            dispatch(loggedUser())
-        // }
-        // loggedUser()
-
-    }, [currentUser]);
+    }, []);
 
 
 
-    return [searchWord, onChangeWord]
+    return [searchWord, onChangeWord,currentUser]
 }
 
 export default NavBarSearchHook;

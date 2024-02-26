@@ -56,7 +56,7 @@ const LoginHook = () => {
                         setEmail("")
                         localStorage.setItem("token", user.data.token)
                         setTimeout(() => {
-                            navigate("/")
+                            window.location.pathname = "/"
                         }, 2000);
                     } else {
                         setLoading(false);
