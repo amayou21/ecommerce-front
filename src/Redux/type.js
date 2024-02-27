@@ -24,4 +24,9 @@ export const UPDATE_PEODUCT = "UPDATE_PEODUCT"
 
 export const SIGNUP = "SIGNUP"
 export const LOGIN = "LOGIN"
-export const GET_LOGGED_USER="GET_LOGGED_USER"
+export const GET_LOGGED_USER = "GET_LOGGED_USER"
+
+export const FORGOT_PASSWORD = "FORGOT_PASSWORD"
+
+export const VERIFY_RESET_CODE = "VERIFY_RESET_CODE"
+export const RESET_PASSWORD = "RESET_PASSWORD"

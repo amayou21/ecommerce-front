@@ -8,14 +8,13 @@ import {
   CircularProgress,
 } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
-import { useTheme } from "@emotion/react";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 import { Divider, Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import LoginHook from "../../hook/auth/login-hook";
+import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const Login = () => {
   const [
     handleSbmit,
     email,
@@ -81,7 +80,6 @@ const LoginPage = () => {
               Sign In
             </Button>
             <Divider className="py-2">or</Divider>
-
             <div className="flex justify-between items-center ">
               <Typography variant="p" color="inhiret">
                 haven't an account?
@@ -104,6 +102,9 @@ const LoginPage = () => {
                 Register
               </Button>
             </div>
+            <Typography variant="body1" color="primary">
+              <Link to="/foget-password"> forget password?</Link>
+            </Typography>
           </div>
         </Box>
       </Paper>
@@ -119,4 +120,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;

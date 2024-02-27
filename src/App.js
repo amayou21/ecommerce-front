@@ -8,8 +8,6 @@ import Home from "./pages/Home/Home";
 import { DarktMode, LightMode } from "./component/utility/AppMode";
 import NavBar from "./component/utility/NavBar";
 import Footer from "./component/utility/Footer";
-import LoginPage from "./pages/Auth/Login";
-import Register from "./pages/Auth/RegisterPage";
 import AllCategoryPage from "./pages/categories/AllCategoryPage";
 import AllBrandsPage from "./pages/Brands/AllBrandsPage";
 import ShopProductPage from "./pages/Products/ShopProductPage";
@@ -34,9 +32,14 @@ import ProfilePage from "./pages/User/ProfilePage";
 import UserAddAddressPage from "./pages/User/UserAddAddressPage";
 import UserEditAddress from "./pages/User/UserEditAddress";
 import EditProductPage from "./pages/Admin/EditProductPage";
+import RegisterPage from "./pages/Auth/RegisterPage";
+import LoginPage from "./component/auth/Login";
+import ForgetPasswordPage from "./pages/Auth/forgetPasswordPage";
+import VerifyResetCodePage from "./pages/Auth/VerifyResetCodePage";
+import ResetPasswordPage from "./pages/Auth/resetPasswordPage";
 
 const App = () => {
-  
+
 
   const [mode, setMode] = useState(
     localStorage.getItem("currentTheme") === null
@@ -63,7 +66,13 @@ const App = () => {
           <Routes>
             <Route index element={<Home setMode={setMode} />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/foget-password" element={<ForgetPasswordPage />} />
+            <Route path="/verify-code" element={<VerifyResetCodePage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+
+
             <Route path="/allcategory" element={<AllCategoryPage />} />
             <Route path="/allbrands" element={<AllBrandsPage />} />
             <Route path="/product-tshop" element={<ShopProductPage />} />

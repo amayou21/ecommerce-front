@@ -55,7 +55,7 @@ export const updateDataWithImage = async (url, params) => {
 
 // @desc  update Data without files
 export const updateData = async (url, params) => {
-  const res = await baserUrl.post(url, params);
+  const res = await baserUrl.put(url, params);
   return res;
 };
 

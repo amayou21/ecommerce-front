@@ -124,15 +124,15 @@ const NavBar = ({ setMode }) => {
           </MenuItem>
         </Link>
       ) : (
-        <>
-          {" "}
+      
+       
           <Link to={"/login"} underline="none" color="inhiret">
             <MenuItem onClick={handleMenuClose}>Login</MenuItem>
           </Link>
-          <Link to={"/register"} underline="none" color="inhiret">
-            <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
-          </Link>
-        </>
+          // <Link to={"/register"} underline="none" color="inhiret">
+          //   <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
+          // </Link>
+      
       )}
 
       {currentUser ? (
