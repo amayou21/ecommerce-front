@@ -23,7 +23,7 @@ const ChooseMethode = () => {
             <FormControlLabel
               value="visa-caard"
               control={<Radio />}
-              label="visa caard"
+              label="visa card"
             />
             <FormControlLabel
               value="paypal"

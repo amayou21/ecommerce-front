@@ -51,7 +51,6 @@ const SignupHook = () => {
     };
 
     const user = useSelector(state => state.auth.SignUp)
-    if (user) console.log(user);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

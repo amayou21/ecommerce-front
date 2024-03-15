@@ -8,9 +8,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {dashboardData} from "../../utility/DashboardData"
+import { useTheme } from "@emotion/react";
 const drawerWidth = 240;
 
 const AdminDrawer = () => {
+  const theme=useTheme()
   const navigate = useNavigate();
   return (
     <div>
@@ -33,7 +35,7 @@ const AdminDrawer = () => {
         <div className="w-[100%] h-[100%] mt-[56px] md:mt-[63px] xl:mt-[56px] p-1">
           <List>
             {dashboardData.map((val, index) => (
-              <ListItem key={index} disablePadding>
+              <ListItem key={index} disablePadding >
                 <ListItemButton
                   onClick={() => {
                     navigate(`/admin${val.link}`);

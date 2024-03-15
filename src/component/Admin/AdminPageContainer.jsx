@@ -1,5 +1,5 @@
 import React from 'react';
-import SideMenu from "./SideMenu"
+import SideMenu from "./Menu/SideMenu"
 import { Outlet } from 'react-router-dom';
 import { Box, Container, CssBaseline } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
