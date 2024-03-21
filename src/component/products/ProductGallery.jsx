@@ -9,7 +9,6 @@ import CircleIcon from "@mui/icons-material/Circle";
 import ProductDetailsHook from "../../hook/product/product-details-hook";
 
 const ProductGallery = (onClick, onDisable) => {
-  
   const [product, images] = ProductDetailsHook();
 
   const customPrevButton = (onClick, onDisable) => (
@@ -53,15 +52,21 @@ const ProductGallery = (onClick, onDisable) => {
 
         <Grid sm={12} xs={12} lg={8} md={8}>
           <div className="p-4">
-            <p>{product ? product.category.name : null} </p>
-            <p className="break-all">{product ? product.description : null}</p>
+            <p>{product && product.category ? product.category.name : null} </p>
+            <p className="break-all">
+              {product && product.description ? product.description : null}
+            </p>
             <span className="text-yellow-500 my-2">
               {product ? product.ratingQuantity : null}
             </span>
-            {product ?product.brand? <p>{` brand : ${product.brand.name}`}</p> : null:null}
+            {product ? (
+              product.brand ? (
+                <p>{` brand : ${product.brand.name}`}</p>
+              ) : null
+            ) : null}
 
             <div className="flex w-[20%]">
-              {product
+              {product && product.colors
                 ? product.colors.map((c, index) => {
                     return (
                       <IconButton key={index}>

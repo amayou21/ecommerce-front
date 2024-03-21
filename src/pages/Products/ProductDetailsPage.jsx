@@ -12,14 +12,13 @@ const ProductDetailsPage = () => {
     <div>
       <CategoryHeader />
       <ProductDetails />
+      
       <CardProductContainer
         products={prodLike}
         title="products you can like"
         btntitle="show more"
         pathText="/product-tshop"
       />
-
-      <PaginatePage />
     </div>
   );
 };

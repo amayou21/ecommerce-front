@@ -14,7 +14,7 @@ const ProductDetailsHook = () => {
     const product = prod ? prod.data : [];
 
     let images = [];
-    if (product) {
+    if (product &&product.images) {
         images = product.images.map((val) => {
             return {
                 original: val,
@@ -24,7 +24,7 @@ const ProductDetailsHook = () => {
     }
 
     const productLik = useSelector(state => state.allProduct.prodLike)
-    const prodLike = productLik.data ? productLik.data.documents.slice(0, 4) : []
+    const prodLike = productLik&&productLik.data ? productLik.data.documents.slice(0, 4) : []
 
 
     // const prodLike = []
@@ -34,7 +34,7 @@ const ProductDetailsHook = () => {
 
 
     useEffect(() => {
-        if (product) {
+        if (product &&product.category) {
             dispatch(productLike(product.category._id))
 
         }
