@@ -60,7 +60,12 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <BrowserRouter>
-        <NavBar setMode={setMode} />
+
+      {
+        !window.location.pathname.startsWith("/admin") ? <NavBar setMode={setMode} />
+          : null
+      }
+        {/* <NavBar setMode={setMode} /> */}
         <div className=" mt-[56px] md:mt-[64px] xl:mt-[64px]">
           {/* <div> */}
           <Routes>

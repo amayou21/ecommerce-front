@@ -82,10 +82,6 @@ const AdminNavBar = ({ window, setMode }) => {
           }}
         />
 
-        <Box sx={{ textAlign: "center", pt: 1 }}>
-          <Button onClick={toggleDrawer(true)}>Open</Button>
-        </Box>
-
         <SwipeableDrawer
           container={container}
           anchor="bottom"
@@ -154,108 +150,47 @@ const AdminNavBar = ({ window, setMode }) => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
-        <Toolbar
-          sx={{ justifyContent: "space-between", zIndex: 5 }}
-          className={`${theme.palette.AppBarbackgroundColor}`}
+    <Box className="flex"> 
+
+      <Box >
+        <IconButton sx={{ ml: 1 }}>
+          <Badge badgeContent={2} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+
+        <IconButton
+          sx={{ ml: 1 }}
+          onClick={() => {
+            setMode(theme.palette.mode === "dark" ? "light" : "dark");
+          }}
+          color="inherit"
         >
-          {/* 1 */}
-          <Box className="w-[240px]">
-            <Link href={"/admin"} underline="none" color="inhiret">
-              <Typography
-                variant="h6"
-                noWrap={false}
-                component="div"
-                marginRight={1}
-              >
-                Dashboard
-              </Typography>
-            </Link>
-          </Box>
-          {/* 3 */}
-          <Box
-            sx={{
-              display: {
-                xs: "none",
-                md: "flex",
-                justifyContent: "space-around",
-              },
-            }}
-            className="items-center"
-          >
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton sx={{ ml: 1 }}>
-                <Badge badgeContent={2} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                sx={{ ml: 1 }}
-                onClick={() => {
-                  localStorage.setItem(
-                    "currentTheme",
-                    theme.palette.mode === "dark" ? "light" : "dark"
-                  );
-                  setMode(theme.palette.mode === "light" ? "dark" : "light");
-                  if (typeof window !== "undefined") {
-                    window.location.reload();
-                  }
-                }}
-                color="inherit"
-              >
-                {theme.palette.mode === "dark" ? (
-                  <Brightness7 sx={{ color: "orange" }} />
-                ) : (
-                  <Brightness4 />
-                )}
-              </IconButton>
-            </Box>
-          </Box>
+          {theme.palette.mode === "dark" ? (
+            <Brightness7 sx={{ color: "orange" }} />
+          ) : (
+            <Brightness4 />
+          )}
+        </IconButton>
+      </Box>
 
-          {/* 4 dark-light-mode-icon*/}
-
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
-            <IconButton sx={{ ml: 1 }}>
-              <Badge badgeContent={2} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-
-            <IconButton
-              sx={{ ml: 1 }}
-              onClick={() => {
-                setMode(theme.palette.mode === "dark" ? "light" : "dark");
-              }}
-              color="inherit"
-            >
-              {theme.palette.mode === "dark" ? (
-                <Brightness7 sx={{ color: "orange" }} />
-              ) : (
-                <Brightness4 />
-              )}
-            </IconButton>
-          </Box>
-
-          {/* 4 */}
-          <Box
-            sx={{
-              display: { xs: "flex", md: "none", textAlign: "center", pt: 1 },
-            }}
-          >
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={toggleDrawer(true)}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
+      {/* 4 */}
+      <Box
+        sx={{
+          display: { xs: "flex", md: "none", textAlign: "center", pt: 1 },
+        }}
+      >
+        <IconButton
+          size="large"
+          aria-label="show more"
+          aria-controls={mobileMenuId}
+          aria-haspopup="true"
+          onClick={toggleDrawer(true)}
+          color="inherit"
+        >
+          <MoreIcon />
+        </IconButton>
+      </Box>
 
       {!(isMediumScreen || isExtraLargeScreen) && renderMobileMenu}
     </Box>

@@ -322,6 +322,7 @@ const NavBar = ({ setMode }) => {
               <MoreIcon />
             </IconButton>
           </Box>
+          
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
