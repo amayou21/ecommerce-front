@@ -37,6 +37,10 @@ import LoginPage from "./component/auth/Login";
 import ForgetPasswordPage from "./pages/Auth/forgetPasswordPage";
 import VerifyResetCodePage from "./pages/Auth/VerifyResetCodePage";
 import ResetPasswordPage from "./pages/Auth/resetPasswordPage";
+import NewNavBar from "./component/utility/newNavBar";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const App = () => {
 
@@ -55,18 +59,37 @@ const App = () => {
       ...(mode === "light" ? LightMode : DarktMode),
     },
   });
+  const [orderPopup, setOrderPopup] = React.useState(false);
+
+  const handleOrderPopup = () => {
+    setOrderPopup(!orderPopup);
+  };
+
+
+  // make elements animation
+  React.useEffect(() => {
+    AOS.init({
+      offset: 100,
+      duration: 800,
+      easing: "ease-in-sine",
+      delay: 100,
+    });
+    AOS.refresh();
+  }, []);
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <BrowserRouter>
-
-      {
-        !window.location.pathname.startsWith("/admin") ? <NavBar setMode={setMode} />
-          : null
-      }
+        <NewNavBar setMode={setMode} handleOrderPopup={handleOrderPopup}/>
         {/* <NavBar setMode={setMode} /> */}
-        <div className=" mt-[56px] md:mt-[64px] xl:mt-[64px]">
+        {/* {
+        !window.location.pathname.startsWith("/admin") ?  />
+          : null
+      } */}
+        {/* <NavBar setMode={setMode} /> */}
+        {/* <div className=" mt-[56px] md:mt-[64px] xl:mt-[64px]"> */}
+        <div className=" mt-[56px] md:mt-[56px] xl:mt-[56px]">
           {/* <div> */}
           <Routes>
             <Route index element={<Home setMode={setMode} />} />

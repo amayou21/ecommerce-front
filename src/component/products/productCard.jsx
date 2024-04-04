@@ -1,114 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Typography from "@mui/material/Typography";
-import { IconButton, Paper, Rating, useTheme } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
+import { IconButton, Paper, Rating } from "@mui/material";
+
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 
-import img3 from "../../images/img3.png";
-
 import ShareIcon from "@mui/icons-material/Share";
 
-import BathtubIcon from "@mui/icons-material/Bathtub";
-import KingBedIcon from "@mui/icons-material/KingBed";
-import DriveEtaIcon from "@mui/icons-material/DriveEta";
-
-// import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-// import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const labels = {
-  0.5: "Useless",
-  1: "Useless+",
-  1.5: "Poor",
-  2: "Poor+",
-  2.5: "Ok",
-  3: "Ok+",
-  3.5: "Good",
-  4: "Good+",
-  4.5: "Excellent",
-  5: "Excellent+",
-};
-
-const getLabelText = (value) => {
-  return labels[value];
-};
-
 const ProductCard = ({ prod }) => {
-  const theme = useTheme();
-  const [value, setValue] = useState(2.5);
-  const [hover, setHover] = useState(-1);
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const toggleFavorite = () => {
-    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
-  };
-
   return (
-    <Paper className="rounded-md flex flex-col">
-      <div className="flex-grow">
-        <Link to={`/product/${prod._id}`}>
-          <img
-            className="p-1 object-cover" // Adjust the height as needed
-            src={prod.imageCover}
-            alt="desc"
-          />
-        </Link>
+    <Paper class=" shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+      <Link to={`/product/${prod._id}`}>
+        <img src={prod.imageCover} />
+      </Link>
+
+      <div class="px-5 py-2">
         <Typography
           variant="body2"
           component="p"
           color="text.secondary"
-          className="px-2 max-h-10 break-all overflow-hidden whitespace-wrap overflow-ellipsis"
+          className="px-2  max-h-10 break-all overflow-hidden whitespace-wrap overflow-ellipsis"
         >
           {prod.description}...
         </Typography>
       </div>
 
-      <div className="flex justify-between px-2">
-        <Rating
-          name="hover-feedback"
-          value={value}
-          precision={0.5}
-          getLabelText={getLabelText}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          onChangeActive={(event, newHover) => {
-            setHover(newHover);
-          }}
-          emptyIcon={
-            <StarIcon style={{ opacity: 0.55 }} fontSize="text-slate-700" />
-          }
-        />
+      <div class="px-5 pb-5">
+        <div className="flex justify-between px-2 py-2">
+          <Rating name="hover-feedback" value={2} readOnly />
+        </div>
+        <div className={`flex justify-between items-center `}>
+          <Checkbox
+            {...label}
+            icon={<FavoriteBorder />}
+            checkedIcon={<Favorite color="error" />}
+          />
+          <IconButton>
+            <ShareIcon />
+          </IconButton>
 
-        {value !== null && (
-          <Typography
-            className={`${
-              theme.palette.mode === "dark" ? "text-red-300" : "text-sky-500"
-            } pr-1`}
-            sx={{ ml: 1 }}
-          >
-            {labels[hover !== -1 ? hover : value]}
+          <Typography variant="h6" color="inherit" className="p-2">
+            <span className="text-3xl font-bold"> {`${prod.price}$`}</span>
           </Typography>
-        )}
-      </div>
-
-      <div className={`flex justify-between items-center `}>
-        <Checkbox
-          {...label}
-          icon={<FavoriteBorder />}
-          checkedIcon={<Favorite color="error" />}
-        />
-        <IconButton>
-          <ShareIcon />
-        </IconButton>
-
-        <Typography variant="h6" color="inherit" className="p-2">
-          {`${prod.price}$`}
-        </Typography>
+        </div>
       </div>
     </Paper>
   );

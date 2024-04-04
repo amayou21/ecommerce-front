@@ -5,12 +5,14 @@ import CardProductContainer from "../../component/products/CardProductContainer"
 import DescountSlide from "../../component/utility/DescountSlide";
 import BrandFuturs from "../../component/brands/BrandFuturs";
 import ViewHomeProductsHook from "../../hook/product/view-home-products-hook";
+import NewHSlide from "../../component/Home/newHSlide";
 const Home = () => {
   const [items] = ViewHomeProductsHook();
   
   return (
     <div>
       <HSlider />
+      <NewHSlide/>
       <HomeCategory
         title="Categories"
         btntitle="more"

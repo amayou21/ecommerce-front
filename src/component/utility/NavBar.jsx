@@ -7,10 +7,10 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useTheme } from "@emotion/react";
@@ -19,7 +19,7 @@ import NavBarSearchHook from "../../hook/search/navBar-search-hook";
 import { Navigate, Link } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import UseNotification from "../../hook/useNotification";
-
+import logo from "../../images/logo.png";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -124,15 +124,12 @@ const NavBar = ({ setMode }) => {
           </MenuItem>
         </Link>
       ) : (
-      
-       
-          <Link to={"/login"} underline="none" color="inhiret">
-            <MenuItem onClick={handleMenuClose}>Login</MenuItem>
-          </Link>
-          // <Link to={"/register"} underline="none" color="inhiret">
-          //   <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
-          // </Link>
-      
+        <Link to={"/login"} underline="none" color="inhiret">
+          <MenuItem onClick={handleMenuClose}>Login</MenuItem>
+        </Link>
+        // <Link to={"/register"} underline="none" color="inhiret">
+        //   <MenuItem onClick={handleMenuClose}>Sign up</MenuItem>
+        // </Link>
       )}
 
       {currentUser ? (
@@ -215,24 +212,22 @@ const NavBar = ({ setMode }) => {
               component="div"
               marginRight={1}
             >
-              MUI
+              <img src={logo} width="70px" height="70px" />
             </Typography>
           </Link>
 
           {/* 2 */}
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              value={word}
-              onChange={(e) => {
-                onChangeWord(e.target.value);
-              }}
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          {/* search bar */}
+          <div className="flex justify-between items-center gap-4">
+            <div className="relative group hidden sm:block">
+              <input
+                type="text"
+                placeholder="search"
+                className="w-[200px] sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary dark:border-gray-500 dark:bg-gray-800  "
+              />
+              <SearchIcon className="text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3"/>
+            </div>
+          </div>
 
           {/* 3 */}
           <Box
@@ -322,7 +317,6 @@ const NavBar = ({ setMode }) => {
               <MoreIcon />
             </IconButton>
           </Box>
-          
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

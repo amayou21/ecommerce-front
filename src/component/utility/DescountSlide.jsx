@@ -1,12 +1,12 @@
 import React from "react";
 import img2 from "../../images/img2.png";
 import Typography from "@mui/material/Typography";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Paper } from "@mui/material";
 
 const DescountSlide = () => {
   return (
     <Container>
-      <Box className="mt-5 rounded-md  flex items-center justify-around bg-gradient-to-r from-red-500 to-orange-500">
+      <Paper className="mt-5 rounded-md  flex items-center justify-around ">
         <div>
           <Box
             component="img"
@@ -27,7 +27,7 @@ const DescountSlide = () => {
             descount
           </Typography>
         </div>
-      </Box>
+      </Paper>
     </Container>
   );
 };

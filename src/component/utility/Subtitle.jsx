@@ -11,7 +11,7 @@ const Subtitle = ({ title, btntitle, pathText }) => {
     <div>
       {btntitle ? (
         <div className="flex flex-row  justify-between  p-5">
-          <div>{title}</div>
+          <div data-aos="fade-on" className="text-3xl font-bold">{title}</div>
           <Link to={`${pathText}`}>
             <Button
               // href=
