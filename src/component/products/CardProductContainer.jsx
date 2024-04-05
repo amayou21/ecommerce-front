@@ -14,7 +14,7 @@ const CardProductContainer = ({ title, btntitle, pathText, products }) => {
               ? products.map((item, index) => {
                   return (
                     <div
-                      data-aos="fade-up"
+                      data-aos="zoom"
                       data-aos-delay={index * 200}
                       key={index}
                       className="space-y-3"

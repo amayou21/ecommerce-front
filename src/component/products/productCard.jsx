@@ -14,12 +14,12 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const ProductCard = ({ prod }) => {
   return (
-    <Paper class=" shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
-      <Link to={`/product/${prod._id}`}>
+    <Paper class=" shadow-lg rounded-full max-w-sm">
+      <Link to={`/product/${prod._id}`}  data-aos="zom-in">
         <img src={prod.imageCover} />
       </Link>
 
-      <div class="px-5 py-2">
+      <div className="px-5 py-2">
         <Typography
           variant="body2"
           component="p"
@@ -30,7 +30,7 @@ const ProductCard = ({ prod }) => {
         </Typography>
       </div>
 
-      <div class="px-5 pb-5">
+      <div className="px-5 pb-5">
         <div className="flex justify-between px-2 py-2">
           <Rating name="hover-feedback" value={2} readOnly />
         </div>

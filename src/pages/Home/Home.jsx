@@ -3,16 +3,18 @@ import HSlider from "../../component/Home/HSlider";
 import HomeCategory from "../../component/Home/HomeCategory";
 import CardProductContainer from "../../component/products/CardProductContainer";
 import DescountSlide from "../../component/utility/DescountSlide";
-import BrandFuturs from "../../component/brands/BrandFuturs";
+import BrandFuturs from  "../../component/brands/BrandFuturs";
 import ViewHomeProductsHook from "../../hook/product/view-home-products-hook";
 import NewHSlide from "../../component/Home/newHSlide";
+import Subscribe from "../../component/utility/Subscribe";
+import Testimonials from "../../component/utility/Testimonials";
 const Home = () => {
   const [items] = ViewHomeProductsHook();
-  
+
   return (
     <div>
       <HSlider />
-      <NewHSlide/>
+      <NewHSlide />
       <HomeCategory
         title="Categories"
         btntitle="more"
@@ -25,7 +27,13 @@ const Home = () => {
         pathText="/product-tshop"
       />
       <DescountSlide />
-      <CardProductContainer title="Latest Fashion" btntitle="show more" products={items}/>
+      <Subscribe />
+      <CardProductContainer
+        title="Latest Fashion"
+        btntitle="show more"
+        products={items}
+      />
+      <Testimonials/>
       {/* pathText='/produc-tshop' */}
       <BrandFuturs title="Brands" btntitle="more" pathText="/allbrands" />
     </div>
