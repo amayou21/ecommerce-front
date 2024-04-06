@@ -14,7 +14,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const ProductCard = ({ prod }) => {
   return (
-    <Paper class=" shadow-lg rounded-full max-w-sm">
+    <Paper className=" shadow-lg rounded-full max-w-sm">
       <Link to={`/product/${prod._id}`}  data-aos="zom-in">
         <img src={prod.imageCover} />
       </Link>
