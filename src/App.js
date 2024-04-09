@@ -81,10 +81,13 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <BrowserRouter>
-        <NewNavBar setMode={setMode} handleOrderPopup={handleOrderPopup}/>
-        {/* <NavBar setMode={setMode} /> */}
+
+        {
+          !window.location.pathname.startsWith("/admin") ? <NewNavBar setMode={setMode} handleOrderPopup={handleOrderPopup} />
+            : null
+        }
         {/* {
-        !window.location.pathname.startsWith("/admin") ?  />
+        !window.location.pathname.startsWith("/admin") <NavBar setMode={setMode} />  ? 
           : null
       } */}
         {/* <NavBar setMode={setMode} /> */}
@@ -104,7 +107,7 @@ const App = () => {
             <Route path="/allcategory" element={<AllCategoryPage />} />
             <Route path="/allbrands" element={<AllBrandsPage />} />
             <Route path="/product-tshop" element={<ShopProductPage />} />
-            <Route path="/product-tshop" element={<ShopProductPage />} />
+            {/* <Route path="/product-tshop" element={<ShopProductPage />} /> */}
             <Route path="/product/:id" element={<ProductDetailsPage />} />
 
             <Route path="/cart" element={<CartPage />} />

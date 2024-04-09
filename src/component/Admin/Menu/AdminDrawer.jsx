@@ -2,7 +2,6 @@ import React from "react";
 import { List, ListItem, ListItemButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { dashboardData } from "../../utility/DashboardData";
-import { useTheme } from "@emotion/react";
 
 const AdminDrawer = () => {
   const navigate = useNavigate();

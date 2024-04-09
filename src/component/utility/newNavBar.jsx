@@ -244,15 +244,28 @@ const NewNavBar = ({ setMode }) => {
         >
           <div className="container flex justify-between items-center py-2">
             <div>
-              <Link
-                to={"/"}
-                underline="none"
-                color="inhiret"
-                className="font-bold text-2xl sm:text-3xl flex gap-2"
-              >
-                <img src={Logo} alt="Logo" className="w-10" />
-                Webzup
-              </Link>
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <Link
+                  to={"/"}
+                  underline="none"
+                  color="inhiret"
+                  className="font-bold text-2xl sm:text-3xl flex gap-2"
+                >
+                  <img src={Logo} alt="Logo" className="w-10" />
+                  Webzup
+                </Link>
+              </Box>
+              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <Link
+                  to={"/"}
+                  underline="none"
+                  color="inhiret"
+                  className="font-bold text-2xl sm:text-3xl flex gap-2"
+                >
+                  <img src={Logo} alt="Logo" className="w-10 p-0 m-0" />
+                 
+                </Link>
+              </Box>
             </div>
 
             {/* search bar */}
@@ -283,23 +296,25 @@ const NewNavBar = ({ setMode }) => {
                   inputProps={{ "aria-label": "search" }}
                 />
               </Search>
-
               {/* order button */}
-              <Link
-                to={"/cart"}
-                underline="none"
-                color="inhiret"
-                className="bg-gradient-to-r from-primary to-secondary transition-all duration-200  py-1 px-4 rounded-full flex items-center gap-3 group"
-              >
-                <span className="group-hover:block hidden transition-all duration-200">
-                  Cart
-                </span>
 
-                <ShoppingCart className="text-xl drop-shadow-sm cursor-pointer" />
-              </Link>
+              <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <Link
+                  to={"/cart"}
+                  underline="none"
+                  color="inhiret"
+                  className="bg-gradient-to-r from-primary to-secondary transition-all duration-200  py-1 px-4 rounded-full flex items-center gap-3 group"
+                >
+                  <span className="group-hover:block hidden transition-all duration-200">
+                    Cart
+                  </span>
+
+                  <ShoppingCart className="text-xl drop-shadow-sm cursor-pointer" />
+                </Link>
+              </Box>
 
               {/* dark-light-mode-icon*/}
-              <Box >
+              <Box>
                 <IconButton
                   sx={{ ml: 1 }}
                   onClick={() => {

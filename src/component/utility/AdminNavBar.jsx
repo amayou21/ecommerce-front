@@ -1,30 +1,26 @@
 import * as React from "react";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useTheme } from "@emotion/react";
+
 import {
   Badge,
-  Link,
-  List,
-  ListItem,
-  ListItemButton,
   useMediaQuery,
+  Box,
+  IconButton,
+  Typography,
 } from "@mui/material";
 
 import { Global } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { grey } from "@mui/material/colors";
-import Button from "@mui/material/Button";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useNavigate } from "react-router-dom";
-import { dashboardData } from "./DashboardData";
+
+import AdminDrawer from "../Admin/Menu/AdminDrawer";
+
 const drawerBleeding = 56;
 
 const Root = styled("div")(({ theme }) => ({
@@ -123,26 +119,7 @@ const AdminNavBar = ({ window, setMode }) => {
               md: "none",
             }}
           >
-            <div className="w-[100%] h-[100%] mt-[56px] md:mt-[63px] xl:mt-[56px] p-1">
-              <List>
-                {dashboardData.map((val, index) => (
-                  <ListItem key={index} disablePadding>
-                    <ListItemButton
-                      onClick={() => {
-                        navigate(`/admin${val.link}`);
-                        setOpen(false);
-                      }}
-                    >
-                      <div className="mr-2">{val.icon}</div>
-
-                      <Typography variant="p" component="p" color="inherit">
-                        {val.name}
-                      </Typography>
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </div>
+            <AdminDrawer />
           </StyledBox>
         </SwipeableDrawer>
       </Root>
@@ -150,9 +127,8 @@ const AdminNavBar = ({ window, setMode }) => {
   );
 
   return (
-    <Box className="flex"> 
-
-      <Box >
+    <Box className="flex">
+      <Box>
         <IconButton sx={{ ml: 1 }}>
           <Badge badgeContent={2} color="error">
             <NotificationsIcon />

@@ -45,7 +45,9 @@ const ProductCard = ({ prod }) => {
           </IconButton>
 
           <Typography variant="h6" color="inherit" className="p-2">
-            <span className="text-3xl font-bold"> {`${prod.price}$`}</span>
+            <span className="text-3xl font-bold"> 
+            {`${prod.price}$`}
+            </span>
           </Typography>
         </div>
       </div>
