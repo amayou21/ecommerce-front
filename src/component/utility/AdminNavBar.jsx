@@ -17,7 +17,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { grey } from "@mui/material/colors";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import AdminDrawer from "../Admin/Menu/AdminDrawer";
 
@@ -62,7 +62,7 @@ const AdminNavBar = ({ window, setMode }) => {
     window !== undefined ? () => window().document.body : undefined;
 
   const mobileMenuId = "primary-search-account-menu-mobile";
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   //@desc mobile menu render
   const renderMobileMenu = (

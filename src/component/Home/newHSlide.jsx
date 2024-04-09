@@ -4,7 +4,7 @@ import img1 from "../../images/img1.png";
 import img2 from "../../images/img2.png";
 import img3 from "../../images/img3.png";
 import Slider from "react-slick";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 // import { Slider } from "@mui/material";
 
 const ImageList = [

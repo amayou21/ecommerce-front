@@ -6,7 +6,7 @@ import { CssBaseline } from "@mui/material";
 
 import Home from "./pages/Home/Home";
 import { DarktMode, LightMode } from "./component/utility/AppMode";
-import NavBar from "./component/utility/NavBar";
+// import NavBar from "./component/utility/NavBar";
 import Footer from "./component/utility/Footer";
 import AllCategoryPage from "./pages/categories/AllCategoryPage";
 import AllBrandsPage from "./pages/Brands/AllBrandsPage";

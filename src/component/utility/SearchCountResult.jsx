@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FormControl, InputLabel, Select, Typography } from "@mui/material";
+import { FormControl, InputLabel, Select } from "@mui/material";
 
 import MenuItem from "@mui/material/MenuItem";
 const SearchCountResult = ({ title, onFilterClick }) => {
