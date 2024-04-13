@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
-  Grid,
   Button,
   IconButton,
   Avatar,
@@ -9,9 +8,7 @@ import {
   Box,
   TextField,
   Typography,
-  Backdrop,
-  CircularProgress,
-  Alert,
+  Paper,
 } from "@mui/material";
 
 import OtherClientRating from "./OtherClientRating";
@@ -20,6 +17,7 @@ import ProductRetingHook from "../../hook/review/product-reting-hook";
 import { useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Circle } from "@mui/icons-material";
+import ReviewsIcon from "@mui/icons-material/Reviews";
 
 const labels = {
   0.5: "Useless",
@@ -51,117 +49,122 @@ const ProductReting = ({ rateQty, rateAVg }) => {
     handleSubmit,
     handleClose,
     open,
-    setOpen
+    setOpen,
   ] = ProductRetingHook(id);
   var user = {};
   if (localStorage.getItem("user")) {
     user = JSON.parse(localStorage.getItem("user"));
   }
   return (
-    <Grid item sm={12} xs={12} lg={12} md={12} className="shadow-2xl mt-2">
-    
-      <div className="flex items-center my-2">
-        <Typography variant="body1" color="inherit">
-          Ratings
-        </Typography>
+    <div className="md:flex">
+      <div className="w-full ">
+        <Paper className="p-2 my-2">
+          <div className="md:flex items-center my-2 ">
+            <div className="flex xs:my-2">
+              <Typography variant="body1" color="inherit">
+                Ratings
+              </Typography>
 
-        <Rating
-          className="mr-5"
-          name="hover-feedback"
-          value={rateAVg}
-          precision={0.5}
-          getLabelText={getLabelText}
-          onChange={(event, newValue) => {
-            // Do something when the rating changes, if needed
-          }}
-          readOnly // Disables user interaction
-          emptyIcon={
-            <StarIcon style={{ opacity: 0.55 }} fontSize="text-slate-700" />
-          }
-        />
-
-        <Typography variant="body1" color="inherit">
-          (Number of raters :{rateQty})
-        </Typography>
-      </div>
-      <div className="flex items-center my-2">
-        <IconButton>
-          {user ? (
-            user.profileImage ? (
-              <Avatar alt="Cindy Baker" src={user.profileImage} />
-            ) : user.name ? (
-              <Avatar>{user.name.charAt(0).toUpperCase()}</Avatar>
-            ) : (
-              <Avatar>
-                <Circle />
-              </Avatar>
-            )
-          ) : null}
-        </IconButton>
-
-        <Typography variant="body1" color="inherit">
-          {user.name}
-        </Typography>
-
-        <Rating
-          name="hover-feedback"
-          value={value}
-          precision={0.5}
-          getLabelText={getLabelText}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          onChangeActive={(event, newHover) => {
-            setHover(newHover);
-          }}
-          emptyIcon={
-            <StarIcon style={{ opacity: 0.55 }} fontSize="text-slate-700" />
-          }
-        />
-      </div>
-
-      {/* add comment */}
-      <div>
-        <Box className=" my-2">
-          <TextField
-            onChange={(e) => {
-              setComment(e.target.value);
-            }}
-            value={comment}
-            fullWidth
-            required
-            multiline
-            id="add-comment"
-            label="add comment"
-            placeholder="add comment"
-            variant="outlined"
-          />
-        </Box>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
-          add comment
-        </Button>
-      </div>
-
-      {/* other comments */}
-      {reviews && reviews.documents
-        ? reviews.documents.map((val, index) => {
-            return (
-              <OtherClientRating
-                key={index}
-                prod={val}
+              <Rating
+                className="mr-5"
+                name="hover-feedback"
+                value={rateAVg}
+                precision={0.5}
+                getLabelText={getLabelText}
+                onChange={(event, newValue) => {
+                  // Do something when the rating changes, if needed
+                }}
+                readOnly // Disables user interaction
+                emptyIcon={
+                  <StarIcon
+                    style={{ opacity: 0.55 }}
+                    fontSize="text-slate-700"
+                  />
+                }
               />
-            );
+            </div>
+
+            <Typography variant="body1" color="inherit">
+              (Number of raters :{rateQty})
+            </Typography>
+          </div>
+
+          <div className="flex items-center my-2">
+            <IconButton>
+              {user ? (
+                user.profileImage ? (
+                  <Avatar alt="Cindy Baker" src={user.profileImage} />
+                ) : user.name ? (
+                  <Avatar>{user.name.charAt(0).toUpperCase()}</Avatar>
+                ) : (
+                  <Avatar>
+                    <Circle />
+                  </Avatar>
+                )
+              ) : null}
+            </IconButton>
+
+            <Typography variant="body1" color="inherit">
+              {user.name}
+            </Typography>
+
+            <Rating
+              name="hover-feedback"
+              value={value}
+              precision={0.5}
+              getLabelText={getLabelText}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              onChangeActive={(event, newHover) => {
+                setHover(newHover);
+              }}
+              emptyIcon={
+                <StarIcon style={{ opacity: 0.55 }} fontSize="text-slate-700" />
+              }
+            />
+          </div>
+          <div>
+            <Box className=" my-2">
+              <TextField
+                onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+                value={comment}
+                fullWidth
+                required
+                multiline
+                id="add-comment"
+                label="add comment"
+                placeholder="add comment"
+                variant="outlined"
+              />
+            </Box>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>
+              add comment
+            </Button>
+          </div>
+        </Paper>
+      </div>
+
+      <div className="p-1 grid grid-cols-1  w-full">
+        {reviews && reviews.documents ? (
+          reviews.documents.map((val, index) => {
+            return <OtherClientRating key={index} prod={val} />;
           })
-        : null}
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        onClick={handleClose}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      <ToastContainer />
-    </Grid>
+        ) : (
+          <Paper className="flex justify-center items-center p-4 ">
+            <div>
+              <p className="flex justify-center">No reviews for now</p>
+
+              <div className="flex justify-center">
+                <ReviewsIcon color="info" fontSize="large" />
+              </div>
+            </div>
+          </Paper>
+        )}
+      </div>
+    </div>
   );
 };
 

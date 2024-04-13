@@ -67,23 +67,29 @@ const ProductRetingHook = (id) => {
 
     useEffect(() => {
         if (!loading) {
-
             setOpen(false);
             if (res) {
+
                 if (res && check) {
                     if (res.status) {
-
                         if (res.status === 201) {
                             setLoading(false);
                             setComment("");
                             setValue(0);
                             UseNotification("review created successfuly!", "success");
 
-                        } else {
-                            setLoading(false);
-                            UseNotification(res.data.errors[0].msg, "error");
-                            setComment("");
-                            setValue(0);
+                        } else if (res.data) {
+                            if (res.data.errors) {
+                                setLoading(false);
+                                UseNotification(res.data.errors[0].msg, "error");
+                                setComment("");
+                                setValue(0);
+                            } else if (res.data.message) {
+                                setLoading(false);
+                                UseNotification(res.data.message, "error");
+                                setComment("");
+                                setValue(0);
+                            }
                         }
                     }
                 }

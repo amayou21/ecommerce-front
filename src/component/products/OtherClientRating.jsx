@@ -242,7 +242,7 @@ const OtherClientRating = ({ prod }) => {
         </Dialog>
       </React.Fragment>
 
-      <Paper className="p-2 my-2 ">
+      <Paper className="p-2 my-1 ">
         <div className="flex  justify-between items-center">
           <div>
             <div className="flex items-center">
