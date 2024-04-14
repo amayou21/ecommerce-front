@@ -119,8 +119,6 @@ const EditReviewHook = (prod) => {
                 } else if (delRev.data && delRev.data.errors) {
                     setDelLoading(false);
                     UseNotification(delRev.data.errors[0].msg, "error");
-                    // setComment("");
-                    // setValue(0);
                 }
 
             }

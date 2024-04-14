@@ -1,10 +1,9 @@
 import React from "react";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
-import Grid from "@mui/material/Unstable_Grid2";
 import SkipNextOutlinedIcon from "@mui/icons-material/SkipNextOutlined";
 import SkipPreviousOutlinedIcon from "@mui/icons-material/SkipPreviousOutlined";
-import { Button, IconButton, Stack } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import ProductDetailsHook from "../../hook/product/product-details-hook";
 
@@ -28,72 +27,111 @@ const ProductGallery = (onClick, onDisable) => {
   );
 
   return (
-    <div className="mt-5 rounded-md items-center">
-      <Grid container>
-        <Grid
-          sm={12}
-          xs={12}
-          lg={4}
-          md={4}
-          className="flex justify-center items-center relative"
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 gap-1">
+      <div className="md:p-8">
+        <ImageGallery
+          items={images}
+          showFullscreenButton={false}
+          isRTL={true}
+          showPlayButton={false}
+          showThumbnails={true}
+          renderRightNav={customNextButton}
+          renderLeftNav={customPrevButton}
+        />
+      </div>
+
+      <div className="py-4">
+        <Typography color="secondary" variant="h3" component="h3">
+          {product && product.title ? product.title : null}
+        </Typography>
+
+        <Typography
+          className="break-all py-3 font-mono"
+          variant="body1"
+          component="p"
+          color="inherit"
         >
-          <div>
-            <ImageGallery
-              items={images}
-              showFullscreenButton={false}
-              isRTL={true}
-              showPlayButton={false}
-              showThumbnails={false}
-              renderRightNav={customNextButton}
-              renderLeftNav={customPrevButton}
-            />
-          </div>
-        </Grid>
+          {product && product.description ? product.description : null}
+        </Typography>
 
-        <Grid sm={12} xs={12} lg={8} md={8}>
-          <div className="p-4">
-            <p>{product && product.category ? product.category.name : null} </p>
-            <p className="break-all">
-              {product && product.description ? product.description : null}
-            </p>
-            <span className="text-yellow-500 my-2">
-              {product ? product.ratingQuantity : null}
-            </span>
-            {product ? (
-              product.brand ? (
-                <p>{` brand : ${product.brand.name}`}</p>
-              ) : null
-            ) : null}
+        <div className="md:flex justify-around my-2">
+          {product && product.ratingQuantity ? (
+            <Typography
+              className="font-bold"
+              variant="p"
+              component="p"
+              color="inherit"
+            >
+              {` Rting Quantity : ${product.ratingQuantity}`}
+            </Typography>
+          ) : null}
 
-            <div className="flex w-[20%]">
-              {product && product.colors
-                ? product.colors.map((c, index) => {
-                    return (
-                      <IconButton key={index}>
-                        <CircleIcon key={index} sx={{ color: c }} />
-                      </IconButton>
-                    );
-                  })
-                : null}
-            </div>
-            <div className="my-5">
-              <Stack direction="row" spacing={2} className="my-3">
-                {product ? (
-                  product.price ? (
-                    <Button sx={{ bgcolor: "#ff3d00" }}>
-                      {`${product.price}$`}
-                    </Button>
-                  ) : null
-                ) : null}
+          <Typography
+            className="font-bold"
+            variant="p"
+            component="p"
+            color="inherit"
+          >
+            {`Brand : ${
+              product && product.brand ? product.brand.name : "brand"
+            }`}
 
-                <Button variant="contained" color="success">
-                  add to cart
-                </Button>
-              </Stack>
-            </div>
-          </div>
-        </Grid>
-      </Grid>
+            {/* {` brand : ${}`} */}
+          </Typography>
+
+          {product && product.category ? (
+            <Typography
+              className="font-bold"
+              variant="p"
+              component="p"
+              color="inherit"
+            >
+              {`Category : ${product.category.name}`}
+            </Typography>
+          ) : null}
+
+          {
+            <Typography variant="p" color="inherit">
+              <span className="font-bold">Quantity:</span>
+              <span className="font-bold">10</span>
+            </Typography>
+          }
+        </div>
+
+        <div className="flex w-[100%] items-center font-bold py-2">
+          <Typography variant="p" color="inherit">
+            Colors :
+          </Typography>
+          {product && product.colors ? (
+            product.colors.map((c, index) => {
+              return (
+                <IconButton key={index}>
+                  <CircleIcon key={index} sx={{ color: c }} />
+                </IconButton>
+              );
+            })
+          ) : (
+            <p>No colors for this product</p>
+          )}
+        </div>
+
+        <div className="my-5 flex justify-between ">
+          {/* <Stack direction="row" spacing={2} className="my-3"> */}
+          {product ? (
+            product.price ? (
+              <Typography variant="h6" color="inherit">
+                <span className="text-3xl font-bold">
+                  {`${product.price}$`}
+                </span>
+              </Typography>
+            ) : null
+          ) : null}
+          <Button variant="contained" color="secondary">
+            add to cart
+          </Button>
+          {/* </Stack> */}
+        </div>
+      </div>
     </div>
   );
 };

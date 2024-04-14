@@ -70,7 +70,6 @@ const OtherClientRating = ({ prod }) => {
     openEdProgress,
   ] = EditReviewHook(prod);
 
-
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -91,14 +90,14 @@ const OtherClientRating = ({ prod }) => {
         <DeleteIcon color="error" />
         <p className="text-red-500">Delete</p>
       </MenuItem>
-
-      <MenuItem onClick={openEditRev}>
-        <EditIcon />
-        <p>Edit</p>
-      </MenuItem>
+      {currentUserId._id === reviewUserID ? (
+        <MenuItem onClick={openEditRev}>
+          <EditIcon />
+          <p>Edit</p>
+        </MenuItem>
+      ) : null}
     </Menu>
   );
-
 
   return (
     <div>
@@ -282,7 +281,7 @@ const OtherClientRating = ({ prod }) => {
             </div>
           </div>
           <div>
-            {currentUserId._id === reviewUserID ? (
+            {currentUserId._id === reviewUserID || currentUserId.role === "admin"? (
               <IconButton
                 size="large"
                 aria-label="show more"
