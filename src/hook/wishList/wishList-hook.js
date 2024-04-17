@@ -9,8 +9,6 @@ function WishListHook() {
   const wshList = useSelector((val) => val.wishList.wishListprod);
 
   const prods = wshList ? wshList.data : [];
-  if (prods) console.log(prods.data);
-
   const getWishListProd = async () => {
     await dispatch(GetWishlistProd());
   };

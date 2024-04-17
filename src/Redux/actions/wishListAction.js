@@ -1,7 +1,6 @@
 import { UseGetDataToken, deleteDataToken, postData } from "../../hooks/services"
 import { ADD_TO_WISHLIST, DELETE_PROD_FROM_WISHLIST, GET_ALL_WishList } from "../type"
 
-
 // @desc get al wishlist products
 export const GetWishlistProd = (limit = 5, page = 1) => async (dispatch) => {
     try {
