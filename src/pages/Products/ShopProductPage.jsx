@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 
-
 import { styled } from "@mui/material/styles";
 import { Global } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -22,8 +21,7 @@ import ProductCard from "../../component/products/productCard";
 import PaginatePage from "../../component/utility/PaginatePage";
 import ShopProductPageHook from "../../hook/product/shop-product-page-hook";
 import SearchCountResult from "../../component/utility/SearchCountResult";
-
-
+import ProductContainerHook from "../../hook/product/product-container-hook"
 const drawerBleeding = 56;
 
 const Root = styled("div")(({ theme }) => ({
@@ -51,6 +49,7 @@ const Puller = styled(Box)(({ theme }) => ({
 const ShopProductPage = ({ window }) => {
   const [results, prods, pageCount, getPage, getProducts] =
     ShopProductPageHook();
+  const [isFavorit] = ProductContainerHook();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -182,7 +181,7 @@ const ShopProductPage = ({ window }) => {
             {prods
               ? prods.length > 0
                 ? prods.map((item, index) => {
-                    return <ProductCard key={index} prod={item} />;
+                    return <ProductCard key={index} prod={item} isFavorit={isFavorit} />;
                   })
                 : null
               : null}

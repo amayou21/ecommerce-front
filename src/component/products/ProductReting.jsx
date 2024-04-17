@@ -147,13 +147,13 @@ const ProductReting = ({ rateQty, rateAVg }) => {
         </Paper>
       </div>
 
-      <div className="p-1 grid grid-cols-1  w-full">
+      <div className=" p-2 grid grid-cols-1  w-full">
         {reviews && reviews.documents ? (
           reviews.documents.map((val, index) => {
             return <OtherClientRating key={index} prod={val} />;
           })
         ) : (
-          <Paper className="flex justify-center items-center p-4 ">
+          <Paper className="flex justify-center items-center">
             <div>
               <p className="flex justify-center">No reviews for now</p>
 

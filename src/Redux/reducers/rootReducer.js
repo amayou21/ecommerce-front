@@ -7,6 +7,7 @@ import SubCategoriesOnCategoryReducer from "./subCategoriesOnCategoryReducer";
 import ProductRaducer from "./productRaducer";
 import AuthReducer from "./AuthReducer";
 import reviewReducer from "./reviewReducer";
+import WishListReducer from "./wishList";
 
 export default combineReducers({
   allCategory: categoryReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   allSubCategoryOnCategory: SubCategoriesOnCategoryReducer,
   allProduct: ProductRaducer,
   auth: AuthReducer,
-  reviewReducer:reviewReducer
+  reviewReducer: reviewReducer,
+  wishList: WishListReducer
 });

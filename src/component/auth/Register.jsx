@@ -110,7 +110,7 @@ const Register = () => {
             >
               Sign up
             </Button>
-            <Divider className="py-2">or</Divider>
+            <Divider className="py-2">OR</Divider>
 
             <div className="flex justify-between items-center ">
               <Typography variant="p" color="inhiret">

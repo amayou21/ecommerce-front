@@ -1,25 +1,19 @@
-import React from 'react';
-
-import FavoriteCard from './FavoriteCard';
+import React from "react";
+import ProductCard from "../../products/productCard";
+import WishListHook from "../../../hook/wishList/wishList-hook";
 
 const Index = () => {
-    return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
-
-            <FavoriteCard/>
-            <FavoriteCard/>
-            <FavoriteCard/>
-            <FavoriteCard/>
-            <FavoriteCard/>
-            <FavoriteCard/>
-            <FavoriteCard/>
-            <FavoriteCard/>
-            <FavoriteCard/>
-        </div>
-
-        
-
-    );
-}
-
+  const [prods,isFavorit]=WishListHook()
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+      {prods && prods.data
+        ? prods.data.map((prod, index) => {
+            return (
+              <ProductCard key={index} prod={prod} isFavorit={isFavorit} />
+            );
+          })
+        : null}
+    </div>
+  );
+};
 export default Index;

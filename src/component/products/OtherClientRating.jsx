@@ -241,7 +241,7 @@ const OtherClientRating = ({ prod }) => {
         </Dialog>
       </React.Fragment>
 
-      <Paper className="p-2 my-1 ">
+      <Paper className="p-2 mb-1">
         <div className="flex  justify-between items-center">
           <div>
             <div className="flex items-center">
@@ -281,7 +281,8 @@ const OtherClientRating = ({ prod }) => {
             </div>
           </div>
           <div>
-            {currentUserId._id === reviewUserID || currentUserId.role === "admin"? (
+            {currentUserId._id === reviewUserID ||
+            currentUserId.role === "admin" ? (
               <IconButton
                 size="large"
                 aria-label="show more"
