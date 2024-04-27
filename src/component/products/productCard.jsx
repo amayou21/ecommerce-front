@@ -20,6 +20,7 @@ import {
 
 import UseNotification from "../../hook/useNotification";
 import ProductCardHook from "../../hook/product/product-card-hook";
+import { ToastContainer } from "react-toastify";
 
 const ProductCard = ({ prod, isFavorit }) => {
   const [addOrDel, open, color] = ProductCardHook(prod, isFavorit );
@@ -64,6 +65,8 @@ const ProductCard = ({ prod, isFavorit }) => {
           </Typography>
         </div>
       </div>
+      <ToastContainer />
+
     </Paper>
   );
 };

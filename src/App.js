@@ -40,7 +40,8 @@ import ResetPasswordPage from "./pages/Auth/resetPasswordPage";
 import NewNavBar from "./component/utility/newNavBar";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import AddCouponPage from "./pages/Admin/AddCouponPage";
+// import AddCoupon from "./component/Admin/AddCoupon"
 
 const App = () => {
 
@@ -130,6 +131,7 @@ const App = () => {
               <Route path="add-sub-category" element={<AddSubCategoryPage />} />
               <Route path="add-product" element={<AddProductPage />} />
               <Route path="editproduct/:id" element={<EditProductPage />} />
+              <Route path="add-coupon" element={<AddCouponPage/>} />
             </Route>
 
             <Route path="/user" element={<UserDashPage />}>

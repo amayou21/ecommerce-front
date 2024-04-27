@@ -38,5 +38,9 @@ export const dashboardData = [
         name: "Add Product",
         icon: <AddCircleOutlineIcon fontSize="small" color="info"/>,
         link: "/add-product",
+    },{
+        name: "Add Coupon",
+        icon: <AddCircleOutlineIcon fontSize="small" color="info"/>,
+        link: "/add-coupon",
     },
 ];

@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react'
-// import UseNotification from "../../hook/useNotification";
-// import {
-//     AddProdToWish,
-//     deleFromWishList,
-//   } from "../../Redux/actions/wishListAction";
 
 import { useDispatch, useSelector } from "react-redux";
 import UseNotification from '../useNotification';
 import { AddProdToWish, deleFromWishList } from '../../Redux/actions/wishListAction';
 
-function ProductCardHook(prod, isFavorit ) {
+function ProductCardHook(prod, isFavorit) {
     const dispatch = useDispatch();
     const [color, setColor] = useState("");
     const [loadingAdd, setLoadingAdd] = useState(false);
@@ -88,7 +83,12 @@ function ProductCardHook(prod, isFavorit ) {
             if (resAdd && check) {
                 if (resAdd.data) {
                     if (resAdd.data.status === "success") {
+                        setLoadingAdd(false)
                         setColor("error");
+                    } else if (resAdd.data.errors) {
+                        setLoadingAdd(false)
+                        UseNotification(resAdd.data.errors[0].msg, "error");
+                        return
                     }
                 }
             }
@@ -102,9 +102,18 @@ function ProductCardHook(prod, isFavorit ) {
         if (!loadingRemove) {
             setOpen(false);
             if (resRemove && check) {
+                console.log(resRemove);
+
                 if (resRemove.data) {
                     if (resRemove.data.status === "success") {
                         setColor("");
+                    } else if (resRemove.data.errors) {
+                        setLoadingAdd(false)
+                        // console.log(resRemove.data.errors[0].msg);
+                        setTimeout(() => {
+                            UseNotification(resRemove.data.errors[0].msg, "error");
+                        }, 1000);
+                        return
                     }
                 }
             }

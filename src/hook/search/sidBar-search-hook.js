@@ -49,7 +49,7 @@ const SidBarSearchHook = () => {
     }
 
 
-    console.log(catChecked);
+    // console.log(catChecked);
     const brandChecked = (e) => {
         let val = e.target.value
         if (val === "0") {
