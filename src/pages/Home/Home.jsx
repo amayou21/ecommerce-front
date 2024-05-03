@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <div>
-      <HSlider />
+      {/* <HSlider /> */}
       <NewHSlide />
       <HomeCategory
         title="Categories"
