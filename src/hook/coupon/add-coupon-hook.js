@@ -13,7 +13,7 @@ function AddCouponHook(setOpenMadel) {
     const [open, setOpen] = useState(false);
     const [check, setCheck] = useState();
     const coupon = useSelector((state) => state.coupons.createCoupon);
-    if (coupon) console.log(coupon);
+    // if (coupon) console.log(coupon);
 
     const handleClose = () => {
         setOpen(false);

@@ -61,10 +61,10 @@ function EditOrDelCouponHook(CouponId) {
     const menuId = "primary-search-account-menu";
 
     const updateCop = useSelector((state) => state.coupons.updatecoupon);
-    if (updateCop) console.log(updateCop);
+    // if (updateCop) console.log(updateCop);
 
     const deleteCop = useSelector((state) => state.coupons.deletecoupon);
-    if (deleteCop) console.log(deleteCop);
+    // if (deleteCop) console.log(deleteCop);
 
 
     const handleProfileMenuOpen = (event, val) => {

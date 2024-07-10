@@ -11,7 +11,7 @@ function EditCouponHook() {
     const { id } = useParams()
     const navigate = useNavigate()
     const cp = useSelector(state => state.coupons.oneCoupon)
-    if (cp) console.log(cp);
+    // if (cp) console.log(cp);
     const [name, setName] = useState("");
     const [descount, setdescount] = useState(0);
     const [expire, setExpire] = useState();
@@ -31,7 +31,7 @@ function EditCouponHook() {
 
 
     const edCoup = useSelector(state => state.coupons.updatecoupon)
-    if (edCoup) console.log(edCoup);
+    // if (edCoup) console.log(edCoup);
     const handleClose = () => {
         setOpenDelProgress(false);
     };
@@ -54,7 +54,11 @@ function EditCouponHook() {
         }
 
         setEditLoading(true);
-        await dispatch(updateCoupon(id, { name, descount, expire }));
+        await dispatch(updateCoupon(id, {
+            "name": name,
+            "expire": expire,
+            "discount": descount
+        }));
         setEditLoading(false);
 
 
@@ -79,7 +83,8 @@ function EditCouponHook() {
                     UseNotification("coupon updated successfuly!", "success");
                     setTimeout(() => {
                         navigate("/admin/add-coupon")
-                    }, 2000);                } else if (edCoup.data && edCoup.data.errors) {
+                    }, 2000);
+                } else if (edCoup.data && edCoup.data.errors) {
                     setEditLoading(false);
                     UseNotification(edCoup.data.errors[0].msg, "error");
                 }
@@ -92,7 +97,7 @@ function EditCouponHook() {
         setCheck(false);
     }, [editLoading]);
 
-    return [cp, name, descount, expire, setName, setdescount, openDelProgress, setExpire, handleEditeCoupon]
+    return [cp, name, descount, expire, setName, setdescount, openDelProgress, handleClose, setExpire, handleEditeCoupon]
 }
 
 export default EditCouponHook
