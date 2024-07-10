@@ -41,6 +41,7 @@ import NewNavBar from "./component/utility/newNavBar";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CouponPage from "./pages/Admin/CouponPage";
+import EditCouponPage from "./pages/Admin/EditCouponPage";
 // import AddCoupon from "./component/Admin/AddCoupon"
 
 const App = () => {
@@ -132,6 +133,7 @@ const App = () => {
               <Route path="add-product" element={<AddProductPage />} />
               <Route path="editproduct/:id" element={<EditProductPage />} />
               <Route path="add-coupon" element={<CouponPage/>} />
+              <Route path="edit-coupon/:id" element={<EditCouponPage/>} />
             </Route>
 
             <Route path="/user" element={<UserDashPage />}>

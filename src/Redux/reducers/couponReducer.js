@@ -1,10 +1,12 @@
-import { CREATE_COUPONS, DELETE_COUPON, GET_ALL_COUPONS, GET_ERROR, UPDATE_COUPONS } from "../type";
+import { CREATE_COUPONS, DELETE_COUPON, GET_ALL_COUPONS, GET_COUPON, GET_ERROR, UPDATE_COUPONS } from "../type";
 
 const initial = {
     coupon: [],
     createCoupon: [],
     updatecoupon: [],
     deletecoupon: [],
+    oneCoupon: [],
+    // GET_COUPON
     loading: true,
 };
 
@@ -17,6 +19,15 @@ const couponReducer = (state = initial, action) => {
                 coupon: action.payload,
                 loading: false,
             };
+
+        //@desc getcoupon
+        case GET_COUPON:
+            return {
+                ...state,
+                oneCoupon: action.payload,
+                loading: false,
+            };
+
         //@desc create new coupon
         case CREATE_COUPONS:
             return {
@@ -35,7 +46,7 @@ const couponReducer = (state = initial, action) => {
         case DELETE_COUPON:
             return {
                 loading: false,
-                updatecoupon: action.payload,
+                deletecoupon: action.payload,
             };
 
         //@desc if there's errors

@@ -1,32 +1,17 @@
+import { Backdrop, Box, Button, CircularProgress, TextField, Typography } from "@mui/material";
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import {
-  Backdrop,
-  Box,
-  Button,
-  CircularProgress,
-  TextField,
-  Typography,
-} from "@mui/material";
-import AddCouponHook from "../../../hook/coupon/add-coupon-hook";
+import EditCouponHook from "../../../hook/coupon/edit-coupon-hook";
+import AddIcon from "@mui/icons-material/Add";
 
-const AddCoupon = ({ setOpenMadel }) => {
-  const [
-    name,
-    setName,
-    expire,
-    setExpire,
-    descount,
-    setdescount,
-    handleSubmit,
-    handleClose,
-    open
-  ] = AddCouponHook(setOpenMadel);
+function EditCoupon() {
 
+  const [cp, name, descount, expire, setName, setdescount,openDelProgress, setExpire, handleEditeCoupon] = EditCouponHook();
+  // console.log(name,expire,descount);
   return (
     <React.Fragment>
       <Typography variant="body1" color="inherit">
-        Create Coupon
+        Edit Coupon
       </Typography>
       <div className="flex justify-center items-center">
         <div className="mb-20" component="form">
@@ -72,24 +57,37 @@ const AddCoupon = ({ setOpenMadel }) => {
               variant="outlined"
             />
           </Box>
-
           <Box className="px-2 mt-2 flex justify-start">
-            <Button variant="contained" onClick={handleSubmit}>
-              create
+            <Button variant="contained"
+             onClick={handleEditeCoupon}
+             >
+              Edit
             </Button>
           </Box>
-          <Backdrop
-            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={open}
-            onClick={handleClose}
-          >
-            <CircularProgress color="inherit" />
-          </Backdrop>
+          <Box className="px-2 mt-2 flex justify-start">
+            {/* <Button variant="contained" onClick={handleSubmit}>
+            Edit
+          </Button> */}
+          </Box>
+          {/* <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+          onClick={handleClose}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop> */}
         </div>
         <ToastContainer />
       </div>
+      <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={openDelProgress}
+            // onClick={handleClose}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
     </React.Fragment>
   );
-};
+}
 
-export default AddCoupon;
+export default EditCoupon;

@@ -1,47 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AllCoupons } from "../../../Redux/actions/couponAction";
+import React from "react";
 import {
   Button,
   Dialog,
   IconButton,
   Paper,
-  useMediaQuery,
 } from "@mui/material";
+
 import AddIcon from "@mui/icons-material/Add";
 import AddCoupon from "./AddCoupon";
 import CancelIcon from "@mui/icons-material/Cancel";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { useTheme } from "@emotion/react";
+import CouponCard from "./CouponCard";
+import GetCouponsHook from "../../../hook/coupon/get-coupons-hook";
+
 function Coupons() {
-  const dispatch = useDispatch();
-  const theme = useTheme();
-  const [openMadel, setOpenMadel] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [check, setCheck] = useState();
+  const [
+    fullScreen,
+    openMadel,
+    handleClose,
+    setOpenMadel,
+    coupons,
+    handleClickOpen,
+  ] = GetCouponsHook();
 
- 
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  const handleClickOpen = () => {
-    setOpenMadel(true);
-  };
-
-  const handleClose = () => {
-    setOpenMadel(false);
-  };
-
-  const getCoupons = useSelector((state) => state.coupons.coupon);
-  const coupons = getCoupons ? getCoupons.data : [];
-  if (coupons) console.log(coupons.documents);
-   useEffect(() => {
-    const getCoupon = async () => {
-      await dispatch(AllCoupons(50));
-    };
-    getCoupon();
-  }, [openMadel])
   return (
-    <>
+    <React.Fragment>
       <React.Fragment>
         <Dialog
           fullScreen={fullScreen}
@@ -50,7 +32,7 @@ function Coupons() {
           aria-labelledby="responsive-dialog-title"
         >
           <div className="px-20 py-5 relative">
-            <AddCoupon setOpenMadel={setOpenMadel}/> 
+            <AddCoupon setOpenMadel={setOpenMadel} />
             <div className="absolute top-0 right-0">
               <IconButton onClick={handleClose}>
                 <CancelIcon color="error" />
@@ -80,24 +62,11 @@ function Coupons() {
           {coupons && coupons.documents && coupons.documents.length > 0
             ? coupons.documents.map((val, index) => {
                 return (
-                  <Paper
+                  <CouponCard
+                    Coupon={val}
                     key={index}
-                    className="flex flex-col  justify-between overflow-hidden  shadow-lg my-2 py-4 px-3 mx-4 rounded-2xl  relative"
-                  >
-                    <div className="mb-4 z-40">
-                      <div className="flex w-full justify-between items-center">
-                        <p className="mb-[2px] ">{` ${val.name}`} </p>
-                        <IconButton>
-                          <MoreHorizIcon color="info"/>
-                        </IconButton>
-                      </div>
-
-                      <p className="text-4xl xl:text-5xl font-bold opacity-30 mb-2 ">
-                        {`${val.discount}%`}
-                      </p>
-                      <p className=" font-semibold mb-[2px]">{`Expire : ${val.expire}`}</p>
-                    </div>
-                  </Paper>
+                    setOpenMadel={setOpenMadel}
+                  />
                 );
               })
             : null}
@@ -116,7 +85,7 @@ function Coupons() {
           ) : null}
         </div>
       </React.Fragment>
-    </>
+    </React.Fragment>
   );
 }
 

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteReview, updateReview } from "../../Redux/actions/reviewAction";
 import { useTheme } from "@emotion/react";
 import UseNotification from "../useNotification";
-import ProductRetingHook from "./product-reting-hook";
+// import ProductRetingHook from "./product-reting-hook";
 
 const EditReviewHook = (prod) => {
 
@@ -19,7 +19,7 @@ const EditReviewHook = (prod) => {
 
     // console.log(currentUserId._id,reviewUserID);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const theme = useTheme();
     const dispatch = useDispatch();
     const [openDelProgress, setOpenDelProgress] = useState(false);
@@ -138,12 +138,12 @@ const EditReviewHook = (prod) => {
             if (delRev) {
 
 
-                if (delRev.status === 204) {
+                if (updateRev.status === 200) {
                     UseNotification("review updated successfuly!", "success");
 
-                } else if (delRev.data && delRev.data.errors) {
+                } else if (updateRev.data && updateRev.data.errors) {
                     setEditLoading(false);
-                    UseNotification(delRev.data.errors[0].msg, "error");
+                    UseNotification(updateRev.data.errors[0].msg, "error");
                 }
 
             }

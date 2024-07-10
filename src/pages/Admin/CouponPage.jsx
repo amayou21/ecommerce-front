@@ -8,10 +8,6 @@ function CouponPage() {
     <div className="w-[100%]">
       <div className="mt-4">
         <Coupons />
-        {/* <Typography variant="body1" color="inherit">
-          Create Coupon
-        </Typography>
-        <AddCoupon /> */}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { UseGetDataToken, deleteData, postData, updateData } from "../../hooks/services";
-import { CREATE_COUPONS, DELETE_COUPON, GET_ALL_COUPONS, UPDATE_COUPONS } from "../type";
+import { CREATE_COUPONS,GET_COUPON, DELETE_COUPON, GET_ALL_COUPONS, UPDATE_COUPONS } from "../type";
 
 
 // @desc    Get coupons
@@ -21,6 +21,30 @@ export const AllCoupons = (limit = 5, page = 1) => async (dispatch) => {
         });
     }
 };
+
+
+
+// @desc    Get coupon
+// @route   GET /api/v1/coupons/:id
+// @access  Private
+export const getCoupon = (id) => async (dispatch) => {
+    try {
+        const data = await UseGetDataToken(`/api/v1/coupons/${id}`
+        );
+        dispatch({
+            type: GET_COUPON,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: GET_COUPON,
+            payload: `error : ${error}`,
+        });
+    }
+};
+
+
+
 
 
 // @desc   Create cupon
@@ -48,6 +72,7 @@ export const createCoupon = (formData) => async (dispatch) => {
 export const updateCoupon = (id, formData) => async (dispatch) => {
     try {
         const data = await updateData(`/api/v1/coupons/${id}`, formData);
+        // console.log(data);
         dispatch({
             type: UPDATE_COUPONS,
             payload: data,

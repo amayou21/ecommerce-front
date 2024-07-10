@@ -65,8 +65,11 @@ export const updateData = async (url, params) => {
 
 
 // delete data
-export const deleteData = async (url, params) => {
-  const res = await baserUrl.delete(url, params)
+export const deleteData = async (url) => {
+  const config = {
+    headers: { "Content-Type": "multipart/form-data", Authorization: `Bearer ${localStorage.getItem('token')}` },
+  };
+  const res = await baserUrl.delete(url, config)
   return res
 }
 
