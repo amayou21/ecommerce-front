@@ -252,7 +252,7 @@ const NewNavBar = ({ setMode }) => {
                   className="font-bold text-2xl sm:text-3xl flex gap-2"
                 >
                   <img src={Logo} alt="Logo" className="w-10" />
-                  Webzup
+                  pharma spectra
                 </Link>
               </Box>
               <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -411,3 +411,143 @@ const NewNavBar = ({ setMode }) => {
 };
 
 export default NewNavBar;
+
+// import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import Avatar from "@mui/material/Avatar";
+// import { useSelector } from "react-redux";
+
+// // Optimized webp image
+// import Logo from "../../images/logo.png";
+// // Lazy loaded MUI components/icons
+// const Badge = lazy(() => import("@mui/material/Badge"));
+// const Menu = lazy(() => import("@mui/material/Menu"));
+// const MenuItem = lazy(() => import("@mui/material/MenuItem"));
+// const SearchIcon = lazy(() => import("@mui/icons-material/Search"));
+// const AccountCircle = lazy(() => import("@mui/icons-material/AccountCircle"));
+
+
+// const NewNavBar = ({ onChangeWord, search, onSearchClick }) => {
+//   const navigate = useNavigate();
+//   const cartItems  = useSelector((state) => state.cart);
+//   const [anchorEl, setAnchorEl] = useState(null);
+//   const [debouncedWord, setDebouncedWord] = useState("");
+//   const [localWord, setLocalWord] = useState("");
+//   const currentUser = JSON.parse(localStorage.getItem("user"));
+
+//   const isLoggedIn = !!currentUser;
+//   const isAdmin = isLoggedIn && currentUser.role === "admin";
+//   const profileInitial = currentUser?.name?.charAt(0)?.toUpperCase() || "";
+
+//   useEffect(() => {
+//     const savedKeyword = localStorage.getItem("keyWord");
+//     if (savedKeyword) {
+//       setDebouncedWord(savedKeyword);
+//       setLocalWord(savedKeyword);
+//     }
+//   }, []);
+
+//   useEffect(() => {
+//     const handler = setTimeout(() => {
+//       onChangeWord(debouncedWord);
+//     }, 300);
+//     return () => clearTimeout(handler);
+//   }, [debouncedWord, onChangeWord]);
+
+//   const handleProfileMenuOpen = (event) => {
+//     setAnchorEl(event.currentTarget);
+//   };
+
+//   const handleMenuClose = () => {
+//     setAnchorEl(null);
+//   };
+
+//   const handleLogout = () => {
+//     localStorage.removeItem("token");
+//     localStorage.removeItem("user");
+//     window.location.pathname = "/";
+//   };
+
+//   return (
+//     <div className="bg-white h-[65px] sticky top-0 z-50 shadow-md">
+//       <div className="h-full w-full flex items-center justify-between px-3 md:px-10">
+//         <Link to="/" className="flex items-center gap-2">
+//           <img src={Logo} alt="Logo" className="h-9" loading="lazy" />
+//           <span className="text-lg font-bold">eCommerce</span>
+//         </Link>
+
+//         <div className="hidden md:flex items-center rounded border border-gray-400 px-2 py-1 w-[500px]">
+//           <input
+//             value={debouncedWord}
+//             onChange={(e) => setDebouncedWord(e.target.value)}
+//             type="text"
+//             placeholder="Search"
+//             className="flex-grow outline-none bg-transparent text-gray-800"
+//           />
+//           <Suspense fallback={<div />}>
+//             <SearchIcon
+//               onClick={onSearchClick}
+//               className="cursor-pointer text-gray-500 hover:text-black"
+//             />
+//           </Suspense>
+//         </div>
+
+//         <div className="flex items-center gap-4">
+//           <Suspense fallback={<div />}>
+//             <Badge
+//               badgeContent={cartItems?.length || 0}
+//               color="primary"
+//               onClick={() => navigate("/cart")}
+//               className="cursor-pointer"
+//             >
+//               <i className="fas fa-shopping-cart text-lg"></i>
+//             </Badge>
+//           </Suspense>
+
+//           {isLoggedIn ? (
+//             <div>
+//               <Avatar
+//                 onClick={handleProfileMenuOpen}
+//                 className="cursor-pointer bg-blue-600"
+//               >
+//                 {profileInitial}
+//               </Avatar>
+//               <Suspense fallback={null}>
+//                 <Menu
+//                   anchorEl={anchorEl}
+//                   keepMounted
+//                   open={Boolean(anchorEl)}
+//                   onClose={handleMenuClose}
+//                 >
+//                   <MenuItem onClick={() => { handleMenuClose(); navigate("/orders"); }}>
+//                     Orders
+//                   </MenuItem>
+//                   <MenuItem onClick={() => { handleMenuClose(); navigate("/profile"); }}>
+//                     Profile
+//                   </MenuItem>
+//                   {isAdmin && (
+//                     <MenuItem onClick={() => { handleMenuClose(); navigate("/admin/dashboard"); }}>
+//                       Admin Dashboard
+//                     </MenuItem>
+//                   )}
+//                   <MenuItem onClick={() => { handleMenuClose(); handleLogout(); }}>
+//                     Logout
+//                   </MenuItem>
+//                 </Menu>
+//               </Suspense>
+//             </div>
+//           ) : (
+//             <Link
+//               to="/login"
+//               className="text-white bg-blue-600 py-1 px-3 rounded hover:bg-blue-700 transition"
+//             >
+//               Login
+//             </Link>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default NewNavBar;

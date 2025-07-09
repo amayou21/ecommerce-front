@@ -1,8 +1,8 @@
 import React from "react";
 
-import img1 from "../../images/img1.png";
-import img2 from "../../images/img2.png";
-import img3 from "../../images/img3.png";
+import img1 from "../../images/spec100.jpg";
+import img2 from "../../images/spec8.png";
+import img3 from "../../images/cat_anti_âge.png";
 import Slider from "react-slick";
 // import Typography from "@mui/material/Typography";
 // import { Slider } from "@mui/material";
@@ -11,9 +11,9 @@ const ImageList = [
   {
     id: 1,
     img: img1,
-    title: "Upto 50% off on all Men's Wear",
+    title: "Protégez votre peau avec notre écran solaire ",
     description:
-      "lorem His Life will forever be Changed dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "La crème solaire SPECTRA SPF 50 offre une très haute protection contre les UVA et les UVB. Elle est formulée à base d'une technologie UV Ecran+ qui associe des filtres anti UVA et anti UVB pour assurer une protection optimale.",
   },
   {
     id: 2,
@@ -25,9 +25,9 @@ const ImageList = [
   {
     id: 3,
     img: img3,
-    title: "70% off on all Products Sale",
+    title: "Protègez votre peau !",
     description:
-      "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Appliquez généreusement la crème solaire SPECTRA, renouvelez l’application toutes les deux heures, et profitez de chaque instant sous le soleil !",
   },
 ];
 
@@ -93,9 +93,11 @@ const NewHSlide = ({ handleOrderPopup }) => {
                 >
                   <img
                     src={data.img}
+                    loading="lazy"
                     alt=""
-                    className="w-[300px] h-[300px] sm:h-[450px] sm:w-[450px] sm:scale-105 lg:scale-120 object-contain "
+                    className="w-[350px] h-[350px] sm:h-[450px] sm:w-[450px] sm:scale-105 lg:scale-120 object-contain "
                   />
+                  
                 </div>
               </div>
             </div>

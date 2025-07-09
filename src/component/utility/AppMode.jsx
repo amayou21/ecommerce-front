@@ -6,7 +6,7 @@ export const LightMode = {
   btnVariant: "contained",
 };
 
-export const DarktMode = {
+export const DarkMode = {
   AppBarbackgroundColor: "black",
   slidBackgroundColor: "bg-gradient-to-r from-stone-500 to-stone-700",
   btnBgColor: "",

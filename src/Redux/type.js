@@ -45,4 +45,8 @@ export const GET_ALL_COUPONS = "GET_ALL_COUPONS"
 export const CREATE_COUPONS = "CREATE_COUPONS"
 export const UPDATE_COUPONS = "UPDATE_COUPONS"
 export const DELETE_COUPON = "DELETE_COUPON"
-export const GET_COUPON="GET_COUPON"
+export const GET_COUPON = "GET_COUPON"
+
+
+
+export const GET_ADDRESSES = "GET_ADDRESSES"

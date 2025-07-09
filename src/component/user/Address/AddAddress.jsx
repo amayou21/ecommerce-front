@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "@emotion/react";
 import { Box, Button, TextField } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { AllAddresses } from "../../../Redux/actions/addressesAction";
 
 const AddAddress = () => {
+  const dispatch = useDispatch();
+
+  const add = useSelector((state) => state.addresses.allAddresses);
+  if (add) console.log(add);
+
+  useEffect(() => {
+    const getAddresses = async () => {
+     await dispatch(AllAddresses(50));
+    };
+    getAddresses();
+  }, [add]);
+
   const theme = useTheme();
   return (
     <div className="flex justify-center items-center m-8">
