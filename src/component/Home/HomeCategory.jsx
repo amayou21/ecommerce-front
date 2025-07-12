@@ -7,13 +7,14 @@ import Paper from "@mui/material/Paper";
 import HomeCategoryHook from "../../hook/category/home-category-hook";
 // import Typography from "@mui/material/Typography";
 
-import Image1 from "../../images/catEclat.png";
-import Image2 from "../../images/cat_anti_âge.png";
-import Image3 from "../../images/catCorp.png";
-import Image4 from "../../images/catPied.png";
-import Image5 from "../../images/catHamam.png";
-import Image6 from "../../images/catSolaire.png";
+import Image1 from "../../images/gaming.png";
+import Image2 from "../../images/img3.png";
+import Image3 from "../../images/img2.png";
+import Image4 from "../../images/macbook.png";
+import Image5 from "../../images/nodeJs.png";
+import Image6 from "../../images/logo.png";
 import Slider from "react-slick";
+import CategoryContainerPage from "../category/CategoryContainerPage";
 
 // const TestimonialData = [
 //   {
@@ -80,7 +81,7 @@ const CategoriesData = [
 const HomeCategory = ({ title, btntitle, pathText }) => {
   // listening
   const [loading, res] = HomeCategoryHook();
-
+  const categories = res.data ? res.data.documents : [];
   var settings = {
     dots: true,
     arrows: false,
@@ -124,41 +125,8 @@ const HomeCategory = ({ title, btntitle, pathText }) => {
       <div className="container">
         <Subtitle title={title} btntitle={btntitle} pathText={pathText} />
 
-        <div data-aos="zoom-in">
-          <Slider {...settings}>
-            {CategoriesData.map((data, index) => (
-              <div className="my-6" key={index}>
-                <Paper className="flex flex-col gap-4 justify-between overflow-hidden  shadow-lg py-4 px-3 mx-4 rounded-2xl  relative">
-                  <div className="mb-4 z-40">
-                    {/* <Typography variant="body1" color="inherit"> */}
-                    <p className="mb-[2px]">Enjoy</p>
-                    {/* </Typography> */}
-                    {/* <Typography variant="body1" color="inherit"> */}
-                    <p className="text-xl font-semibold mb-[2px]">With Gamme</p>
-                    {/* </Typography> */}
-                    {/* <Typography variant="body1" color="inherit"> */}
-                    <p className="text-4xl xl:text-5xl font-bold opacity-30 mb-2">
-                      {data.name}
-                    </p>
-                    {/* </Typography> */}
-                  </div>
-                  <div className=" mb-1">
-                    <Button color="secondary" variant="contained">
-                      Browse
-                    </Button>
-                  </div>
-                  <Box sx={{ display: { sx: "none", md: "flex", lg: "flex" } }}>
-                    <img
-                      src={data.img}
-                      alt=""
-                      className="w-[200px] absolute top-1/2 -translate-y-1/2 -right-1"
-                    />
-                  </Box>
-                </Paper>
-              </div>
-            ))}
-          </Slider>
-        </div>
+        
+          <CategoryContainerPage data={categories} />
       </div>
     </div>
   );

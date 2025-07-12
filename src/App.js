@@ -242,7 +242,7 @@ const App = () => {
           <NewNavBar setMode={setMode} handleOrderPopup={handleOrderPopup} />
         )}
 
-        <div className="mt-[56px] md:mt-[56px] xl:mt-[56px]">
+        <div className="mt-[56px] md:mt-[56px] xl:mt-[56px] sm:mt-[56px]">
           <Suspense fallback={<div className="text-center p-4">Loading...</div>}>
             <Routes>
               {/* Public Routes */}
@@ -288,7 +288,11 @@ const App = () => {
           </Suspense>
         </div>
 
-        <Footer />
+<div className="mt-96">
+  <Footer />
+</div>
+
+        
       </BrowserRouter>
     </ThemeProvider>
   );

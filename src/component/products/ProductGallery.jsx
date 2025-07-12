@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 import SkipNextOutlinedIcon from "@mui/icons-material/SkipNextOutlined";
@@ -6,9 +6,14 @@ import SkipPreviousOutlinedIcon from "@mui/icons-material/SkipPreviousOutlined";
 import { Button, IconButton, Typography } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import ProductDetailsHook from "../../hook/product/product-details-hook";
+import AddToCartHook from "../../hook/cart/add-cart-hook";
+import { useParams } from "react-router-dom";
 
 const ProductGallery = (onClick, onDisable) => {
+  const { id } = useParams();
   const [product, images] = ProductDetailsHook();
+
+  const [color, colorIndex, colorClick] = AddToCartHook(id);
 
   const customPrevButton = (onClick, onDisable) => (
     <div className="absolute h-[100%] z-10 left-1 flex items-center">
@@ -98,16 +103,25 @@ const ProductGallery = (onClick, onDisable) => {
           }
         </div>
 
-        <div className="flex w-[100%] items-center font-bold py-2">
+        <div className="flex w-[100%] items-center font-bold py-auto">
           <Typography variant="p" color="inherit">
             Colors :
           </Typography>
           {product && product.colors ? (
             product.colors.map((c, index) => {
               return (
-                <IconButton key={index}>
-                  <CircleIcon key={index} sx={{ color: c }} />
-                </IconButton>
+                <div
+                  key={index}
+                  onClick={() => colorClick(index, c)}
+                  className="rounded-full p-2 mx-1 cursor-pointer"
+                  style={{
+                    backgroundColor: c,
+                    border:
+                      colorIndex === index
+                        ? "2px solid orange"
+                        : "2px solid transparent",
+                  }}
+                ></div>
               );
             })
           ) : (

@@ -98,9 +98,9 @@ const SideMenu = ({ setMode }) => {
         open={open}
       >
         <DrawerHeader>
-          <Typography variant="body1" color="inherit">
-            Dashboard
-          </Typography>
+          {/* <Typography variant="body1" color="inherit">
+            Dashboard 
+          </Typography> */}
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -108,6 +108,7 @@ const SideMenu = ({ setMode }) => {
               <ChevronRightIcon />
             )}
           </IconButton>
+          
         </DrawerHeader>
         <Divider />
         <AdminDrawer />

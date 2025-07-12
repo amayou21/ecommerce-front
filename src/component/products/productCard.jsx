@@ -38,7 +38,7 @@ const ProductCard = ({ prod, isFavorit }) => {
           color="text.secondary"
           className="px-2  max-h-10 break-all overflow-hidden whitespace-wrap overflow-ellipsis"
         >
-          {prod.description}...
+          {prod.title}
         </Typography>
       </div>
 

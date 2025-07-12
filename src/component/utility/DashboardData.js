@@ -4,11 +4,16 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 // order management
 import { ShoppingCart } from "@mui/icons-material";
-
+import HomeIcon from '@mui/icons-material/Home';
 // add category
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 export const dashboardData = [
+    {
+        name: "Dashboard",
+        icon: <HomeIcon fontSize="small" color="info"/>,
+        link: "/",
+    },
     {
         name: "Order Management",
         icon: <ShoppingCart fontSize="small" color="info"/>,

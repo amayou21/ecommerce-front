@@ -1,8 +1,8 @@
 import React from "react";
 
-import img1 from "../../images/spec100.jpg";
-import img2 from "../../images/spec8.png";
-import img3 from "../../images/cat_anti_âge.png";
+import img1 from "../../images/img1.png";
+import img2 from "../../images/img2.png";
+import img3 from "../../images/img3.png";
 import Slider from "react-slick";
 // import Typography from "@mui/material/Typography";
 // import { Slider } from "@mui/material";

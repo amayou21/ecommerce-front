@@ -105,7 +105,7 @@ const AdminNavBar = ({ window, setMode }) => {
           >
             <Puller />
             <Typography sx={{ p: 2, color: "text.secondary" }}>
-              Dashboard
+              dashboard
             </Typography>
           </StyledBox>
 
