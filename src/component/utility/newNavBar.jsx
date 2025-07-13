@@ -20,6 +20,7 @@ import {
 import { useTheme } from "@emotion/react";
 import NavBarSearchHook from "../../hook/search/navBar-search-hook";
 import { styled, alpha } from "@mui/material/styles";
+import GetAllCartHook from "../../hook/cart/get-all-user-cart-hook";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,7 +65,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const NewNavBar = ({ setMode }) => {
   const [searchWord, onChangeWord, currentUser] = NavBarSearchHook();
-
+  const [loading, numberOfItems] = GetAllCartHook();
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      right: -3,
+      top: 13,
+      border: `2px solid ${(theme.vars ?? theme).palette.background.paper}`,
+      padding: "0 4px",
+    },
+  }));
   let word;
   if (localStorage.getItem("keyWord")) {
     word = localStorage.getItem("keyWord");
@@ -176,7 +185,8 @@ const NewNavBar = ({ setMode }) => {
             aria-label="show 4 new mails"
             color="inherit"
           >
-            <Badge badgeContent={4} color="error">
+            <Badge color="secondary" badgeContent={numberOfItems} showZero>
+              {" "}
               <ShoppingCart />
             </Badge>
           </IconButton>
@@ -263,7 +273,6 @@ const NewNavBar = ({ setMode }) => {
                   className="font-bold text-2xl sm:text-3xl flex gap-2"
                 >
                   <img src={Logo} alt="Logo" className="w-10 p-0 m-0" />
-                 
                 </Link>
               </Box>
             </div>
@@ -303,13 +312,14 @@ const NewNavBar = ({ setMode }) => {
                   to={"/cart"}
                   underline="none"
                   color="inhiret"
-                  className="bg-gradient-to-r from-primary to-secondary transition-all duration-200  py-1 px-4 rounded-full flex items-center gap-3 group"
+                  className="bg-gradient-to-r transition-all duration-200  py-1 px-4 rounded-full flex items-center gap-3 group"
                 >
                   <span className="group-hover:block hidden transition-all duration-200">
                     Cart
                   </span>
-
-                  <ShoppingCart className="text-xl drop-shadow-sm cursor-pointer" />
+                  <Badge color="error" badgeContent={numberOfItems} showZero>
+                    <ShoppingCart className="text-xl drop-shadow-sm cursor-pointer" />
+                  </Badge>
                 </Link>
               </Box>
 
@@ -425,7 +435,6 @@ export default NewNavBar;
 // const MenuItem = lazy(() => import("@mui/material/MenuItem"));
 // const SearchIcon = lazy(() => import("@mui/icons-material/Search"));
 // const AccountCircle = lazy(() => import("@mui/icons-material/AccountCircle"));
-
 
 // const NewNavBar = ({ onChangeWord, search, onSearchClick }) => {
 //   const navigate = useNavigate();

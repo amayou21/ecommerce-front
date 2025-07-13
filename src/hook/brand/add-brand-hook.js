@@ -58,7 +58,7 @@ const AddBrandHook = () => {
   };
 
   const res = useSelector((val) => val.allBrand.brand);
-if(res)console.log(res);
+
   useEffect(() => {
 
     if (!loading) {

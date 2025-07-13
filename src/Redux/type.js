@@ -50,3 +50,7 @@ export const GET_COUPON = "GET_COUPON"
 
 
 export const GET_ADDRESSES = "GET_ADDRESSES"
+
+
+export const ADD_TO_CART = "ADD_TO_CART"
+export const GET_ALL_CART = "GET_ALL_CART"

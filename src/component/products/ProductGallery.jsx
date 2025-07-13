@@ -8,12 +8,13 @@ import CircleIcon from "@mui/icons-material/Circle";
 import ProductDetailsHook from "../../hook/product/product-details-hook";
 import AddToCartHook from "../../hook/cart/add-cart-hook";
 import { useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const ProductGallery = (onClick, onDisable) => {
   const { id } = useParams();
   const [product, images] = ProductDetailsHook();
 
-  const [color, colorIndex, colorClick] = AddToCartHook(id);
+  const [color, colorIndex, colorClick, addToCartHandler] = AddToCartHook(id,product);
 
   const customPrevButton = (onClick, onDisable) => (
     <div className="absolute h-[100%] z-10 left-1 flex items-center">
@@ -140,12 +141,14 @@ const ProductGallery = (onClick, onDisable) => {
               </Typography>
             ) : null
           ) : null}
-          <Button variant="contained" color="secondary">
+          <Button onClick={addToCartHandler} variant="contained" color="secondary">
             add to cart
           </Button>
           {/* </Stack> */}
         </div>
       </div>
+      <ToastContainer />
+
     </div>
   );
 };
