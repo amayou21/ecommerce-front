@@ -5,11 +5,11 @@ import { AllCart } from '../../Redux/actions/cartActions';
 function GetAllCartHook() {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [cartItem, setCartItems] = useState(0);
+    const [cartItem, setCartItems] = useState("");
     const [numberOfItems, setNumberOfItems] = useState(0);
 
     const res = useSelector((val) => val.carts.cart);
-    console.log(res);
+    // console.log(res);
     // const addToCartHandler = async (e) => {
     //   e.preventDefault();
     //   if (!navigator.onLine) {
@@ -19,6 +19,7 @@ function GetAllCartHook() {
     //   // setCheck(true);
     // };
 
+  
     useEffect(() => {
         const get = async () => {
             setLoading(true);
@@ -27,12 +28,16 @@ function GetAllCartHook() {
         };
         get();
     }, []);
+    console.log(cartItem);
 
     useEffect(() => {
         if (!loading) {
             if (res && res.data) {
                 setNumberOfItems(res.data.numOfCartItems)
-                
+                if(res&&res.data){
+                    if(res.data.data)
+                    setCartItems(res.data.data.cartItem)
+                }
                 // setTimeout(() => {
                 //     window.location.reload(false)
 
@@ -43,7 +48,7 @@ function GetAllCartHook() {
         }
     }, [loading, numberOfItems]);
 
-    return [loading, numberOfItems]
+    return [loading, numberOfItems,cartItem]
 }
 
 export default GetAllCartHook
